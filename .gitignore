@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+dist/
+backups/
+personal-data/
+*.zip
+*.log
+playwright-report/
+test-results/

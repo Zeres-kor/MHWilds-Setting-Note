@@ -1,0 +1,361 @@
+{
+  "format": 1,
+  "project": "mhwilds",
+  "files": [
+    {
+      "path": ".agents/LICENSE",
+      "bytes": 1069,
+      "sha256": "dd93bb14907b1160b40b96d8bb074d9122cd075a7dcccdc377b6a2030807fd3f"
+    },
+    {
+      "path": ".agents/README.md",
+      "bytes": 25371,
+      "sha256": "cc64fc25bfc72ccb7c8cd5dd6a1f983abf0c226848aebd5fe5dd3b04960738cb"
+    },
+    {
+      "path": ".agents/agent-skills-install.json",
+      "bytes": 5434,
+      "sha256": "e9abcfeb4019e92275615fc262ff22ea07dbbfc04923543efa0597d8f211a661"
+    },
+    {
+      "path": ".agents/references/accessibility-checklist.md",
+      "bytes": 5207,
+      "sha256": "c9b83a94a694476cd3e4bb31e83f47e56f8236064076857e77b47568283240ce"
+    },
+    {
+      "path": ".agents/references/definition-of-done.md",
+      "bytes": 3799,
+      "sha256": "5a03c8ec3bf4173312ed137943f98e50548c8b879f22d604d265372a5b3c65df"
+    },
+    {
+      "path": ".agents/references/observability-checklist.md",
+      "bytes": 5130,
+      "sha256": "6c0276b0a2e029b2093fb2198d9a1564c743b36a9a17d22dc449b09169b3c987"
+    },
+    {
+      "path": ".agents/references/orchestration-patterns.md",
+      "bytes": 18202,
+      "sha256": "308bd602de977eaa26fb8fcbc46dcb7cce8f17032a62f2861df9966d27d67be2"
+    },
+    {
+      "path": ".agents/references/performance-checklist.md",
+      "bytes": 13140,
+      "sha256": "9f52399d851d21de5c7f51dfd7dbef1026f7947fbabb9ae63fdf94ac439ccf3f"
+    },
+    {
+      "path": ".agents/references/security-checklist.md",
+      "bytes": 14361,
+      "sha256": "96920f3dbbab99c216a7cc4e72b8752ed855ac3a55b891d5a32dfeecd88bef20"
+    },
+    {
+      "path": ".agents/references/testing-patterns.md",
+      "bytes": 7461,
+      "sha256": "9b33b591c3246a40f4b5242d596b6ec70daec4adc3b38a1bc325217cdb603a28"
+    },
+    {
+      "path": ".agents/skills/api-and-interface-design/SKILL.md",
+      "bytes": 14885,
+      "sha256": "f66ee4a0332dbc283304335cbea827802c15b021ca6c0eae22e21514c2b4e212"
+    },
+    {
+      "path": ".agents/skills/browser-testing-with-devtools/SKILL.md",
+      "bytes": 14540,
+      "sha256": "c73ac17ceada42aff267addc9e87ef7dd7bba152c796bac6536a5cccb6567183"
+    },
+    {
+      "path": ".agents/skills/ci-cd-and-automation/SKILL.md",
+      "bytes": 11333,
+      "sha256": "e348d2a3a20cff9fe41a1f832f23eeb5962bdcbe8d22cf1d505fecbeb83c5e8f"
+    },
+    {
+      "path": ".agents/skills/code-review-and-quality/SKILL.md",
+      "bytes": 20977,
+      "sha256": "be8ef95906197fc9e6261224431d085a96a9db3be9daaaa5b7b0f5351c1699af"
+    },
+    {
+      "path": ".agents/skills/code-simplification/SKILL.md",
+      "bytes": 13546,
+      "sha256": "9b9c9567ef7a3fc1c97a3c92447c9764c9f73286b231329e3783d4ed373df6df"
+    },
+    {
+      "path": ".agents/skills/constraint-driven-development/SKILL.md",
+      "bytes": 21009,
+      "sha256": "e1cc4883b2f8413906f966421e5e8207ae6260fda255f839c526e3ad66115180"
+    },
+    {
+      "path": ".agents/skills/constraint-driven-development/references/floor-guard.md",
+      "bytes": 10682,
+      "sha256": "276a5ed489e2252a501d0eceb68d7aa1c34197d8a1ffc55eb7b561ff1af0ad51"
+    },
+    {
+      "path": ".agents/skills/context-engineering/SKILL.md",
+      "bytes": 15487,
+      "sha256": "fccf289b9a89b6d9ee9092eb1e3cd0c626c5f323049ad43da4aacff871c72ff6"
+    },
+    {
+      "path": ".agents/skills/debugging-and-error-recovery/SKILL.md",
+      "bytes": 10914,
+      "sha256": "bac9c10ca93baf28dca1b6365072adbce2e54ea8c196efadda16cca17217185b"
+    },
+    {
+      "path": ".agents/skills/deprecation-and-migration/SKILL.md",
+      "bytes": 12643,
+      "sha256": "8f1d6048e99eba9bc44c1b5541f9a7f0a1ef5d4641bce0610e7846d1d73d27f9"
+    },
+    {
+      "path": ".agents/skills/documentation-and-adrs/SKILL.md",
+      "bytes": 9860,
+      "sha256": "03c2144fbf17242dd3d6ecd866ae63fede1583a63089878f9d9390def6f03a6d"
+    },
+    {
+      "path": ".agents/skills/doubt-driven-development/SKILL.md",
+      "bytes": 16648,
+      "sha256": "33d456263c490091e8b830649daa78b593779f32a7e6ff7ad8084e7761c77800"
+    },
+    {
+      "path": ".agents/skills/frontend-ui-engineering/SKILL.md",
+      "bytes": 11713,
+      "sha256": "a65fdd2f24b93e836bcde4a7ea67837108acd452f9a9cfab106c3748d23b43e3"
+    },
+    {
+      "path": ".agents/skills/git-workflow-and-versioning/SKILL.md",
+      "bytes": 14142,
+      "sha256": "774b303acc3ca0f63d084cb018e3933c469a7008a0a16463c8d2b682e8d52fb7"
+    },
+    {
+      "path": ".agents/skills/idea-refine/SKILL.md",
+      "bytes": 8112,
+      "sha256": "11e0cd1e990d8176717d7d8e236d1d9f954ef9d0896292e9fa90a81d8a04b730"
+    },
+    {
+      "path": ".agents/skills/idea-refine/examples.md",
+      "bytes": 20285,
+      "sha256": "77819229104dbcb47b1575bacbfec710a2d06c1092db3cddaad6838c79684bb0"
+    },
+    {
+      "path": ".agents/skills/idea-refine/frameworks.md",
+      "bytes": 5405,
+      "sha256": "6dd8da3cfc91a0366086b56750e67bb2fdfedc515b91a47267b316edfe4f31d4"
+    },
+    {
+      "path": ".agents/skills/idea-refine/refinement-criteria.md",
+      "bytes": 5739,
+      "sha256": "91116ca332c31ddf8fd5cc13cac9e328c04447b233246e3a4325b225da1e7a07"
+    },
+    {
+      "path": ".agents/skills/idea-refine/scripts/idea-refine.sh",
+      "bytes": 343,
+      "sha256": "c761f49c725902fd48299b7d0fda39f2555cde0c85a62969b21b7af6a00ad40e"
+    },
+    {
+      "path": ".agents/skills/incremental-implementation/SKILL.md",
+      "bytes": 9630,
+      "sha256": "8b4daafccbd0a7ef891878e4884b74daa51e2924eef318b3f712c63e1a4580ca"
+    },
+    {
+      "path": ".agents/skills/interview-me/SKILL.md",
+      "bytes": 15081,
+      "sha256": "38a913177a6c84dd95f4d4aa201dafd5078cb043651f5f01acefb132bb07cc42"
+    },
+    {
+      "path": ".agents/skills/observability-and-instrumentation/SKILL.md",
+      "bytes": 13949,
+      "sha256": "1c802a2f3f6a3a3ec99d1f967a1b63199bc9635c576214e39298dfac50780172"
+    },
+    {
+      "path": ".agents/skills/performance-optimization/SKILL.md",
+      "bytes": 21718,
+      "sha256": "37840a88408ce8c72034e79576c72ad43dd22fda7882e636719564ed41073f56"
+    },
+    {
+      "path": ".agents/skills/planning-and-task-breakdown/SKILL.md",
+      "bytes": 10565,
+      "sha256": "d04c8e547f10a8d26d6103f18acf377c4fa0414903ecddb849f2f34dcfc9329a"
+    },
+    {
+      "path": ".agents/skills/security-and-hardening/SKILL.md",
+      "bytes": 17560,
+      "sha256": "cf987027bb80549f805d830663a73437c879e902bc33c7fd183fa1b4683bbb16"
+    },
+    {
+      "path": ".agents/skills/security-and-hardening/references/hardening-patterns.md",
+      "bytes": 13037,
+      "sha256": "153b379a6bb47243fb2b282498895ca49d97b2d6647d2db43413373650c3cc14"
+    },
+    {
+      "path": ".agents/skills/shipping-and-launch/SKILL.md",
+      "bytes": 11405,
+      "sha256": "f1a9dcc7d23e5ae286e354f5975275962b5c7cf0c1b805cd9c0419246e84d603"
+    },
+    {
+      "path": ".agents/skills/source-driven-development/SKILL.md",
+      "bytes": 10039,
+      "sha256": "d4c86112b190466167891d33263eceb6fc202c2ae86663409013a698b2f4a16e"
+    },
+    {
+      "path": ".agents/skills/spec-driven-development/SKILL.md",
+      "bytes": 12596,
+      "sha256": "ca18987888b1dbf8d2b9680310b3a08b6226256db54d9e3fbf632ffe2d8d5545"
+    },
+    {
+      "path": ".agents/skills/test-driven-development/SKILL.md",
+      "bytes": 16518,
+      "sha256": "8ad45d57dfe795a5eb07fe83cae5f8b3923067636615a88cd0778efa0c3d5cbb"
+    },
+    {
+      "path": ".agents/skills/using-agent-skills/SKILL.md",
+      "bytes": 10447,
+      "sha256": "3526c9fa16b2ee10f04a001d202828c7576e40cf95ad368569b6e3c0a42c572e"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 115,
+      "sha256": "8ee3ba63e253893edf74999767f14185f3b3d809dff186b81c3d0b7ba672fd38"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 1786,
+      "sha256": "a54208a33346cf4e95b38034d444745ab18f9b7f56faa27c2ecf9f8bbc3dbb39"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 7986,
+      "sha256": "102e68a8aeb1754c43ba5ef1d419461bae97efd0acd456b00344836f183fd042"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2351,
+      "sha256": "fdcf90a64a708f8cb2a6ba8fb372e86e656c7222669297766058f96c6f1dd4d1"
+    },
+    {
+      "path": "docs/DESIGN-REVIEW.md",
+      "bytes": 2415,
+      "sha256": "8ae7820aecfadff9d0003389550e77cf6ed97b13c6099031d591d7697834a4e4"
+    },
+    {
+      "path": "docs/FEATURES.md",
+      "bytes": 4977,
+      "sha256": "15eddb4717a9a9a8638f7291a01378cb4420b39b9ae8fe346e37ab780c328721"
+    },
+    {
+      "path": "docs/PRD.md",
+      "bytes": 4151,
+      "sha256": "c9b470b0845d938a7cc51ec6100d3a0ae3cfd28422c8cfd74fb12e057d0e121c"
+    },
+    {
+      "path": "docs/TAG-RULES.md",
+      "bytes": 8040,
+      "sha256": "d0491389c8edd99d63b873f9e17820ccecc5cff8148040cf2b2dd7d6e08c765a"
+    },
+    {
+      "path": "docs/UI-PROTOTYPE-STATUS.md",
+      "bytes": 915,
+      "sha256": "0d869b5063c7a6bce7967480e8bdb995d6ef639121fd2f9a05ed579cb4be1e1a"
+    },
+    {
+      "path": "docs/USER-FLOWS.md",
+      "bytes": 2007,
+      "sha256": "9cdc98b8f3737f45d0bbc7147bbb134d2174d8d773de781e784a960a9126cdd5"
+    },
+    {
+      "path": "docs/WIREFRAMES.md",
+      "bytes": 2866,
+      "sha256": "0061eb23bd40011d008c36f5184ba60e8e1482715da26a87cafe0e8248ab55cb"
+    },
+    {
+      "path": "inputs/links.json",
+      "bytes": 827,
+      "sha256": "60f936be4d8f83694a32a61c1fa4c8ff041634bf27a38102eee398c42e732447"
+    },
+    {
+      "path": "inputs/threads/1000022326.jpg",
+      "bytes": 70085,
+      "sha256": "060be7fb23ca3356562ce831e3021bf1a128647b52cdf32b529c94a9439ca257"
+    },
+    {
+      "path": "inputs/threads/1000022328.jpg",
+      "bytes": 75472,
+      "sha256": "e2d3987fcdc8a39f793647c9c6aba44965ac8b021927ac0dd7c4619ca55a5990"
+    },
+    {
+      "path": "inputs/threads/1000022330.jpg",
+      "bytes": 78568,
+      "sha256": "54c714efe620d991f214c60f8d0397f07408707f74c730c42a5238444c2065b6"
+    },
+    {
+      "path": "inputs/threads/1000022332.jpg",
+      "bytes": 67950,
+      "sha256": "acc2e2a1cde2a4daff2fb401f1a108f62cdb02074375838627f7061d3d8e0ee5"
+    },
+    {
+      "path": "inputs/threads/1000022334.jpg",
+      "bytes": 67126,
+      "sha256": "ddb5b118ed76b5351d00898162d09c397f6385a5de0f6df012465c08c5d0da50"
+    },
+    {
+      "path": "inputs/threads/1000022336.jpg",
+      "bytes": 74339,
+      "sha256": "f55dda6ae95d6625533337fe2abbd0a0fb96c20a901a7847cf3c3d345e095f1a"
+    },
+    {
+      "path": "inputs/threads/1000022338.jpg",
+      "bytes": 83609,
+      "sha256": "64b2c39ef6ce9309b4ef23abbc5b244e8459d9788f8fee7ac22aac7af7eb6572"
+    },
+    {
+      "path": "inputs/threads/1000022340.jpg",
+      "bytes": 72185,
+      "sha256": "4d3479277cdb5455026439f946edc3f8722c53b2351f973ad6e3b7a4d2c980c0"
+    },
+    {
+      "path": "inputs/threads/1000022342.jpg",
+      "bytes": 69765,
+      "sha256": "93c0139b01372f18d228dbd02da155a01ce95ef5938220cfaf8843013f47f938"
+    },
+    {
+      "path": "inputs/참고_호석관리_v1.5.6.html",
+      "bytes": 40644,
+      "sha256": "fec953d10ffdd33d5b38956bb3150b88e4c0d397b0826f2f47a111b6b59d5c66"
+    },
+    {
+      "path": "inputs/호석테이블.xlsx",
+      "bytes": 73117,
+      "sha256": "3f13c2dfe2ae93837b3b91695048877a5777ff1cce0b07441b8e24230fc1adaf"
+    },
+    {
+      "path": "prototype/README.md",
+      "bytes": 978,
+      "sha256": "e640b7db141a1e001e51eaf6c8c29ff314b54fdf4690daec7f904a7868afee2f"
+    },
+    {
+      "path": "prototype/app.js",
+      "bytes": 9615,
+      "sha256": "1f005cec80836f277ed39d55f7a371efec5f87b1189910085bff0ad57a7ab1b5"
+    },
+    {
+      "path": "prototype/index.html",
+      "bytes": 4939,
+      "sha256": "3fe67ab13f826346d2cae6935f3644c8ce2f79aeb10dd4427d7cb20b50efa72a"
+    },
+    {
+      "path": "prototype/style.css",
+      "bytes": 4769,
+      "sha256": "05bd6323a09b480f48155d2268e0649541c86595965be96737e3a155564e0b87"
+    },
+    {
+      "path": "scripts/create_tag_templates.py",
+      "bytes": 5748,
+      "sha256": "d9ab8d030ae2123ba9f078bdf9eae5f0df5f107a0fe21f0513afe3ff4eafa64e"
+    },
+    {
+      "path": "templates/태그기준_빈양식.xlsx",
+      "bytes": 7650,
+      "sha256": "40bfc594110069692512611e445f89fbb9437679f0b888cc0a170d34d05535ff"
+    },
+    {
+      "path": "templates/태그기준_작성예시.xlsx",
+      "bytes": 8101,
+      "sha256": "ddcd3dc7d2a6622ee4c1ab3964d6f1cca562f62d39078c8a465323fb7f9309b8"
+    }
+  ]
+}

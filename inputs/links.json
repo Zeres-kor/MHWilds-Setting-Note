@@ -1,0 +1,6 @@
+{
+  "simulator": "https://mhwilds.wiki-db.com/sim/#skills=%EB%82%A9%EB%8F%84%EC%88%A0Lv3%2C%ED%98%BC%EC%8B%A0Lv3%2C%EB%8F%84%EC%A0%84%EC%9E%90Lv5%2C%EC%95%BD%EC%A0%90%20%ED%8A%B9%ED%9A%A8Lv5%2C%EA%B7%BC%EC%84%B1%E3%80%90%EA%B3%BC%EA%B0%90%E3%80%91%2C%EC%84%A0%EC%A0%84%ED%98%B8%EC%9D%91%E2%85%A0%2C%ED%9D%91%EC%8B%9D%EC%9D%BC%EC%B2%B4%E2%85%A0%2C%EC%97%B0%EA%B2%A9Lv3%2C%EB%AC%B4%EC%95%84%EC%A7%80%EA%B2%BDLv3&s=1&e=1&v=10&g=13&w=&ws=&d=0&rf=-100&rw=-100&rt=-100&ri=-100&rd=-100&l=200&wgs=%EC%A3%BC%EC%9D%B8%EC%9D%98%20%ED%98%BC&wss=%ED%9D%91%EC%8B%9D%EB%A3%A1%EC%9D%98%20%ED%9E%98",
+  "skills": "https://github.com/addyosmani/agent-skills.git",
+  "threads": "https://www.threads.com/share/BAXHgwTxYl/",
+  "note": "사용자가 제공한 시뮬레이터 조건을 보존한 URL. 원본 본문은 아직 조사하지 못함."
+}

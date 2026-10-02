@@ -1,0 +1,168 @@
+{
+  "repository": "https://github.com/addyosmani/agent-skills",
+  "commit": "9d0c60d406b454a78ccc0a175b19932047aa4dac",
+  "scope": "project",
+  "skills": 25,
+  "files": [
+    {
+      "path": "LICENSE",
+      "gitBlobSha": "d67778ada6b9cda6227e9130da182c13e73c8b2e"
+    },
+    {
+      "path": "README.md",
+      "gitBlobSha": "563d1f5428b2db7131a58e36460f4907f9ba08f7"
+    },
+    {
+      "path": "references/accessibility-checklist.md",
+      "gitBlobSha": "c8c61e5f3d5a010a0d0ecb918bfaffe6c76fca78"
+    },
+    {
+      "path": "references/definition-of-done.md",
+      "gitBlobSha": "35e39f9e15f6dd0ff4725a6e5cbce7f2aa69064a"
+    },
+    {
+      "path": "references/observability-checklist.md",
+      "gitBlobSha": "ad40d7aa3fca5d2091fa45be234c14aee22c3588"
+    },
+    {
+      "path": "references/orchestration-patterns.md",
+      "gitBlobSha": "09cddd31d52a95be1d9bca814547d184b9945e44"
+    },
+    {
+      "path": "references/performance-checklist.md",
+      "gitBlobSha": "ba9744fe60dbe4f04f3f907029638d923158d7a2"
+    },
+    {
+      "path": "references/security-checklist.md",
+      "gitBlobSha": "fc5e29b92c183fa69e0952b61a99761dc48b4c0b"
+    },
+    {
+      "path": "references/testing-patterns.md",
+      "gitBlobSha": "bc96e271ad241ca567f06d21c6ecc001455b80f1"
+    },
+    {
+      "path": "skills/api-and-interface-design/SKILL.md",
+      "gitBlobSha": "820d6d981f90b7802e0ea8b75bb966a3d78b8d0f"
+    },
+    {
+      "path": "skills/browser-testing-with-devtools/SKILL.md",
+      "gitBlobSha": "9864d2724e273e1164d62ab10b73590ae00fd6a8"
+    },
+    {
+      "path": "skills/ci-cd-and-automation/SKILL.md",
+      "gitBlobSha": "118456fcb10225c030769a4fee7815b9c536b0ce"
+    },
+    {
+      "path": "skills/code-review-and-quality/SKILL.md",
+      "gitBlobSha": "08209ff2208d2883d48d945f7754c428b77f8d87"
+    },
+    {
+      "path": "skills/code-simplification/SKILL.md",
+      "gitBlobSha": "239b2848489511de30d9e63b0bd183adc4b01347"
+    },
+    {
+      "path": "skills/constraint-driven-development/SKILL.md",
+      "gitBlobSha": "3028719c0bad95b3e439024b2f52255c0c9f1ffe"
+    },
+    {
+      "path": "skills/constraint-driven-development/references/floor-guard.md",
+      "gitBlobSha": "0fa8a6946149b9f31b79f09f7cd1be6b3ac9f9e7"
+    },
+    {
+      "path": "skills/context-engineering/SKILL.md",
+      "gitBlobSha": "fb8bb5f85128302b231d301c1201da1e223f6869"
+    },
+    {
+      "path": "skills/debugging-and-error-recovery/SKILL.md",
+      "gitBlobSha": "356da20365a7cd6825b4ffad14be39280c92cdfc"
+    },
+    {
+      "path": "skills/deprecation-and-migration/SKILL.md",
+      "gitBlobSha": "7bf884ca5743d63be448725f88041dde8a10cd5d"
+    },
+    {
+      "path": "skills/documentation-and-adrs/SKILL.md",
+      "gitBlobSha": "e37c38f30d76263c77aacdb7dcbacceb1218bc80"
+    },
+    {
+      "path": "skills/doubt-driven-development/SKILL.md",
+      "gitBlobSha": "472c35ab9f32e8ec8b592e5cc7d228ad8cdce278"
+    },
+    {
+      "path": "skills/frontend-ui-engineering/SKILL.md",
+      "gitBlobSha": "eaf0fa163876a5274674f42ea208742c50f27119"
+    },
+    {
+      "path": "skills/git-workflow-and-versioning/SKILL.md",
+      "gitBlobSha": "0e03a2323ed3f0131626660c3142f69c4a6f8830"
+    },
+    {
+      "path": "skills/idea-refine/SKILL.md",
+      "gitBlobSha": "38955e8943f2ea68c041f10ef1902d94bdfb1cb9"
+    },
+    {
+      "path": "skills/idea-refine/examples.md",
+      "gitBlobSha": "a797d22c69cb248d718713633f42d4ee7a4d01d7"
+    },
+    {
+      "path": "skills/idea-refine/frameworks.md",
+      "gitBlobSha": "0e7fc8fe203bd6aabfba0f79cb6fa98c76d92e28"
+    },
+    {
+      "path": "skills/idea-refine/refinement-criteria.md",
+      "gitBlobSha": "53e79c725b7aa0a4a39389056bd71b1689aa8740"
+    },
+    {
+      "path": "skills/idea-refine/scripts/idea-refine.sh",
+      "gitBlobSha": "a53cb5a9dc00252003a04d485132d58a5260e9b6"
+    },
+    {
+      "path": "skills/incremental-implementation/SKILL.md",
+      "gitBlobSha": "9c4f49bc841adb3c0f98baaa9eabd435a5b64ef9"
+    },
+    {
+      "path": "skills/interview-me/SKILL.md",
+      "gitBlobSha": "200f9186ffa234708aa5deec1946c6dfcb7a7335"
+    },
+    {
+      "path": "skills/observability-and-instrumentation/SKILL.md",
+      "gitBlobSha": "84d9cb373467fe0e15236e190833ecc90f840c38"
+    },
+    {
+      "path": "skills/performance-optimization/SKILL.md",
+      "gitBlobSha": "cbc7e950a6f376d25ac88cf310d5a48555db2ec1"
+    },
+    {
+      "path": "skills/planning-and-task-breakdown/SKILL.md",
+      "gitBlobSha": "296249b64334bcfd1aeaefd27b9e3e5494e38ec0"
+    },
+    {
+      "path": "skills/security-and-hardening/SKILL.md",
+      "gitBlobSha": "e80e1e9a4f5b2989308c376d4ea0d333fe2c26ef"
+    },
+    {
+      "path": "skills/security-and-hardening/references/hardening-patterns.md",
+      "gitBlobSha": "9af2604409af9a085bad0b14a269a89a74d34084"
+    },
+    {
+      "path": "skills/shipping-and-launch/SKILL.md",
+      "gitBlobSha": "f3fba8a01265db5547a8755c81902d0aa56c4104"
+    },
+    {
+      "path": "skills/source-driven-development/SKILL.md",
+      "gitBlobSha": "2704f0e130bc4659951aa552373914b2d63d18c9"
+    },
+    {
+      "path": "skills/spec-driven-development/SKILL.md",
+      "gitBlobSha": "912bbc0dbbd2a348d95dd769847a862b1164c657"
+    },
+    {
+      "path": "skills/test-driven-development/SKILL.md",
+      "gitBlobSha": "8898bcbba4c4f6acca473ece95e82105bd9cfea0"
+    },
+    {
+      "path": "skills/using-agent-skills/SKILL.md",
+      "gitBlobSha": "d56ac03ab057036c1bdcc9127c88952758ee2f0d"
+    }
+  ]
+}

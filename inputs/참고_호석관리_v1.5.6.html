@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>몬스터헌터 와일즈 호석 관리 프로그램</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --accent-color: #d4af37;
+            --text-color: #e0e0e0;
+            --border-color: #444;
+            --input-bg: #3c3c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        h2, h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            box-sizing: border-box;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .skill-input-wrapper {
+            position: relative;
+            flex: 3;
+        }
+
+        .row > .skill-input-wrapper {
+            flex: 3;
+        }
+
+        .row > select {
+            flex: 1;
+        }
+
+        .skill-dropdown-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            background-color: #252525;
+            border: 1px solid var(--accent-color);
+            border-radius: 0 0 4px 4px;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+        }
+
+        .skill-dropdown-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            font-size: 1em;
+            border-bottom: 1px solid #333;
+        }
+
+        .skill-dropdown-item:hover {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #b89528;
+        }
+
+        button.secondary {
+            background-color: #555;
+            color: #fff;
+        }
+
+        button.secondary:hover {
+            background-color: #666;
+        }
+
+        button.danger {
+            background-color: #a83232;
+            color: #fff;
+        }
+
+        button.danger:hover {
+            background-color: #c44141;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+        }
+
+        .talisman-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            max-height: 700px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .talisman-card {
+            background-color: #242424;
+            border: 2px solid #555;
+            border-radius: 6px;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tag-border-일반 { border-color: #555; }
+        .tag-border-상급 { border-color: #9d00ff; box-shadow: 0 0 10px rgba(157, 0, 255, 0.6); }
+        .tag-border-준종결 { border-color: #ff4d4d; box-shadow: 0 0 10px rgba(255, 77, 77, 0.6); }
+        .tag-border-종결 { border-color: #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+        
+        .tag-border-극종결 {
+            border: 2px solid transparent;
+            background-image: linear-gradient(#242424, #242424), 
+                              linear-gradient(135deg, #ff007f, #ff8c00, #ffd700, #00ffff, #9d00ff);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), inset 0 0 10px rgba(255, 0, 127, 0.2);
+            animation: borderGlow 4s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .talisman-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #333;
+            padding-right: 50px;
+        }
+
+        .grade-highlight {
+            font-size: 1.3em;
+            font-weight: 900;
+        }
+        
+        .grade-text-S { color: #ffd700; text-shadow: 0 0 5px rgba(255,215,0,0.4); }
+        .grade-text-A { color: #ff4d4d; text-shadow: 0 0 5px rgba(255,77,77,0.4); }
+        .grade-text-B { color: #4da6ff; }
+        .grade-text-C { color: #2ecc71; }
+        .grade-text-etc { color: #aaaaaa; }
+
+        .tag-badge {
+            font-size: 0.8em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: normal;
+        }
+
+        .tag-극종결 { background: linear-gradient(135deg, #ff007f, #ff8c00, #ffd700); color: #000; font-weight: 900; box-shadow: 0 0 8px rgba(255, 215, 0, 0.6); }
+        .tag-종결 { background-color: #d4af37; color: #000; font-weight: bold; }
+        .tag-준종결 { background-color: #a8a8a8; color: #000; }
+        .tag-상급 { background-color: #cd7f32; color: #000; }
+        .tag-일반 { background-color: #444; color: #fff; }
+
+        .skill-section-title {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 4px;
+        }
+        .skill-list {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            background: #1e1e1e;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .skill-name { color: #d4af37; font-weight: bold; }
+        .skill-name-mismatch { color: #ff5555 !important; text-decoration: underline wavy #ff5555; }
+        .skill-level { color: #ffffff; font-weight: bold; margin-left: 5px; }
+
+        .slot-list {
+            font-size: 0.9em;
+            margin-bottom: 6px;
+        }
+
+        .memo-text {
+            font-size: 0.85em;
+            color: #aaa;
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #444;
+        }
+
+        .score-info {
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .card-action-btns {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 5px;
+            z-index: 2;
+        }
+
+        .card-action-btns button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            width: auto;
+            padding: 0 3px;
+            font-size: 1em;
+        }
+        .edit-btn { color: #4da6ff; }
+        .edit-btn:hover { color: #1a8cff; background: none; }
+        .delete-btn { color: #ff5555; }
+        .delete-btn:hover { color: #ff1111; background: none; }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .btn-group > button, .btn-group > input {
+            flex: 1 1 calc(25% - 10px);
+            min-width: 120px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .score-settings-header {
+            display: flex;
+            gap: 10px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        #scoreSettingsList {
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .score-setting-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .footer-info {
+            position: fixed;
+            bottom: 8px;
+            right: 15px;
+            font-size: 0.75em;
+            color: #666;
+            background-color: rgba(26, 26, 26, 0.8);
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 100;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2 id="formTitle">호석 등록</h2>
+        <form id="talismanForm">
+            <input type="hidden" id="editId" value="">
+            <div class="form-group">
+                <label for="rarity">레어도</label>
+                <select id="rarity">
+                    <option value="8">Rare 8</option>
+                    <option value="7">Rare 7</option>
+                    <option value="6">Rare 6</option>
+                </select>
+            </div>
+
+            <h3>스킬 설정</h3>
+            <div id="skillsContainer"></div>
+
+            <h3>장식주 슬롯</h3>
+            <div class="form-group">
+                <label>슬롯 1 (무기/방어구)</label>
+                <div class="row">
+                    <select id="slot1Type" onchange="updateSlotOptions()">
+                        <option value="방어구">방어구</option>
+                        <option value="무기">무기</option>
+                        <option value="없음">없음</option>
+                    </select>
+                    <select id="slot1Lv"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>슬롯 2 (방어구 전용)</label>
+                <div class="row">
+                    <select id="slot2Type" disabled><option value="방어구">방어구</option></select>
+                    <select id="slot2Lv">
+                        <option value="0">없음</option>
+                        <option value="1">1 슬롯</option>
+                        <option value="2">2 슬롯</option>
+                        <option value="3">3 슬롯</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>슬롯 3 (방어구 전용)</label>
+                <div class="row">
+                    <select id="slot3Type" disabled><option value="방어구">방어구</option></select>
+                    <select id="slot3Lv">
+                        <option value="0">없음</option>
+                        <option value="1">1 슬롯</option>
+                        <option value="2">2 슬롯</option>
+                        <option value="3">3 슬롯</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3>태그 및 메모</h3>
+            <div class="form-group">
+                <label for="gradeTag">평가 태그</label>
+                <select id="gradeTag">
+                    <option value="일반">일반</option>
+                    <option value="상급">상급</option>
+                    <option value="준종결">준종결</option>
+                    <option value="종결">종결</option>
+                    <option value="극종결">극종결</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="memo">메모</label>
+                <input type="text" id="memo" placeholder="간단한 메모 작성">
+            </div>
+
+            <div id="formBtnContainer">
+                <button type="button" onclick="saveTalisman()">호석 저장하기</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>보유 호석 목록 (<span id="talismanCount">0</span>)</h2>
+        
+        <div class="filter-section">
+            <select id="filterSkill" onchange="renderList()">
+                <option value="">모든 스킬 보기</option>
+            </select>
+            <select id="filterSkillLv" onchange="renderList()">
+                <option value="0">최소 스킬 레벨</option>
+                <option value="1">1 레벨 이상</option>
+                <option value="2">2 레벨 이상</option>
+                <option value="3">3 레벨 이상</option>
+                <option value="4">4 레벨 이상</option>
+            </select>
+            <select id="filterTag" onchange="renderList()">
+                <option value="">모든 태그 보기</option>
+                <option value="극종결">극종결</option>
+                <option value="종결">종결</option>
+                <option value="준종결">준종결</option>
+                <option value="상급">상급</option>
+                <option value="일반">일반</option>
+            </select>
+            <select id="filterRarity" onchange="renderList()">
+                <option value="">모든 레어도</option>
+                <option value="8">Rare 8</option>
+                <option value="7">Rare 7</option>
+                <option value="6">Rare 6</option>
+            </select>
+        </div>
+
+        <div class="talisman-list" id="talismanList"></div>
+
+        <div class="btn-group">
+            <button class="secondary" onclick="exportData()">데이터 내보내기</button>
+            <button class="secondary" onclick="document.getElementById('importFile').click()">데이터 불러오기</button>
+            <input type="file" id="importFile" accept=".txt" style="display:none" onchange="importData(event)">
+            <button class="secondary" onclick="openScoreSettings()">스킬 설정 변경</button>
+            <button class="danger" onclick="resetAllData()">모든 데이터 초기화</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="scoreModal">
+    <div class="modal-content">
+        <h2>스킬 설정 변경</h2>
+        <div class="score-settings-header">
+            <span style="flex:2">스킬 이름</span>
+            <span style="flex:1">레벨당 점수</span>
+        </div>
+        <div id="scoreSettingsList"></div>
+        <div class="btn-group" style="margin-top: auto;">
+            <button onclick="saveScoreSettings()">저장</button>
+            <button class="secondary" onclick="closeScoreSettings()">취소</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer-info">
+    제작자 : 감자깡 | 빌드 : 1.5.6
+</div>
+
+<script>
+    let skillScores = {
+        "KO술": 2500, "가드 강화": 1500, "가드 성능": 7500, "간파": 10000, "강화 지속": 5000,
+        "고속 변형": 5000, "곤충박사": 100, "공격": 10000, "공격적인 방어": 7500, "공세": 2500,
+        "관통탄/용화살 강화": 15000, "광역화": 100, "교격": 7500, "귀마개": 4000, "급습": 2500,
+        "기절 내성": 100, "납도술": 2500, "내성 변환(번개)": 0, "내진": 100, "달인의 재주": 25000,
+        "도전자": 10000, "독 내성": 100, "독 데미지 강화": 100, "독병 추가": 100, "독속성 강화": 1500,
+        "동반자 지휘": 100, "둔기 사용": 1500, "뛰어들기": 100, "런너": 1500, "마비 내성": 100,
+        "마비병 추가": 100, "마비속성 강화": 2500, "만족감": 1500, "멸기병 추가": 100, "명검": 10000,
+        "모으기 타격 강화": 15000, "무아지경": 2500, "물 내성": 1500, "물가/기름 진흙 적용": 100,
+        "물속성 공격 강화": 5000, "물에 젖은 명검": 0, "발도술【기】": 2500, "발도술【힘】": 1500,
+        "방어": 1250, "방어력 DOWN 내성": 100, "배고픔 내성": 100, "백열의 격류": 0, "버섯 애호가": 1250,
+        "번개 내성": 1500, "번개속성 공격 강화": 5000, "보머": 100, "불 내성": 1500,
+        "불속성 공격 강화": 5000, "비연": 22500, "빨리 먹기": 1500, "산탄/강사 강화": 22500,
+        "섬광 강화": 100, "속박 내성": 100, "속사 강화": 22500, "속성 변환": 5000,
+        "속성 피해 내성": 100, "속성 흡수": 5000, "쇄인자격": 1250, "수면 내성": 100, "수면병 추가": 100,
+        "수면속성 강화": 1500, "숫돌 사용 고속화": 5000, "슈퍼회심": 20000, "스태미나 급속 회복": 2500,
+        "스태미나 탈취": 1500, "식생학": 100, "심안": 2500, "아이템 사용 강화": 1500, "악취 내성": 100,
+        "앙심": 1250, "약점 특효": 10000, "얼음 내성": 1500, "얼음속성 공격 강화": 5000, "역습": 4000,
+        "연격": 10000, "연찬": 100, "열상 내성": 100, "완전 충전": 2500, "완충": 100, "용 내성": 1500,
+        "용속성 공격 강화": 5000, "움찔 감소": 100, "위협": 100, "장인": 10000, "재난대처능력": 1250,
+        "전화위복": 1250, "점프 철인": 100, "정령의 가호": 2500, "정비": 100, "주먹밥": 0, "지질학": 100,
+        "집중": 5000, "차지 마스터": 2500, "체력 회복량 UP": 1500, "체술": 1800, "칼날 비늘 연마": 0,
+        "칼날 연마": 5000, "칼날비늘 장전": 0, "클라이머": 100, "탄도 강화": 5000,
+        "통산탄/통상화살 강화": 10000, "특수 사격 강화": 10000, "파괴왕": 2500, "파워스톤": 0,
+        "퍼스트샷": 5000, "포술": 5000, "포스샷": 5000, "포탄 장전": 15000, "폭파 피해 내성": 100,
+        "폭파병 추가": 100, "폭파속성 강화": 1500, "풍압 내성": 100, "피리 명인": 15000,
+        "헌터 생활": 100, "혼신": 4000, "환경 이용 지식": 100, "환경 적응": 100, "회복 속도": 1500,
+        "회심격【속성】": 2500, "회심격【특수】": 1500, "회피 성능": 2500, "회피 장전": 0,
+        "회피 거리 UP": 2500, "힘의 해방": 5000
+    };
+
+    let talismans = [];
+    let isComposing = [false, false, false, false];
+
+    window.onload = function() {
+        loadLocalStorage();
+        initSkillInputs();
+        updateSlotOptions();
+        populateFilterSkills();
+        renderList();
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.skill-input-wrapper')) {
+                document.querySelectorAll('.skill-dropdown-list').forEach(el => el.style.display = 'none');
+            }
+        });
+    };
+
+    function initSkillInputs() {
+        const container = document.getElementById('skillsContainer');
+        container.innerHTML = '';
+        const sortedSkills = Object.keys(skillScores).sort();
+        isComposing = [false, false, false, false];
+
+        for (let i = 1; i <= 3; i++) {
+            let div = document.createElement('div');
+            div.className = 'form-group';
+            div.innerHTML = `
+                <label>스킬 ${i}</label>
+                <div class="row">
+                    <div class="skill-input-wrapper">
+                        <input type="text" id="skillSearch${i}" placeholder="스킬 검색..." autocomplete="off" 
+                            oncompositionstart="isComposing[${i}] = true" 
+                            oncompositionend="isComposing[${i}] = false; filterSkillOptions(${i})" 
+                            oninput="if(!isComposing[${i}]) filterSkillOptions(${i})" 
+                            onfocus="filterSkillOptions(${i})">
+                        <input type="hidden" id="skill${i}" value="">
+                        <div id="skillDropdown${i}" class="skill-dropdown-list">
+                            ${sortedSkills.map(s => `<div class="skill-dropdown-item" onclick="selectSkill(${i}, '${s}')">${s}</div>`).join('')}
+                        </div>
+                    </div>
+                    <select id="skill${i}Lv">
+                        <option value="0">Lv.0</option>
+                        <option value="1">Lv.1</option>
+                        <option value="2">Lv.2</option>
+                        <option value="3">Lv.3</option>
+                        <option value="4">Lv.4</option>
+                    </select>
+                </div>
+            `;
+            container.appendChild(div);
+        }
+    }
+
+    function filterSkillOptions(index) {
+        const inputVal = document.getElementById(`skillSearch${index}`).value.toLowerCase();
+        const dropdown = document.getElementById(`skillDropdown${index}`);
+        const sortedSkills = Object.keys(skillScores).sort();
+
+        dropdown.innerHTML = '';
+        const filtered = sortedSkills.filter(s => s.toLowerCase().includes(inputVal));
+
+        if (filtered.length > 0) {
+            filtered.forEach(s => {
+                let item = document.createElement('div');
+                item.className = 'skill-dropdown-item';
+                item.innerText = s;
+                item.onclick = function() { selectSkill(index, s); };
+                dropdown.appendChild(item);
+            });
+        } else {
+            let item = document.createElement('div');
+            item.className = 'skill-dropdown-item';
+            item.style.color = '#888';
+            item.innerText = '검색 결과 없음';
+            dropdown.appendChild(item);
+        }
+        dropdown.style.display = 'block';
+    }
+
+    function selectSkill(index, skillName) {
+        document.getElementById(`skillSearch${index}`).value = skillName;
+        document.getElementById(`skill${index}`).value = skillName;
+        document.getElementById(`skillDropdown${index}`).style.display = 'none';
+    }
+
+    function updateSlotOptions() {
+        const type1 = document.getElementById('slot1Type').value;
+        const lv1Select = document.getElementById('slot1Lv');
+        lv1Select.innerHTML = '';
+
+        if (type1 === '무기') {
+            lv1Select.innerHTML = '<option value="0">없음</option><option value="1">1 슬롯</option>';
+        } else if (type1 === '방어구') {
+            lv1Select.innerHTML = `
+                <option value="0">없음</option>
+                <option value="1">1 슬롯</option>
+                <option value="2">2 슬롯</option>
+                <option value="3">3 슬롯</option>
+            `;
+        } else {
+            lv1Select.innerHTML = '<option value="0">없음</option>';
+        }
+    }
+
+    function calculateScoreAndGrade(skills) {
+        let totalScore = 0;
+        skills.forEach(s => {
+            if (s.name && skillScores[s.name] !== undefined) {
+                totalScore += skillScores[s.name] * s.level;
+            }
+        });
+
+        let autoGrade = "C";
+        if (totalScore >= 40000) autoGrade = "SSS";
+        else if (totalScore >= 37000) autoGrade = "SS";
+        else if (totalScore >= 35000) autoGrade = "S";
+        else if (totalScore >= 30000) autoGrade = "A";
+        else if (totalScore >= 20000) autoGrade = "B";
+
+        return { score: totalScore, autoGrade: autoGrade };
+    }
+
+    function saveTalisman() {
+        const editId = document.getElementById('editId').value;
+        const rarity = document.getElementById('rarity').value;
+        
+        let skills = [];
+        for (let i = 1; i <= 3; i++) {
+            let name = document.getElementById(`skill${i}`).value;
+            let level = parseInt(document.getElementById(`skill${i}Lv`).value) || 0;
+            if (name && level > 0) {
+                skills.push({ name, level });
+            }
+        }
+
+        const slots = [
+            { type: document.getElementById('slot1Type').value, level: parseInt(document.getElementById('slot1Lv').value) || 0 },
+            { type: document.getElementById('slot2Type').value, level: parseInt(document.getElementById('slot2Lv').value) || 0 },
+            { type: document.getElementById('slot3Type').value, level: parseInt(document.getElementById('slot3Lv').value) || 0 }
+        ];
+
+        const gradeTag = document.getElementById('gradeTag').value;
+        const memo = document.getElementById('memo').value;
+
+        const evalResult = calculateScoreAndGrade(skills);
+
+        if (editId) {
+            const index = talismans.findIndex(t => t.id == editId);
+            if (index !== -1) {
+                talismans[index] = {
+                    id: parseInt(editId),
+                    rarity,
+                    skills,
+                    slots,
+                    gradeTag,
+                    memo,
+                    score: evalResult.score,
+                    autoGrade: evalResult.autoGrade
+                };
+            }
+            cancelEdit();
+        } else {
+            const newTalisman = {
+                id: Date.now(),
+                rarity,
+                skills,
+                slots,
+                gradeTag,
+                memo,
+                score: evalResult.score,
+                autoGrade: evalResult.autoGrade
+            };
+            talismans.push(newTalisman);
+            document.getElementById('talismanForm').reset();
+            initSkillInputs();
+            updateSlotOptions();
+        }
+
+        saveLocalStorage();
+        renderList();
+    }
+
+    function editTalisman(id) {
+        const t = talismans.find(item => item.id == id);
+        if (!t) return;
+
+        document.getElementById('editId').value = t.id;
+        document.getElementById('rarity').value = t.rarity;
+
+        initSkillInputs();
+        for (let i = 0; i < t.skills.length; i++) {
+            let idx = i + 1;
+            if (idx <= 3) {
+                document.getElementById(`skillSearch${idx}`).value = t.skills[i].name;
+                document.getElementById(`skill${idx}`).value = t.skills[i].name;
+                document.getElementById(`skill${idx}Lv`).value = t.skills[i].level;
+            }
+        }
+
+        if (t.slots && t.slots.length > 0) {
+            document.getElementById('slot1Type').value = t.slots[0].type || '방어구';
+            updateSlotOptions();
+            document.getElementById('slot1Lv').value = t.slots[0].level || 0;
+            if (t.slots[1]) document.getElementById('slot2Lv').value = t.slots[1].level || 0;
+            if (t.slots[2]) document.getElementById('slot3Lv').value = t.slots[2].level || 0;
+        }
+
+        document.getElementById('gradeTag').value = t.gradeTag || '일반';
+        document.getElementById('memo').value = t.memo || '';
+
+        document.getElementById('formTitle').innerText = '호석 수정';
+        const btnContainer = document.getElementById('formBtnContainer');
+        btnContainer.innerHTML = `
+            <div style="display: flex; gap: 10px;">
+                <button type="button" onclick="saveTalisman()">수정 완료</button>
+                <button type="button" class="secondary" onclick="cancelEdit()">취소</button>
+            </div>
+        `;
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEdit() {
+        document.getElementById('editId').value = '';
+        document.getElementById('formTitle').innerText = '호석 등록';
+        document.getElementById('talismanForm').reset();
+        initSkillInputs();
+        updateSlotOptions();
+
+        const btnContainer = document.getElementById('formBtnContainer');
+        btnContainer.innerHTML = `<button type="button" onclick="saveTalisman()">호석 저장하기</button>`;
+    }
+
+    function deleteTalisman(id) {
+        if(confirm("이 호석을 삭제하시겠습니까?")) {
+            if (document.getElementById('editId').value == id) {
+                cancelEdit();
+            }
+            talismans = talismans.filter(t => t.id !== id);
+            saveLocalStorage();
+            renderList();
+        }
+    }
+
+    function resetAllData() {
+        if(confirm("저장된 모든 호석 데이터가 삭제됩니다.\n정말 초기화하시겠습니까?")) {
+            localStorage.removeItem('mhw_talismans');
+            location.reload(); 
+        }
+    }
+
+    function populateFilterSkills() {
+        const select = document.getElementById('filterSkill');
+        select.innerHTML = '<option value="">모든 스킬 보기</option>';
+        Object.keys(skillScores).sort().forEach(s => {
+            select.innerHTML += `<option value="${s}">${s}</option>`;
+        });
+    }
+
+    function renderList() {
+        const listDiv = document.getElementById('talismanList');
+        listDiv.innerHTML = '';
+
+        const filterSkill = document.getElementById('filterSkill').value;
+        const filterSkillLv = parseInt(document.getElementById('filterSkillLv').value) || 0;
+        const filterTag = document.getElementById('filterTag').value;
+        const filterRarity = document.getElementById('filterRarity').value;
+
+        const filtered = talismans.filter(t => {
+            if (filterRarity && filterRarity !== 'ALL' && t.rarity !== filterRarity) return false;
+            if (filterTag && filterTag !== 'ALL' && t.gradeTag !== filterTag) return false;
+            
+            if (filterSkill && filterSkill !== 'ALL') {
+                const targetSkill = t.skills.find(s => s.name === filterSkill);
+                if (!targetSkill) return false;
+                if (targetSkill.level < filterSkillLv) return false;
+            } else {
+                if (filterSkillLv > 0) {
+                    const hasQualifiedSkill = t.skills.some(s => s.level >= filterSkillLv);
+                    if (!hasQualifiedSkill) return false;
+                }
+            }
+            return true;
+        });
+
+        document.getElementById('talismanCount').innerText = filtered.length;
+
+        filtered.forEach(t => {
+            let skillText = t.skills.map(s => {
+                const isValid = skillScores[s.name] !== undefined;
+                const nameClass = isValid ? 'skill-name' : 'skill-name skill-name-mismatch';
+                const titleAttr = isValid ? '' : ' title="등록되지 않은 스킬 이름입니다. (맞춤법/띄어쓰기 확인 필요)"';
+                return `<span class="${nameClass}"${titleAttr}>${s.name}</span> <span class="skill-level">Lv.${s.level}</span>`;
+            }).join('<br>') || '<span style="color:#888;">스킬 없음</span>';
+            
+            let slotText = t.slots
+                .filter(s => s.level > 0)
+                .map(s => `[${s.type} Lv.${s.level}]`)
+                .join(' ') || '슬롯 없음';
+
+            let borderClass = 'tag-border-일반';
+            if (t.gradeTag === '극종결') borderClass = 'tag-border-극종결';
+            else if (t.gradeTag === '종결') borderClass = 'tag-border-종결';
+            else if (t.gradeTag === '준종결') borderClass = 'tag-border-준종결';
+            else if (t.gradeTag === '상급') borderClass = 'tag-border-상급';
+
+            let textClassSuffix = 'etc';
+            if (['SSS', 'SS', 'S'].includes(t.autoGrade)) textClassSuffix = 'S';
+            else if (t.autoGrade === 'A') textClassSuffix = 'A';
+            else if (t.autoGrade === 'B') textClassSuffix = 'B';
+            else if (t.autoGrade === 'C') textClassSuffix = 'C';
+
+            let card = document.createElement('div');
+            card.className = `talisman-card ${borderClass}`;
+            card.innerHTML = `
+                <div class="card-action-btns">
+                    <button class="edit-btn" title="수정" onclick="editTalisman(${t.id})">✏️</button>
+                    <button class="delete-btn" title="삭제" onclick="deleteTalisman(${t.id})">✖</button>
+                </div>
+                <div class="talisman-header">
+                    <div>
+                        <span style="color:#aaa;">Rare ${t.rarity} | </span>
+                        <span class="grade-highlight grade-text-${textClassSuffix}">${t.autoGrade}</span>
+                    </div>
+                    <span class="tag-badge tag-${t.gradeTag}">${t.gradeTag}</span>
+                </div>
+                <div class="skill-section-title"><strong>스킬</strong></div>
+                <div class="skill-list">${skillText}</div>
+                <div class="slot-list"><strong>슬롯:</strong> ${slotText}</div>
+                ${t.memo ? `<div class="memo-text">📝 ${t.memo}</div>` : ''}
+                <div class="score-info">${t.score.toLocaleString()} pt</div>
+            `;
+            listDiv.appendChild(card);
+        });
+    }
+
+    function saveLocalStorage() {
+        localStorage.setItem('mhw_talismans', JSON.stringify(talismans));
+        localStorage.setItem('mhw_skillScores', JSON.stringify(skillScores));
+    }
+
+    function loadLocalStorage() {
+        const savedTalismans = localStorage.getItem('mhw_talismans');
+        const savedScores = localStorage.getItem('mhw_skillScores');
+
+        if (savedTalismans) talismans = JSON.parse(savedTalismans);
+        if (savedScores) skillScores = JSON.parse(savedScores);
+    }
+
+    function exportData() {
+        let txtContent = "";
+        talismans.forEach(t => {
+            let row = [];
+            
+            for (let i = 0; i < 3; i++) {
+                if (t.skills[i]) {
+                    row.push(t.skills[i].name, t.skills[i].level);
+                } else {
+                    row.push("", "0");
+                }
+            }
+
+            let armorSlots = [];
+            let weaponSlots = [];
+            t.slots.forEach(s => {
+                if (s.level > 0) {
+                    if (s.type === '방어구') armorSlots.push(s.level);
+                    if (s.type === '무기') weaponSlots.push(s.level);
+                }
+            });
+
+            while (armorSlots.length < 3) armorSlots.push(0);
+            while (weaponSlots.length < 3) weaponSlots.push(0);
+
+            row = row.concat(armorSlots.slice(0, 3));
+            row = row.concat(weaponSlots.slice(0, 3));
+
+            txtContent += row.join(",") + "\n";
+        });
+
+        const blob = new Blob([txtContent], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.href = url;
+        downloadAnchor.download = 'mhw_talismans.txt';
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        document.body.removeChild(downloadAnchor);
+        URL.revokeObjectURL(url);
+    }
+
+    function importData(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const content = e.target.result;
+            const lines = content.split(/\r?\n/);
+            let importedCount = 0;
+
+            lines.forEach(line => {
+                if (!line.trim()) return;
+                const parts = line.split(',');
+                
+                if (parts.length < 12) return;
+
+                let skills = [];
+                for (let i = 0; i < 3; i++) {
+                    const name = parts[i * 2].trim();
+                    const level = parseInt(parts[i * 2 + 1]) || 0;
+                    if (name && level > 0) {
+                        skills.push({ name, level });
+                    }
+                }
+
+                let armorSlots = [
+                    parseInt(parts[6]) || 0,
+                    parseInt(parts[7]) || 0,
+                    parseInt(parts[8]) || 0
+                ].filter(lvl => lvl > 0);
+
+                let weaponSlots = [
+                    parseInt(parts[9]) || 0,
+                    parseInt(parts[10]) || 0,
+                    parseInt(parts[11]) || 0
+                ].filter(lvl => lvl > 0);
+
+                let slots = [];
+                if (weaponSlots.length > 0) {
+                    slots.push({ type: '무기', level: weaponSlots[0] });
+                    slots.push({ type: '방어구', level: armorSlots[0] || 0 });
+                    slots.push({ type: '방어구', level: armorSlots[1] || 0 });
+                } else {
+                    slots.push({ type: '방어구', level: armorSlots[0] || 0 });
+                    slots.push({ type: '방어구', level: armorSlots[1] || 0 });
+                    slots.push({ type: '방어구', level: armorSlots[2] || 0 });
+                }
+
+                const evalResult = calculateScoreAndGrade(skills);
+
+                const newTalisman = {
+                    id: Date.now() + importedCount, 
+                    rarity: "8",
+                    skills: skills,
+                    slots: slots,
+                    gradeTag: "일반",
+                    memo: "외부에서 불러온 데이터",
+                    score: evalResult.score,
+                    autoGrade: evalResult.autoGrade
+                };
+
+                talismans.push(newTalisman);
+                importedCount++;
+            });
+
+            if (importedCount > 0) {
+                saveLocalStorage();
+                renderList();
+                alert(`${importedCount}개의 호석을 성공적으로 불러왔습니다.`);
+            } else {
+                alert("가져올 데이터가 없거나 파일 형식이 잘못되었습니다.");
+            }
+            
+            event.target.value = '';
+        };
+        reader.readAsText(file);
+    }
+
+    function openScoreSettings() {
+        const container = document.getElementById('scoreSettingsList');
+        container.innerHTML = '';
+        Object.keys(skillScores).sort().forEach(s => {
+            container.innerHTML += `
+                <div class="score-setting-row" data-original-name="${s}">
+                    <input type="text" class="edit-skill-name" value="${s}" style="flex:2">
+                    <input type="number" class="edit-skill-score" value="${skillScores[s]}" style="flex:1">
+                </div>
+            `;
+        });
+        document.getElementById('scoreModal').style.display = 'flex';
+    }
+
+    function closeScoreSettings() {
+        document.getElementById('scoreModal').style.display = 'none';
+    }
+
+    function saveScoreSettings() {
+        const rows = document.querySelectorAll('.score-setting-row');
+        let newSkillScores = {};
+        let nameChanges = {};
+
+        rows.forEach(row => {
+            const oldName = row.getAttribute('data-original-name');
+            const newName = row.querySelector('.edit-skill-name').value.trim();
+            const newScore = parseInt(row.querySelector('.edit-skill-score').value) || 0;
+
+            if (newName) {
+                newSkillScores[newName] = newScore;
+                if (oldName !== newName) {
+                    nameChanges[oldName] = newName;
+                }
+            }
+        });
+
+        skillScores = newSkillScores;
+
+        talismans.forEach(t => {
+            t.skills.forEach(skill => {
+                if (nameChanges[skill.name]) {
+                    skill.name = nameChanges[skill.name];
+                }
+            });
+            const res = calculateScoreAndGrade(t.skills);
+            t.score = res.score;
+            t.autoGrade = res.autoGrade;
+        });
+
+        saveLocalStorage();
+        initSkillInputs(); 
+        populateFilterSkills();
+        renderList();
+        closeScoreSettings();
+        alert('스킬 설정이 저장되었으며, 보유 호석 정보가 갱신되었습니다.');
+    }
+</script>
+
+</body>
+</html>
