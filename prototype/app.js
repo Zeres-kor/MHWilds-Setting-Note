@@ -7,6 +7,7 @@ const STATE_KEY = 'mhwilds-app-v2';
 const BACKUP_FORMAT = 'mhwilds-backup-v2';
 let records = [], rules = [], revision = 0, inventoryVersion = 0, rulesVersion = 0, stateRaw = null, storageReady = true;
 let selected = new Set(), tagMode = 'add', uploadedRules = null, pendingImport = null;
+let pendingInventory = null, importTrigger = null;
 
 function announce(message) { $('message').textContent = message; }
 function option(select, value, label) {
@@ -29,6 +30,7 @@ for (let i = 1; i <= 3; i++) {
   levelLabel.textContent = '레벨';
   const name = document.createElement('input'), level = document.createElement('input');
   name.id = 'skill' + i;
+  name.setAttribute('list', 'skillSuggestions');
   name.maxLength = 60;
   level.id = 'level' + i;
   level.type = 'number';
@@ -38,6 +40,7 @@ for (let i = 1; i <= 3; i++) {
   levelLabel.append(level);
   $('skills').append(nameLabel, levelLabel);
 }
+SKILL_NAMES.forEach(name => option($('skillSuggestions'), name, name));
 
 function validateRecord(record) {
   if (!record || typeof record.id !== 'string' || !record.id || !Array.isArray(record.skills) || record.skills.length < 1 || record.skills.length > 3) throw Error('호석의 ID 또는 스킬 정보를 확인하세요.');
@@ -314,6 +317,129 @@ $('restoreFile').onchange = async event => {
   event.target.value = '';
 };
 
+function clearInventoryPreview() {
+  pendingInventory = null;
+  $('importPreview').hidden = true;
+  $('importRows').replaceChildren();
+  $('importApply').disabled = true;
+  $('importApply').textContent = '선택한 0개 추가';
+}
+function updateInventorySelection() {
+  if (!pendingInventory) return;
+  const count = pendingInventory.rows.filter(row => row.selected).length;
+  $('importApply').textContent = '선택한 ' + count + '개 추가';
+  $('importApply').disabled = !storageReady || pendingInventory.rows.some(row => row.errors.length) || count === 0;
+  $('importSummary').textContent = pendingInventory.summary + ' · 선택 ' + count + '개';
+}
+function showImportError(message) {
+  $('importError').textContent = message;
+  if (message) $('importError').focus();
+}
+function openInventoryImport(event) {
+  importTrigger = event.currentTarget;
+  $('importSource').value = 'paste';
+  $('importFileLabel').hidden = true;
+  $('importFile').value = '';
+  $('importText').value = '';
+  $('importText').placeholder = '스킬1\t레벨1\t스킬2\t레벨2\t스킬3\t레벨3\t방어구슬롯1\t방어구슬롯2\t방어구슬롯3\t무기슬롯1\t무기슬롯2\t무기슬롯3';
+  $('importError').textContent = '';
+  clearInventoryPreview();
+  $('importDialog').showModal();
+  $('importText').focus();
+}
+for (const id of ['bulkImport', 'emptyImport']) $(id).onclick = openInventoryImport;
+$('importDialog').addEventListener('close', () => { pendingInventory = null; importTrigger?.focus(); });
+$('importClose').onclick = $('importCancel').onclick = () => $('importDialog').close();
+$('importSource').onchange = () => {
+  $('importFileLabel').hidden = $('importSource').value !== 'txt';
+  $('importError').textContent = '';
+  clearInventoryPreview();
+};
+$('importText').oninput = () => {
+  $('importError').textContent = '';
+  clearInventoryPreview();
+};
+$('importFile').onchange = async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+  clearInventoryPreview();
+  if (file.size > 512000) { showImportError('TXT 파일은 512KB 이하만 가져올 수 있습니다.'); return; }
+  try {
+    const contents = await file.text();
+    if ($('importSource').value !== 'txt') return;
+    $('importText').value = contents;
+    $('importError').textContent = '';
+    $('importText').focus();
+  } catch (error) { showImportError('TXT 파일을 읽지 못했습니다. ' + error.message); }
+};
+$('importCheck').onclick = () => {
+  clearInventoryPreview();
+  $('importError').textContent = '';
+  try {
+    const parsed = InventoryImport.parseText($('importText').value, $('importSource').value, SKILL_NAMES);
+    const analyzed = InventoryImport.analyze(parsed, records).map(row => ({...row, selected:!!row.record && !row.duplicate && !row.warnings.length}));
+    const valid = analyzed.filter(row => row.record).length;
+    const duplicate = analyzed.filter(row => row.duplicate).length;
+    const uncertain = analyzed.filter(row => row.warnings.length).length;
+    const invalid = analyzed.length - valid;
+    pendingInventory = {rows:analyzed, snapshot:stateRaw, summary:'검토 가능 ' + valid + '개 · 중복 ' + duplicate + '개 · 확인 필요 ' + uncertain + '개 · 오류 ' + invalid + '개'};
+    for (const row of analyzed) {
+      const tr = document.createElement('tr');
+      if (row.errors.length) tr.className = 'is-error';
+      else if (row.duplicate || row.warnings.length) tr.className = 'is-duplicate';
+      const choose = document.createElement('input');
+      choose.type = 'checkbox';
+      choose.checked = row.selected;
+      choose.disabled = !row.record;
+      choose.setAttribute('aria-label', row.number + '행 추가');
+      choose.onchange = () => { row.selected = choose.checked; updateInventorySelection(); };
+      cell(tr, '').append(choose);
+      cell(tr, String(row.number));
+      const detail = row.record ?
+        row.record.skills.map(skill => skill.name + ' Lv.' + skill.level).join(' / ') +
+        ' · 방어구 ' + (row.record.armorSlots.join('·') || '—') +
+        ' · 무기 ' + (row.record.weaponSlots.join('·') || '—') +
+        (row.record.memo ? ' · ' + row.record.memo : '') : '입력 형식을 확인하세요';
+      cell(tr, detail);
+      const status = row.errors.length ? row.errors.join(' ') : [
+        row.duplicate === 'existing' ? '보유 목록에 같은 구성 있음 · 필요하면 선택' :
+          row.duplicate === 'batch' ? '이번 입력에 같은 구성 있음 · 필요하면 선택' : '',
+        ...row.warnings,
+      ].filter(Boolean).join(' ') || '추가 준비';
+      cell(tr, status);
+      $('importRows').append(tr);
+    }
+    $('importPreview').hidden = false;
+    updateInventorySelection();
+    if (invalid) showImportError('오류가 있는 행은 저장할 수 없습니다. ' + analyzed.filter(row => row.errors.length).slice(0, 5).map(row => row.number + '행: ' + row.errors.join(' ')).join('\n'));
+    else {
+      $('importSummary').focus();
+      $('importPreview').scrollIntoView({block:'start'});
+    }
+  } catch (error) { showImportError(error.message); }
+};
+$('importApply').onclick = () => {
+  if (!pendingInventory || !storageReady || pendingInventory.rows.some(row => row.errors.length)) return;
+  if (localStorage.getItem(STATE_KEY) !== pendingInventory.snapshot) {
+    readState();
+    render();
+    clearInventoryPreview();
+    showImportError('다른 탭에서 보유 목록이 변경됐습니다. 다시 행을 검토하세요.');
+    return;
+  }
+  const chosen = pendingInventory.rows.filter(row => row.selected && row.record);
+  if (!chosen.length) return;
+  const now = Date.now();
+  const imported = chosen.map((row, index) => validateRecord({...row.record, id:crypto.randomUUID(), created:now + index}));
+  if (commit([...records, ...imported])) {
+    $('importDialog').close();
+    announce('보유 호석 ' + imported.length + '개를 추가했습니다. 자동 평가를 갱신했습니다.');
+  } else {
+    clearInventoryPreview();
+    showImportError($('message').textContent);
+  }
+};
+
 function renderRuleList() {
   $('rulesCurrent').textContent = '기준 버전 ' + rulesVersion + ' · 현재 기준 ' + rules.length + '개 · 활성 ' + rules.filter(rule => rule.active).length + '개';
   $('rulesList').replaceChildren();
@@ -406,6 +532,10 @@ window.addEventListener('storage', event => {
   readState();
   selected.clear();
   render();
+  if ($('importDialog').open && pendingInventory) {
+    clearInventoryPreview();
+    showImportError('다른 탭에서 보유 목록이 변경됐습니다. 다시 행을 검토하세요.');
+  }
   announce('다른 탭의 데이터 변경을 반영했습니다.');
 });
 render();

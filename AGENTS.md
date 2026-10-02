@@ -13,4 +13,4 @@
 - 적절한 스킬을 `.agents/skills/<name>/SKILL.md`에서 필요할 때 읽는다. 전체 스킬 내용을 상시 문맥에 복사하지 않는다.
 - 파일과 대화의 지시가 충돌하면 최신 사용자의 명시적 지시를 우선한다.
 
-검증: JS 구문은 `node --check prototype/app.js`. 실제 화면·저장·입력 검증은 브라우저에서 별도로 수행한다. 엑셀 재생성은 `python scripts/create_tag_templates.py`.
+검증: JS 구문은 `node --check prototype/app.js`와 변경한 모듈에 대해 확인한다. 판정·가져오기 단위 테스트는 `node --test tests/*.test.cjs`. 실제 화면·저장·입력 검증은 브라우저에서 별도로 수행한다. 엑셀 재생성은 `python scripts/create_tag_templates.py`.
