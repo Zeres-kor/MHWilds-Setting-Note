@@ -19,6 +19,7 @@
 </section>
 <section class="collection" aria-label="호석 목록">
 <div class="toolbar"><span id="count" role="status"></span><div class="bulk"><span id="selected">0개 선택</span><button id="tag" disabled>수동 태그 일괄 추가</button><button id="untag" disabled>수동 태그 일괄 제거</button><button id="delete" class="danger" disabled>선택 삭제</button></div></div>
+<p class="table-scroll-hint">표의 나머지 열은 좌우로 스크롤해 확인하세요.</p>
 <div class="table-wrap"><table><thead><tr><th scope="col"><input id="all" type="checkbox" aria-label="표시된 호석 모두 선택"></th><th scope="col">호석 / 스킬</th><th scope="col">슬롯</th><th scope="col">범용 평가</th><th scope="col" id="weaponHeading">무기별 평가</th><th scope="col">수동 태그</th><th scope="col">메모</th><th scope="col">상세</th></tr></thead><tbody id="rows"></tbody></table></div>
 <div id="empty" class="empty"><div class="gem">◇</div><h2>첫 호석을 등록해보세요</h2><p class="muted">직접 입력하거나 표·기존 TXT를 가져올 수 있습니다.</p><button id="emptyAdd" class="primary">호석 입력</button> <button id="emptyImport">일괄 가져오기</button></div>
 </section><p id="message" role="status" aria-live="polite"></p>
@@ -46,6 +47,6 @@
 <details><summary>열 순서와 입력 예시</summary><p>스킬1, 레벨1, 스킬2, 레벨2, 스킬3, 레벨3, 방어구슬롯1~3, 무기슬롯1~3, 선택 메모</p><pre>혼신,2,,,,0,1,1,0,0,0,0,비교용 호석</pre><p>엑셀 표는 열을 선택해 그대로 붙여넣으세요. TXT 파일의 레어도·태그·메모는 복원할 수 없습니다.</p></details>
 <p id="importError" role="alert" tabindex="-1"></p><button type="button" id="importCheck">행 검토</button>
 <section id="importPreview" aria-labelledby="importPreviewTitle" hidden><h3 id="importPreviewTitle">검토 결과</h3><p id="importSummary" role="status" tabindex="-1"></p>
-<div class="import-table-wrap"><table><caption class="sr-only">가져오기 행별 검토 결과</caption><thead><tr><th scope="col">추가</th><th scope="col">행</th><th scope="col">호석</th><th scope="col">상태</th></tr></thead><tbody id="importRows"></tbody></table></div></section>
+<p class="table-scroll-hint">행 상태를 보려면 표를 좌우로 스크롤하세요.</p><div class="import-table-wrap"><table><caption class="sr-only">가져오기 행별 검토 결과</caption><thead><tr><th scope="col">추가</th><th scope="col">행</th><th scope="col">호석</th><th scope="col">상태</th></tr></thead><tbody id="importRows"></tbody></table></div></section>
 <div class="dialog-footer"><button type="button" id="importCancel">취소</button><button type="button" id="importApply" class="primary" disabled>선택한 0개 추가</button></div></dialog>
 <script src="vendor/fflate-0.8.2.min.js"></script><script src="skill-names.js"></script><script src="tag-rules.js"></script><script src="xlsx-rules.js"></script><script src="inventory-import.js"></script><script src="app.js"></script></body></html>

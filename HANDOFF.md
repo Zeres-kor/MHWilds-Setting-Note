@@ -7,6 +7,7 @@
 - 보유 화면에 태그 기준 엑셀 업로드, 행·헤더·스킬명·우선순위 검증, 전체 교체/ID 병합 미리보기, 공통/무기별 자동 평가, 필터·정렬·상세 근거를 연결했다. 새 JSON 백업에는 보유 호석과 기준이 함께 들어간다.
 - `node --test tests/tag-rules.test.cjs`의 판정기 단위 테스트 5개와 Chromium의 기준 업로드·재분류·오류 보존·백업/복원 흐름이 통과했다. Windows 실기기 검증은 아직이다.
 - UI·UX 작업에 `.agents/skills/frontend-ui-engineering/SKILL.md`와 접근성 체크리스트를 적용했다. 표 붙여넣기와 기존 TXT 가져오기에서 행별 오류·중복·선택 미리보기, 키보드 초점 이동, 좁은 화면 검토 결과 표시를 연결했다. 제공된 TXT의 12열과 슬롯 정보를 보존하며 파일에 없는 레어도·메모·태그는 만들지 않는다. Node 단위 테스트 총 11개와 Chromium의 가져오기·다른 탭 변경 감지 흐름이 통과했다.
+- 사용자가 지정한 `nextlevelbuilder/ui-ux-pro-max-skill`의 Codex용 `ui-ux-pro-max`를 `.agents/skills/ui-ux-pro-max/`에 설치했다. 폼 오류·터치 크기·표 반응형 지침을 검색해 화면의 글자 크기, 체크박스 터치 영역, 좁은 폭 표 스크롤 안내에 적용했다.
 - 아래의 초기 ZIP 당시 구현·검증 상태 중 이 항목과 충돌하는 내용은 초기 기록이다. 현재 기능은 `README.md`와 `docs/UI-PROTOTYPE-STATUS.md`를 따른다.
 
 ## 사용자 목적
