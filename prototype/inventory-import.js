@@ -4,9 +4,10 @@ const InventoryImport = (() => {
   const rulesApi = typeof module !== 'undefined' && module.exports ? require('./tag-rules.js') : TagRules;
   const HEADERS = ['스킬1','레벨1','스킬2','레벨2','스킬3','레벨3',
     '방어구슬롯1','방어구슬롯2','방어구슬롯3','무기슬롯1','무기슬롯2','무기슬롯3'];
-  const LIMIT = 500;
-  const MAX_CHARS = 256000;
+  const LIMIT = 5000;
+  const MAX_CHARS = 2000000;
   const clean = value => rulesApi.clean(value);
+  const cleanSkill = value => rulesApi.cleanSkill(value);
 
   function splitCsv(line) {
     const result = [];
@@ -32,7 +33,7 @@ const InventoryImport = (() => {
 
   function parseText(text, source, knownNames) {
     if (source !== 'paste' && source !== 'txt') throw Error('가져오기 형식을 선택하세요.');
-    if (typeof text !== 'string' || text.length > MAX_CHARS) throw Error('입력은 256,000자 이하만 처리할 수 있습니다.');
+    if (typeof text !== 'string' || text.length > MAX_CHARS) throw Error('입력은 2,000,000자 이하만 처리할 수 있습니다.');
     const lines = text.replace(/^\uFEFF/, '').split(/\r\n|\n|\r/);
     const nonblank = lines.map((content, index) => ({number:index + 1, content})).filter(line => line.content.trim());
     if (!nonblank.length) throw Error('가져올 행이 없습니다.');
@@ -48,9 +49,9 @@ const InventoryImport = (() => {
         start = 1;
       }
     }
-    if (nonblank.length - start > LIMIT) throw Error('한 번에 최대 500행까지 가져올 수 있습니다.');
+    if (nonblank.length - start > LIMIT) throw Error('한 번에 최대 5,000행까지 가져올 수 있습니다.');
     if (nonblank.length === start) throw Error('헤더 아래에 데이터 행을 입력하세요.');
-    const known = new Set(knownNames.map(clean));
+    const known = new Set(knownNames.map(cleanSkill));
     const rows = [];
     for (const line of nonblank.slice(start)) {
       const errors = [], warnings = [];
@@ -63,7 +64,7 @@ const InventoryImport = (() => {
       }
       const skills = [], names = new Set();
       for (let index = 0; index < 3; index++) {
-        const name = clean(cells[index * 2]), levelText = cells[index * 2 + 1];
+        const name = cleanSkill(cells[index * 2]), levelText = cells[index * 2 + 1];
         const level = levelText === '' ? 0 : Number(levelText);
         if (!name && level === 0) continue;
         if (!name) { errors.push('스킬' + (index + 1) + ' 이름이 없습니다.'); continue; }
@@ -92,7 +93,7 @@ const InventoryImport = (() => {
 
   function fingerprint(record) {
     return JSON.stringify([
-      record.skills.map(skill => [clean(skill.name), skill.level]).sort((a, b) => a[0].localeCompare(b[0]) || a[1] - b[1]),
+      record.skills.map(skill => [cleanSkill(skill.name), skill.level]).sort((a, b) => a[0].localeCompare(b[0]) || a[1] - b[1]),
       [...record.armorSlots].sort((a, b) => b - a),
       [...record.weaponSlots].sort((a, b) => b - a),
     ]);

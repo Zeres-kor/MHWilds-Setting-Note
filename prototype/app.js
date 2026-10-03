@@ -10,6 +10,50 @@ let selected = new Set(), tagMode = 'add', uploadedRules = null, pendingImport =
 let pendingInventory = null, importTrigger = null;
 
 function announce(message) { $('message').textContent = message; }
+// File selection and dropping share validation. A later selection/cancel invalidates
+// earlier reads so a slow file cannot replace the current preview.
+function connectFileUpload({zone, input, extension, maxBytes, before, read, error, busy = () => {}}) {
+  let generation = 0, dragDepth = 0;
+  const cancel = () => { generation++; dragDepth = 0; zone.classList.remove('is-dragging'); zone.removeAttribute('aria-busy'); busy(false); };
+  const receive = async files => {
+    cancel();
+    const current = generation;
+    const isCurrent = () => current === generation;
+    input.value = '';
+    before();
+    if (files.length !== 1) { error('파일은 한 번에 하나만 올려주세요.'); return; }
+    const file = files[0];
+    if (!file.name.toLowerCase().endsWith(extension)) { error(extension + ' 파일을 선택하세요.'); return; }
+    if (file.size > maxBytes) { error('파일은 ' + Math.round(maxBytes / 1048576) + 'MB 이하만 올릴 수 있습니다.'); return; }
+    zone.setAttribute('aria-busy', 'true');
+    busy(true);
+    try { await read(file, isCurrent); }
+    catch (reason) { if (isCurrent()) error('파일을 읽지 못했습니다. ' + reason.message); }
+    finally { if (isCurrent()) { zone.removeAttribute('aria-busy'); busy(false); } }
+  };
+  input.addEventListener('change', () => {
+    if (input.files.length) receive([...input.files]);
+  });
+  const hasFiles = event => [...(event.dataTransfer?.types || [])].includes('Files');
+  zone.addEventListener('dragenter', event => {
+    if (!hasFiles(event)) return;
+    event.preventDefault(); dragDepth++; zone.classList.add('is-dragging');
+  });
+  zone.addEventListener('dragover', event => {
+    if (!hasFiles(event)) return;
+    event.preventDefault(); event.dataTransfer.dropEffect = 'copy';
+  });
+  zone.addEventListener('dragleave', event => {
+    if (!hasFiles(event)) return;
+    if (--dragDepth <= 0) { dragDepth = 0; zone.classList.remove('is-dragging'); }
+  });
+  zone.addEventListener('drop', event => {
+    if (!hasFiles(event)) return;
+    event.preventDefault(); event.stopPropagation();
+    receive([...event.dataTransfer.files]);
+  });
+  return {cancel};
+}
 function option(select, value, label) {
   const el = document.createElement('option');
   el.value = value;
@@ -46,7 +90,7 @@ function validateRecord(record) {
   if (!record || typeof record.id !== 'string' || !record.id || !Array.isArray(record.skills) || record.skills.length < 1 || record.skills.length > 3) throw Error('호석의 ID 또는 스킬 정보를 확인하세요.');
   const skills = record.skills.map(skill => {
     if (!skill || typeof skill.name !== 'string' || !skill.name.trim() || !Number.isInteger(skill.level) || skill.level < 1 || skill.level > 10) throw Error('스킬 이름과 레벨을 확인하세요.');
-    return {name: TagRules.clean(skill.name), level: skill.level};
+    return {name: TagRules.cleanSkill(skill.name), level: skill.level};
   });
   if (new Set(skills.map(skill => skill.name)).size !== skills.length) throw Error('같은 스킬을 중복 입력할 수 없습니다.');
   for (const key of ['weaponSlots', 'armorSlots']) {
@@ -300,11 +344,12 @@ $('export').onclick = () => {
   announce('호석과 자동 태그 기준을 함께 백업했습니다.');
 };
 $('restore').onclick = () => $('restoreFile').click();
-$('restoreFile').onchange = async event => {
-  const file = event.target.files[0];
-  if (!file) return;
-  try {
+connectFileUpload({zone:$('restore'), input:$('restoreFile'), extension:'.json', maxBytes:10 * 1048576,
+  before:() => announce('백업 파일을 확인합니다.'),
+  error:message => announce('복원하지 못했습니다. 기존 데이터는 유지됩니다. ' + message),
+  read:async (file, isCurrent) => {
     const data = JSON.parse(await file.text());
+    if (!isCurrent()) return;
     if (data.format !== LEGACY_KEY && data.format !== BACKUP_FORMAT) throw Error('지원하지 않는 백업 파일입니다.');
     const nextRecords = validateList(data.records);
     const nextRules = data.format === BACKUP_FORMAT ? TagRules.validateRules(data.rules, SKILL_NAMES) : rules;
@@ -316,9 +361,8 @@ $('restoreFile').onchange = async event => {
         announce('호석과 해당 백업의 태그 기준을 복원했습니다.');
       }
     }
-  } catch (error) { announce('복원하지 못했습니다. 기존 데이터는 유지됩니다. ' + error.message); }
-  event.target.value = '';
-};
+  }
+});
 
 function clearInventoryPreview() {
   pendingInventory = null;
@@ -340,42 +384,52 @@ function showImportError(message) {
 }
 function openInventoryImport(event) {
   importTrigger = event.currentTarget;
-  $('importSource').value = 'paste';
-  $('importFileLabel').hidden = true;
+  inventoryUpload.cancel();
+  $('importSource').value = 'txt';
+  $('importFileStatus').textContent = '';
   $('importFile').value = '';
   $('importText').value = '';
   $('importText').placeholder = '스킬1\t레벨1\t스킬2\t레벨2\t스킬3\t레벨3\t방어구슬롯1\t방어구슬롯2\t방어구슬롯3\t무기슬롯1\t무기슬롯2\t무기슬롯3';
   $('importError').textContent = '';
   clearInventoryPreview();
   $('importDialog').showModal();
-  $('importText').focus();
+  $('importFile').focus();
 }
 for (const id of ['bulkImport', 'emptyImport']) $(id).onclick = openInventoryImport;
-$('importDialog').addEventListener('close', () => { pendingInventory = null; importTrigger?.focus(); });
+$('importDialog').addEventListener('close', () => { inventoryUpload.cancel(); pendingInventory = null; importTrigger?.focus(); });
 $('importClose').onclick = $('importCancel').onclick = () => $('importDialog').close();
 $('importSource').onchange = () => {
-  $('importFileLabel').hidden = $('importSource').value !== 'txt';
+  inventoryUpload.cancel();
+  $('importFileStatus').textContent = '';
   $('importError').textContent = '';
   clearInventoryPreview();
 };
 $('importText').oninput = () => {
+  inventoryUpload.cancel();
+  $('importFileStatus').textContent = '';
   $('importError').textContent = '';
   clearInventoryPreview();
 };
-$('importFile').onchange = async event => {
-  const file = event.target.files[0];
-  if (!file) return;
-  clearInventoryPreview();
-  if (file.size > 512000) { showImportError('TXT 파일은 512KB 이하만 가져올 수 있습니다.'); return; }
-  try {
-    const contents = await file.text();
-    if ($('importSource').value !== 'txt') return;
-    $('importText').value = contents;
+const inventoryUpload = connectFileUpload({zone:$('importDropZone'), input:$('importFile'), extension:'.txt', maxBytes:2 * 1048576,
+  before:() => {
+    clearInventoryPreview();
+    $('importText').value = '';
     $('importError').textContent = '';
-    $('importText').focus();
-  } catch (error) { showImportError('TXT 파일을 읽지 못했습니다. ' + error.message); }
-};
-$('importCheck').onclick = () => {
+    $('importFileStatus').textContent = '';
+  },
+  busy:value => { $('importCheck').disabled = value; },
+  error:message => { $('importFileStatus').textContent = ''; showImportError(message); },
+  read:async (file, isCurrent) => {
+    $('importFileStatus').textContent = file.name + ' · 읽는 중…';
+    const contents = await file.text();
+    if (!isCurrent() || !$('importDialog').open) return;
+    $('importSource').value = 'txt';
+    $('importText').value = contents;
+    $('importFileStatus').textContent = file.name + ' · 파일 읽기 완료';
+    reviewInventory();
+  }
+});
+function reviewInventory() {
   clearInventoryPreview();
   $('importError').textContent = '';
   try {
@@ -420,6 +474,19 @@ $('importCheck').onclick = () => {
       $('importPreview').scrollIntoView({block:'start'});
     }
   } catch (error) { showImportError(error.message); }
+}
+$('importCheck').onclick = reviewInventory;
+$('importSelectAll').onclick = () => {
+  if (!pendingInventory) return;
+  pendingInventory.rows.forEach(row => { row.selected = !!row.record; });
+  $('importRows').querySelectorAll('input').forEach(input => { input.checked = !input.disabled; });
+  updateInventorySelection();
+};
+$('importSelectNone').onclick = () => {
+  if (!pendingInventory) return;
+  pendingInventory.rows.forEach(row => { row.selected = false; });
+  $('importRows').querySelectorAll('input').forEach(input => { input.checked = false; });
+  updateInventorySelection();
 };
 $('importApply').onclick = () => {
   if (!pendingInventory || !storageReady || pendingInventory.rows.some(row => row.errors.length)) return;
@@ -489,7 +556,9 @@ function preparePreview() {
   } catch (error) { $('rulesErrors').textContent = error.message; }
 }
 $('rulesNav').onclick = () => {
+  rulesUpload.cancel();
   uploadedRules = null;
+  $('rulesFileStatus').textContent = '';
   $('rulesFile').value = '';
   $('rulesErrors').textContent = '';
   clearPreview();
@@ -497,23 +566,28 @@ $('rulesNav').onclick = () => {
   $('rulesDialog').showModal();
 };
 $('rulesClose').onclick = $('rulesCancel').onclick = () => $('rulesDialog').close();
+$('rulesDialog').addEventListener('close', () => rulesUpload.cancel());
 $('rulesMode').onchange = preparePreview;
-$('rulesFile').onchange = async event => {
-  clearPreview();
-  uploadedRules = null;
-  $('rulesErrors').textContent = '';
-  const file = event.target.files[0];
-  if (!file) return;
-  try {
+const rulesUpload = connectFileUpload({zone:$('rulesDropZone'), input:$('rulesFile'), extension:'.xlsx', maxBytes:2 * 1048576,
+  before:() => {
+    clearPreview(); uploadedRules = null;
+    $('rulesErrors').textContent = ''; $('rulesFileStatus').textContent = '';
+  },
+  error:message => { $('rulesFileStatus').textContent = ''; $('rulesErrors').textContent = message; $('rulesErrors').focus(); },
+  read:async (file, isCurrent) => {
+    $('rulesFileStatus').textContent = file.name + ' · 읽는 중…';
     const result = await XlsxRules.parseFile(file, SKILL_NAMES);
+    if (!isCurrent() || !$('rulesDialog').open) return;
+    $('rulesFileStatus').textContent = file.name + ' · 파일 읽기 완료';
     if (result.errors.length) {
       $('rulesErrors').textContent = result.errors.slice(0, 20).join('\n') + (result.errors.length > 20 ? '\n외 ' + (result.errors.length - 20) + '개 오류' : '');
+      $('rulesErrors').focus();
       return;
     }
     uploadedRules = result.rules;
     preparePreview();
-  } catch (error) { $('rulesErrors').textContent = error.message; }
-};
+  }
+});
 $('rulesApply').onclick = () => {
   if (!pendingImport) return;
   if (localStorage.getItem(STATE_KEY) !== pendingImport.snapshot) {
@@ -540,5 +614,16 @@ window.addEventListener('storage', event => {
     showImportError('다른 탭에서 보유 목록이 변경됐습니다. 다시 행을 검토하세요.');
   }
   announce('다른 탭의 데이터 변경을 반영했습니다.');
+});
+// Dropping outside an upload area must not navigate away from unsaved input.
+for (const type of ['dragover', 'drop']) document.addEventListener(type, event => {
+  if (![...(event.dataTransfer?.types || [])].includes('Files')) return;
+  event.preventDefault();
+  if (type === 'drop') {
+    const message = '파일을 화면의 파일 업로드 영역에 놓아주세요.';
+    if ($('importDialog').open) showImportError(message);
+    else if ($('rulesDialog').open) { $('rulesErrors').textContent = message; $('rulesErrors').focus(); }
+    else announce(message);
+  }
 });
 render();

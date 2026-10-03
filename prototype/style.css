@@ -100,6 +100,15 @@ td:nth-child(7) { max-width: 240px; overflow-wrap: anywhere; }
 .evaluation-details { font-size: 14px; }
 .import-dialog { width: min(860px, calc(100% - 24px)); }
 .import-dialog > label { margin: 14px 0; }
+.file-drop-zone { margin: 16px 0; padding: 18px; border: 2px dashed #a9bbb0; border-radius: 14px; background: #f7fbf8; }
+.file-drop-zone strong { display: block; word-break: keep-all; }
+.file-drop-zone label { margin-top: 12px; }
+.file-drop-zone input[type=file] { font-weight: 400; overflow: hidden; }
+.file-drop-zone:focus-within { border-color: var(--accent); }
+.is-dragging { outline: 3px solid var(--accent); outline-offset: 3px; background: #dff7e7 !important; }
+.file-status { overflow-wrap: anywhere; color: var(--accent); font-size: 14px; }
+.file-status:empty { display: none; }
+.drop-button-hint { display: block; font-size: 11px; font-weight: 400; color: var(--muted); }
 .import-dialog textarea { font-family: ui-monospace, Consolas, monospace; line-height: 1.5; }
 .import-dialog details { margin: 12px 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
 .import-dialog summary { color: var(--accent); cursor: pointer; font-weight: 700; }

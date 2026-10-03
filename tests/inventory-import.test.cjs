@@ -66,5 +66,24 @@ test('duplicate detection distinguishes saved and same-batch copies', () => {
 test('empty input, wrong headers and oversized batches are rejected', () => {
   assert.throws(() => InventoryImport.parseText('', 'paste', known), /가져올 행/);
   assert.throws(() => InventoryImport.parseText('스킬1,레벨1,메모\n' + textRow(), 'paste', known), /헤더/);
-  assert.throws(() => InventoryImport.parseText(Array(501).fill(textRow()).join('\n'), 'txt', known), /500행/);
+  assert.throws(() => InventoryImport.parseText(Array(5001).fill(textRow()).join('\n'), 'txt', known), /5,000행/);
+});
+
+test('game TXT supports a full inventory beyond 500 rows with BOM and CRLF', () => {
+  const rows = InventoryImport.parseText('\uFEFF' + Array(555).fill(textRow()).join('\r\n') + '\r\n', 'txt', known);
+  assert.equal(rows.length, 555);
+  assert.equal(rows[554].number, 555);
+  assert.ok(rows.every(row => row.record && !row.errors.length));
+  assert.deepEqual(rows[554].record.armorSlots, [3,2,1]);
+  assert.deepEqual(rows[554].record.weaponSlots, [1]);
+});
+
+test('exported and old spreadsheet spellings identify the same skill and duplicate', () => {
+  const rows = InventoryImport.parseText([
+    '발도술【기】,1,앙심,2,,0,2,0,0,1,0,0',
+    '발도술[기],1,양심,2,,0,2,0,0,1,0,0',
+  ].join('\n'), 'txt', ['발도술[기]','양심']);
+  assert.ok(rows.every(row => !row.errors.length && !row.warnings.length));
+  assert.deepEqual(rows[0].record.skills, rows[1].record.skills);
+  assert.equal(InventoryImport.analyze(rows, [])[1].duplicate, 'batch');
 });

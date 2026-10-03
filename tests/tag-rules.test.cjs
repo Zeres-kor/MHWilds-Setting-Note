@@ -68,3 +68,12 @@ test('merge preserves absent IDs and replacement removes them', () => {
   assert.equal(TagRules.mergeRules(a, b, 'replace').length, 1);
   assert.deepEqual(TagRules.validateRules(a, known), a);
 });
+
+test('game and spreadsheet skill names remain compatible for tagging and restored rules', () => {
+  const parsed = TagRules.parseRows([TagRules.HEADERS, row({...base, 스킬1:'발도술[기]', 스킬2:'양심', 레벨2:1})], ['발도술【기】','앙심']);
+  assert.deepEqual(parsed.errors, []);
+  assert.equal(TagRules.evaluate(record([['발도술【기】',2],['앙심',1]], [], [1]), '태도', parsed.rules).common.grade, '준종결');
+  const oldRule = {...parsed.rules[0], skills:[{name:'발도술[기]',level:2},{name:'양심',level:1}]};
+  assert.equal(TagRules.validateRules([oldRule], ['발도술【기】','앙심'])[0].skills[1].name, '앙심');
+  assert.equal(TagRules.cleanSkill('constructor'), 'constructor');
+});

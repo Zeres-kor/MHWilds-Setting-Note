@@ -6,11 +6,15 @@ const TagRules = (() => {
   const GRADES = ['극종결','종결','준종결','상급','일반'];
   const empty = value => value === null || value === undefined || String(value).trim() === '';
   const clean = value => String(value).normalize('NFC').trim().replace(/\s+/g, ' ');
+  // Reconcile the original spreadsheet spellings with game-exported names.
+  const skillAliases = {'발도술[기]':'발도술【기】', '발도술[힘]':'발도술【힘】',
+    '회심격[속성]':'회심격【속성】', '회심격[특수]':'회심격【특수】', '양심':'앙심'};
+  const cleanSkill = value => Object.hasOwn(skillAliases, clean(value)) ? skillAliases[clean(value)] : clean(value);
   const sortedSlots = values => values.filter(Boolean).slice().sort((a, b) => b - a);
 
   function parseRows(rows, knownNames) {
     const errors = [], rules = [];
-    const known = new Set(knownNames.map(clean));
+    const known = new Set(knownNames.map(cleanSkill));
     if (!Array.isArray(rows) || !Array.isArray(rows[0])) return {rules, errors:['태그기준!1행: 헤더가 없습니다.']};
     const names = rows[0].map(v => empty(v) ? '' : clean(v));
     const positions = new Map();
@@ -57,7 +61,7 @@ const TagRules = (() => {
         const rawName = at(`스킬${n}`), rawLevel = at(`레벨${n}`);
         if (empty(rawName) && empty(rawLevel)) continue;
         if (empty(rawName)) { fail(`스킬${n}`, '레벨과 함께 입력하세요.'); continue; }
-        const name = clean(rawName);
+        const name = cleanSkill(rawName);
         if (!known.has(name)) fail(`스킬${n}`, '제공된 호석 스킬 표에 없는 이름입니다.');
         if (skillSet.has(name)) fail(`스킬${n}`, '같은 스킬을 중복 입력할 수 없습니다.');
         skillSet.add(name);
@@ -108,9 +112,9 @@ const TagRules = (() => {
   }
 
   function matchRule(record, rule) {
-    const actual = new Map(record.skills.map(skill => [clean(skill.name), skill.level]));
+    const actual = new Map(record.skills.map(skill => [cleanSkill(skill.name), skill.level]));
     if (rule.skills.length && rule.skillMode === '정확' && actual.size !== rule.skills.length) return false;
-    if (!rule.skills.every(skill => actual.has(skill.name) && (rule.skillMode === '정확' ? actual.get(skill.name) === skill.level : actual.get(skill.name) >= skill.level))) return false;
+    if (!rule.skills.every(skill => actual.has(cleanSkill(skill.name)) && (rule.skillMode === '정확' ? actual.get(cleanSkill(skill.name)) === skill.level : actual.get(cleanSkill(skill.name)) >= skill.level))) return false;
     if (rule.slotMode === '무시') return true;
     for (const part of ['weaponSlots','armorSlots']) {
       const have = sortedSlots(record[part]), need = rule[part];
@@ -140,7 +144,7 @@ const TagRules = (() => {
     return [...result.values()];
   }
 
-  return {HEADERS,WEAPONS,GRADES,clean,parseRows,validateRules,matchRule,evaluate,mergeRules};
+  return {HEADERS,WEAPONS,GRADES,clean,cleanSkill,parseRows,validateRules,matchRule,evaluate,mergeRules};
 })();
 
 if (typeof module !== 'undefined') module.exports = TagRules;
