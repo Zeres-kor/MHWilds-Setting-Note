@@ -158,6 +158,9 @@ function render() {
   const list = visible();
   $('rows').replaceChildren();
   $('count').textContent = '전체 ' + records.length + '개 · 표시 ' + list.length + '개';
+  $('statTotal').textContent = records.length + '개';
+  $('statVisible').textContent = list.length + '개';
+  $('statRules').textContent = rules.filter(rule => rule.active).length + '개';
   $('weaponHeading').textContent = $('weapon').value + ' 평가';
   for (const {record, evaluation} of list) {
     const row = document.createElement('tr'), check = document.createElement('input');
@@ -186,7 +189,7 @@ function render() {
   }
   $('empty').hidden = list.length > 0;
   $('empty').querySelector('h2').textContent = records.length ? '조건에 맞는 호석이 없습니다' : '첫 호석을 등록해보세요';
-  $('empty').querySelector('p').textContent = records.length ? '필터 조건을 줄이거나 초기화해보세요.' : '직접 입력하거나 백업 파일을 가져올 수 있습니다.';
+  $('empty').querySelector('p').textContent = records.length ? '필터 조건을 줄이거나 초기화해보세요.' : '직접 입력하거나 표·기존 TXT를 가져올 수 있습니다.';
   $('selected').textContent = selected.size + '개 선택';
   for (const id of ['tag', 'untag', 'delete']) $(id).disabled = !selected.size;
   $('all').checked = list.length > 0 && list.every(({record}) => selected.has(record.id));
