@@ -1,0 +1,2170 @@
+{
+  "format": "mhwilds-workbook-recipes-v1",
+  "source": "호석테이블.xlsx",
+  "sourceSha256": "3f13c2dfe2ae93837b3b91695048877a5777ff1cce0b07441b8e24230fc1adaf",
+  "verifiedInGame": false,
+  "duplicateSkillPolicy": "exclude-unverified",
+  "slotInterpretation": "Wn=weapon; n=armor; 0=empty (workbook interpretation)",
+  "rawSkillAssignments": 633379,
+  "rawAssignmentsWithSlots": 2134102,
+  "groups": {
+    "1": [
+      {
+        "name": "포술",
+        "level": 1
+      },
+      {
+        "name": "공격",
+        "level": 1
+      },
+      {
+        "name": "탄도 강화",
+        "level": 1
+      },
+      {
+        "name": "폭파속성 강화",
+        "level": 1
+      },
+      {
+        "name": "둔기 사용",
+        "level": 1
+      },
+      {
+        "name": "차지 마스터",
+        "level": 1
+      },
+      {
+        "name": "발도술【기】",
+        "level": 1
+      },
+      {
+        "name": "회심격【속성】",
+        "level": 1
+      },
+      {
+        "name": "간파",
+        "level": 1
+      },
+      {
+        "name": "회심격【특수】",
+        "level": 1
+      },
+      {
+        "name": "용속성 공격 강화",
+        "level": 1
+      },
+      {
+        "name": "불속성 공격 강화",
+        "level": 1
+      },
+      {
+        "name": "집중",
+        "level": 1
+      },
+      {
+        "name": "가드 성능",
+        "level": 1
+      },
+      {
+        "name": "가드 성능 Up",
+        "level": 1
+      },
+      {
+        "name": "장인",
+        "level": 1
+      },
+      {
+        "name": "피리 명인",
+        "level": 1
+      },
+      {
+        "name": "얼음속성 공격 강화",
+        "level": 1
+      },
+      {
+        "name": "포탄 장전",
+        "level": 1
+      },
+      {
+        "name": "심안",
+        "level": 1
+      },
+      {
+        "name": "공격적인 방어",
+        "level": 1
+      },
+      {
+        "name": "퍼스트샷",
+        "level": 1
+      },
+      {
+        "name": "마비속성 강화",
+        "level": 1
+      },
+      {
+        "name": "독속성 강화",
+        "level": 1
+      },
+      {
+        "name": "강화 지속",
+        "level": 1
+      },
+      {
+        "name": "칼날 연마",
+        "level": 1
+      },
+      {
+        "name": "발도술【힘】",
+        "level": 1
+      },
+      {
+        "name": "고속 변형",
+        "level": 1
+      },
+      {
+        "name": "명검",
+        "level": 1
+      },
+      {
+        "name": "수면속성 강화",
+        "level": 1
+      },
+      {
+        "name": "KO술",
+        "level": 1
+      },
+      {
+        "name": "특수 사격 강화",
+        "level": 1
+      },
+      {
+        "name": "숫돌 사용 고속화",
+        "level": 1
+      },
+      {
+        "name": "스태미나 탈취",
+        "level": 1
+      },
+      {
+        "name": "포스샷",
+        "level": 1
+      },
+      {
+        "name": "번개속성 공격 강화",
+        "level": 1
+      },
+      {
+        "name": "물속성 공격 강화",
+        "level": 1
+      }
+    ],
+    "2": [
+      {
+        "name": "비연",
+        "level": 1
+      },
+      {
+        "name": "포술",
+        "level": 2
+      },
+      {
+        "name": "공격",
+        "level": 2
+      },
+      {
+        "name": "탄도 강화",
+        "level": 2
+      },
+      {
+        "name": "폭파속성 강화",
+        "level": 2
+      },
+      {
+        "name": "폭파병 추가",
+        "level": 1
+      },
+      {
+        "name": "둔기 사용",
+        "level": 2
+      },
+      {
+        "name": "차지 마스터",
+        "level": 2
+      },
+      {
+        "name": "모으기 타격 강화",
+        "level": 1
+      },
+      {
+        "name": "발도술【기】",
+        "level": 2
+      },
+      {
+        "name": "회심격【속성】",
+        "level": 2
+      },
+      {
+        "name": "간파",
+        "level": 2
+      },
+      {
+        "name": "회심격【특수】",
+        "level": 2
+      },
+      {
+        "name": "용속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "멸기병 추가",
+        "level": 1
+      },
+      {
+        "name": "불속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "집중",
+        "level": 2
+      },
+      {
+        "name": "가드 성능",
+        "level": 2
+      },
+      {
+        "name": "가드 성능 Up",
+        "level": 2
+      },
+      {
+        "name": "장인",
+        "level": 2
+      },
+      {
+        "name": "피리 명인",
+        "level": 2
+      },
+      {
+        "name": "얼음속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "포탄 장전",
+        "level": 2
+      },
+      {
+        "name": "심안",
+        "level": 2
+      },
+      {
+        "name": "공격적인 방어",
+        "level": 2
+      },
+      {
+        "name": "퍼스트샷",
+        "level": 2
+      },
+      {
+        "name": "마비속성 강화",
+        "level": 2
+      },
+      {
+        "name": "독속성 강화",
+        "level": 2
+      },
+      {
+        "name": "독 대미지 강화",
+        "level": 1
+      },
+      {
+        "name": "독병 추가",
+        "level": 1
+      },
+      {
+        "name": "강화 지속",
+        "level": 2
+      },
+      {
+        "name": "칼날 연마",
+        "level": 2
+      },
+      {
+        "name": "발도술【힘】",
+        "level": 2
+      },
+      {
+        "name": "고속 변형",
+        "level": 2
+      },
+      {
+        "name": "명검",
+        "level": 2
+      },
+      {
+        "name": "수면속성 강화",
+        "level": 2
+      },
+      {
+        "name": "KO술",
+        "level": 2
+      },
+      {
+        "name": "특수 사격 강화",
+        "level": 2
+      },
+      {
+        "name": "숫돌 사용 고속화",
+        "level": 2
+      },
+      {
+        "name": "스태미나 탈취",
+        "level": 2
+      },
+      {
+        "name": "포스샷",
+        "level": 2
+      },
+      {
+        "name": "번개속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "물속성 공격 강화",
+        "level": 2
+      }
+    ],
+    "3": [
+      {
+        "name": "포술",
+        "level": 3
+      },
+      {
+        "name": "공격",
+        "level": 3
+      },
+      {
+        "name": "탄도 강화",
+        "level": 3
+      },
+      {
+        "name": "폭파속성 강화",
+        "level": 3
+      },
+      {
+        "name": "둔기 사용",
+        "level": 3
+      },
+      {
+        "name": "차지 마스터",
+        "level": 3
+      },
+      {
+        "name": "발도술【기】",
+        "level": 3
+      },
+      {
+        "name": "회심격【속성】",
+        "level": 3
+      },
+      {
+        "name": "간파",
+        "level": 3
+      },
+      {
+        "name": "회심격【특수】",
+        "level": 3
+      },
+      {
+        "name": "용속성 공격 강화",
+        "level": 3
+      },
+      {
+        "name": "불속성 공격 강화",
+        "level": 3
+      },
+      {
+        "name": "집중",
+        "level": 3
+      },
+      {
+        "name": "가드 성능",
+        "level": 3
+      },
+      {
+        "name": "가드 성능 Up",
+        "level": 3
+      },
+      {
+        "name": "장인",
+        "level": 3
+      },
+      {
+        "name": "얼음속성 공격 강화",
+        "level": 3
+      },
+      {
+        "name": "달인의 재주",
+        "level": 1
+      },
+      {
+        "name": "심안",
+        "level": 3
+      },
+      {
+        "name": "통상탄/통상화살 강화",
+        "level": 1
+      },
+      {
+        "name": "공격적인 방어",
+        "level": 3
+      },
+      {
+        "name": "퍼스트샷",
+        "level": 3
+      },
+      {
+        "name": "마비병 추가",
+        "level": 1
+      },
+      {
+        "name": "마비속성 강화",
+        "level": 3
+      },
+      {
+        "name": "관통탄/용화살 강화",
+        "level": 1
+      },
+      {
+        "name": "독속성 강화",
+        "level": 3
+      },
+      {
+        "name": "강화 지속",
+        "level": 3
+      },
+      {
+        "name": "칼날 연마",
+        "level": 3
+      },
+      {
+        "name": "발도술【힘】",
+        "level": 3
+      },
+      {
+        "name": "속사 강화",
+        "level": 1
+      },
+      {
+        "name": "고속 변형",
+        "level": 3
+      },
+      {
+        "name": "명검",
+        "level": 3
+      },
+      {
+        "name": "수면속성 강화",
+        "level": 3
+      },
+      {
+        "name": "수면병 추가",
+        "level": 1
+      },
+      {
+        "name": "KO술",
+        "level": 3
+      },
+      {
+        "name": "산탄/강사 강화",
+        "level": 1
+      },
+      {
+        "name": "스태미나 탈취",
+        "level": 3
+      },
+      {
+        "name": "포스샷",
+        "level": 3
+      },
+      {
+        "name": "번개속성 공격 강화",
+        "level": 3
+      },
+      {
+        "name": "물속성 공격 강화",
+        "level": 3
+      }
+    ],
+    "4": [
+      {
+        "name": "공격",
+        "level": 2
+      },
+      {
+        "name": "탄도 강화",
+        "level": 2
+      },
+      {
+        "name": "폭파속성 강화",
+        "level": 2
+      },
+      {
+        "name": "슈퍼회심",
+        "level": 1
+      },
+      {
+        "name": "회심격【속성】",
+        "level": 2
+      },
+      {
+        "name": "간파",
+        "level": 2
+      },
+      {
+        "name": "용속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "불속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "가드 성능",
+        "level": 2
+      },
+      {
+        "name": "가드 성능 Up",
+        "level": 2
+      },
+      {
+        "name": "장인",
+        "level": 2
+      },
+      {
+        "name": "얼음속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "퍼스트샷",
+        "level": 2
+      },
+      {
+        "name": "마비속성 강화",
+        "level": 2
+      },
+      {
+        "name": "독속성 강화",
+        "level": 2
+      },
+      {
+        "name": "칼날 연마",
+        "level": 2
+      },
+      {
+        "name": "명검",
+        "level": 2
+      },
+      {
+        "name": "수면속성 강화",
+        "level": 2
+      },
+      {
+        "name": "포스샷",
+        "level": 2
+      },
+      {
+        "name": "번개속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "물속성 공격 강화",
+        "level": 2
+      }
+    ],
+    "5": [
+      {
+        "name": "환경 적응",
+        "level": 1
+      },
+      {
+        "name": "무아지경",
+        "level": 1
+      },
+      {
+        "name": "물가/기름 진흙 적응",
+        "level": 1
+      },
+      {
+        "name": "속박 내성",
+        "level": 1
+      },
+      {
+        "name": "폭파 피해 내성",
+        "level": 1
+      },
+      {
+        "name": "열상 내성",
+        "level": 1
+      },
+      {
+        "name": "보머",
+        "level": 1
+      },
+      {
+        "name": "식생학",
+        "level": 2
+      },
+      {
+        "name": "체술",
+        "level": 2
+      },
+      {
+        "name": "방어",
+        "level": 2
+      },
+      {
+        "name": "정령의 가호",
+        "level": 1
+      },
+      {
+        "name": "용 내성",
+        "level": 1
+      },
+      {
+        "name": "불 내성",
+        "level": 1
+      },
+      {
+        "name": "움찔 감소",
+        "level": 1
+      },
+      {
+        "name": "만족감",
+        "level": 1
+      },
+      {
+        "name": "지질학",
+        "level": 1
+      },
+      {
+        "name": "배고픔 내성",
+        "level": 1
+      },
+      {
+        "name": "얼음 내성",
+        "level": 1
+      },
+      {
+        "name": "위협",
+        "level": 1
+      },
+      {
+        "name": "방어력 DOWN 내성",
+        "level": 1
+      },
+      {
+        "name": "아이템 사용 강화",
+        "level": 1
+      },
+      {
+        "name": "런너",
+        "level": 1
+      },
+      {
+        "name": "마비 내성",
+        "level": 1
+      },
+      {
+        "name": "독 내성",
+        "level": 1
+      },
+      {
+        "name": "납도술",
+        "level": 1
+      },
+      {
+        "name": "회복 속도",
+        "level": 1
+      },
+      {
+        "name": "체력 회복량 UP",
+        "level": 1
+      },
+      {
+        "name": "수면 내성",
+        "level": 1
+      },
+      {
+        "name": "빨리 먹기",
+        "level": 1
+      },
+      {
+        "name": "악취 내성",
+        "level": 1
+      },
+      {
+        "name": "기절 내성",
+        "level": 1
+      },
+      {
+        "name": "환경 이용 지식",
+        "level": 1
+      },
+      {
+        "name": "번개 내성",
+        "level": 1
+      },
+      {
+        "name": "내진",
+        "level": 1
+      },
+      {
+        "name": "물 내성",
+        "level": 1
+      },
+      {
+        "name": "광역화",
+        "level": 2
+      },
+      {
+        "name": "풍압 내성",
+        "level": 1
+      }
+    ],
+    "6": [
+      {
+        "name": "환경 적응",
+        "level": 2
+      },
+      {
+        "name": "무아지경",
+        "level": 2
+      },
+      {
+        "name": "물가/기름 진흙 적응",
+        "level": 2
+      },
+      {
+        "name": "속박 내성",
+        "level": 2
+      },
+      {
+        "name": "폭파 피해 내성",
+        "level": 2
+      },
+      {
+        "name": "열상 내성",
+        "level": 2
+      },
+      {
+        "name": "보머",
+        "level": 2
+      },
+      {
+        "name": "식생학",
+        "level": 3
+      },
+      {
+        "name": "체술",
+        "level": 3
+      },
+      {
+        "name": "방어",
+        "level": 3
+      },
+      {
+        "name": "정령의 가호",
+        "level": 2
+      },
+      {
+        "name": "용 내성",
+        "level": 2
+      },
+      {
+        "name": "불 내성",
+        "level": 2
+      },
+      {
+        "name": "움찔 감소",
+        "level": 2
+      },
+      {
+        "name": "만족감",
+        "level": 2
+      },
+      {
+        "name": "지질학",
+        "level": 2
+      },
+      {
+        "name": "배고픔 내성",
+        "level": 2
+      },
+      {
+        "name": "얼음 내성",
+        "level": 2
+      },
+      {
+        "name": "위협",
+        "level": 2
+      },
+      {
+        "name": "방어력 DOWN 내성",
+        "level": 2
+      },
+      {
+        "name": "아이템 사용 강화",
+        "level": 2
+      },
+      {
+        "name": "런너",
+        "level": 2
+      },
+      {
+        "name": "마비 내성",
+        "level": 2
+      },
+      {
+        "name": "독 내성",
+        "level": 2
+      },
+      {
+        "name": "납도술",
+        "level": 2
+      },
+      {
+        "name": "회복 속도",
+        "level": 2
+      },
+      {
+        "name": "체력 회복량 UP",
+        "level": 2
+      },
+      {
+        "name": "수면 내성",
+        "level": 2
+      },
+      {
+        "name": "빨리 먹기",
+        "level": 2
+      },
+      {
+        "name": "악취 내성",
+        "level": 2
+      },
+      {
+        "name": "기절 내성",
+        "level": 2
+      },
+      {
+        "name": "환경 이용 지식",
+        "level": 2
+      },
+      {
+        "name": "번개 내성",
+        "level": 2
+      },
+      {
+        "name": "내진",
+        "level": 2
+      },
+      {
+        "name": "물 내성",
+        "level": 2
+      },
+      {
+        "name": "광역화",
+        "level": 3
+      },
+      {
+        "name": "풍압 내성",
+        "level": 2
+      }
+    ],
+    "7": [
+      {
+        "name": "무아지경",
+        "level": 3
+      },
+      {
+        "name": "속박 내성",
+        "level": 3
+      },
+      {
+        "name": "폭파 피해 내성",
+        "level": 3
+      },
+      {
+        "name": "열상 내성",
+        "level": 3
+      },
+      {
+        "name": "보머",
+        "level": 3
+      },
+      {
+        "name": "식생학",
+        "level": 4
+      },
+      {
+        "name": "체술",
+        "level": 4
+      },
+      {
+        "name": "방어",
+        "level": 4
+      },
+      {
+        "name": "정령의 가호",
+        "level": 3
+      },
+      {
+        "name": "용 내성",
+        "level": 3
+      },
+      {
+        "name": "불 내성",
+        "level": 3
+      },
+      {
+        "name": "움찔 감소",
+        "level": 3
+      },
+      {
+        "name": "만족감",
+        "level": 3
+      },
+      {
+        "name": "지질학",
+        "level": 3
+      },
+      {
+        "name": "배고픔 내성",
+        "level": 3
+      },
+      {
+        "name": "얼음 내성",
+        "level": 3
+      },
+      {
+        "name": "위협",
+        "level": 3
+      },
+      {
+        "name": "방어력 DOWN 내성",
+        "level": 3
+      },
+      {
+        "name": "아이템 사용 강화",
+        "level": 3
+      },
+      {
+        "name": "런너",
+        "level": 3
+      },
+      {
+        "name": "마비 내성",
+        "level": 3
+      },
+      {
+        "name": "독 내성",
+        "level": 3
+      },
+      {
+        "name": "납도술",
+        "level": 3
+      },
+      {
+        "name": "회복 속도",
+        "level": 3
+      },
+      {
+        "name": "체력 회복량 UP",
+        "level": 3
+      },
+      {
+        "name": "수면 내성",
+        "level": 3
+      },
+      {
+        "name": "빨리 먹기",
+        "level": 3
+      },
+      {
+        "name": "기절 내성",
+        "level": 3
+      },
+      {
+        "name": "환경 이용 지식",
+        "level": 3
+      },
+      {
+        "name": "번개 내성",
+        "level": 3
+      },
+      {
+        "name": "내진",
+        "level": 3
+      },
+      {
+        "name": "물 내성",
+        "level": 3
+      },
+      {
+        "name": "광역화",
+        "level": 4
+      },
+      {
+        "name": "풍압 내성",
+        "level": 3
+      }
+    ],
+    "8": [
+      {
+        "name": "급습",
+        "level": 1
+      },
+      {
+        "name": "속성 피해 내성",
+        "level": 1
+      },
+      {
+        "name": "전화위복",
+        "level": 1
+      },
+      {
+        "name": "역습",
+        "level": 1
+      },
+      {
+        "name": "귀마개",
+        "level": 1
+      },
+      {
+        "name": "회피 거리 UP",
+        "level": 1
+      },
+      {
+        "name": "회피 성능",
+        "level": 2
+      },
+      {
+        "name": "재난대처능력",
+        "level": 2
+      },
+      {
+        "name": "혼신",
+        "level": 1
+      },
+      {
+        "name": "버섯 애호가",
+        "level": 1
+      },
+      {
+        "name": "파괴왕",
+        "level": 1
+      },
+      {
+        "name": "완전 충전",
+        "level": 1
+      },
+      {
+        "name": "앙심",
+        "level": 1
+      },
+      {
+        "name": "스태미나 급속 회복",
+        "level": 1
+      },
+      {
+        "name": "정비",
+        "level": 2
+      }
+    ],
+    "9": [
+      {
+        "name": "급습",
+        "level": 2
+      },
+      {
+        "name": "속성 피해 내성",
+        "level": 2
+      },
+      {
+        "name": "전화위복",
+        "level": 2
+      },
+      {
+        "name": "역습",
+        "level": 2
+      },
+      {
+        "name": "귀마개",
+        "level": 2
+      },
+      {
+        "name": "회피 거리 UP",
+        "level": 2
+      },
+      {
+        "name": "회피 성능",
+        "level": 3
+      },
+      {
+        "name": "재난대처능력",
+        "level": 3
+      },
+      {
+        "name": "혼신",
+        "level": 2
+      },
+      {
+        "name": "버섯 애호가",
+        "level": 2
+      },
+      {
+        "name": "파괴왕",
+        "level": 2
+      },
+      {
+        "name": "완전 충전",
+        "level": 2
+      },
+      {
+        "name": "앙심",
+        "level": 2
+      },
+      {
+        "name": "스태미나 급속 회복",
+        "level": 2
+      },
+      {
+        "name": "정비",
+        "level": 3
+      }
+    ],
+    "10": [
+      {
+        "name": "교격",
+        "level": 1
+      },
+      {
+        "name": "도전자",
+        "level": 1
+      },
+      {
+        "name": "연격",
+        "level": 1
+      },
+      {
+        "name": "속성 변환",
+        "level": 1
+      },
+      {
+        "name": "속성 흡수",
+        "level": 1
+      },
+      {
+        "name": "쇄인자격",
+        "level": 1
+      },
+      {
+        "name": "공세",
+        "level": 1
+      },
+      {
+        "name": "힘의 해방",
+        "level": 1
+      },
+      {
+        "name": "약점 특효",
+        "level": 1
+      }
+    ]
+  },
+  "recipes": [
+    {
+      "id": 1,
+      "rarity": 5,
+      "groups": [
+        1,
+        6,
+        6
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "rarity": 5,
+      "groups": [
+        1,
+        7
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "rarity": 5,
+      "groups": [
+        1,
+        8,
+        6
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "rarity": 5,
+      "groups": [
+        1,
+        8,
+        8
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "rarity": 5,
+      "groups": [
+        1,
+        9
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "rarity": 5,
+      "groups": [
+        1,
+        10
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "rarity": 6,
+      "groups": [
+        1,
+        1,
+        7
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "rarity": 6,
+      "groups": [
+        1,
+        1,
+        10
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "rarity": 6,
+      "groups": [
+        2,
+        6,
+        6
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "rarity": 6,
+      "groups": [
+        2,
+        8,
+        6
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "rarity": 6,
+      "groups": [
+        2,
+        8,
+        8
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "rarity": 6,
+      "groups": [
+        2,
+        9
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "rarity": 6,
+      "groups": [
+        2,
+        10
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "rarity": 7,
+      "groups": [
+        2,
+        1,
+        7
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "rarity": 7,
+      "groups": [
+        2,
+        1,
+        8
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "rarity": 7,
+      "groups": [
+        2,
+        1,
+        10
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "rarity": 7,
+      "groups": [
+        3,
+        6,
+        5
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "rarity": 7,
+      "groups": [
+        3,
+        7
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "rarity": 7,
+      "groups": [
+        3,
+        8,
+        5
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "rarity": 7,
+      "groups": [
+        3,
+        10
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "rarity": 7,
+      "groups": [
+        4,
+        1,
+        1
+      ],
+      "slots": [
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            1,
+            1
+          ]
+        },
+        {
+          "weaponSlots": [],
+          "armorSlots": [
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "rarity": 8,
+      "groups": [
+        2,
+        1,
+        7
+      ],
+      "slots": [
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": []
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "rarity": 8,
+      "groups": [
+        2,
+        1,
+        8
+      ],
+      "slots": [
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": []
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "rarity": 8,
+      "groups": [
+        2,
+        1,
+        10
+      ],
+      "slots": [
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": []
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "rarity": 8,
+      "groups": [
+        3,
+        6,
+        5
+      ],
+      "slots": [
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": []
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "rarity": 8,
+      "groups": [
+        3,
+        7
+      ],
+      "slots": [
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": []
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "rarity": 8,
+      "groups": [
+        3,
+        8,
+        5
+      ],
+      "slots": [
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": []
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "rarity": 8,
+      "groups": [
+        3,
+        10
+      ],
+      "slots": [
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": []
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "rarity": 8,
+      "groups": [
+        4,
+        1,
+        1
+      ],
+      "slots": [
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": []
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1
+          ]
+        },
+        {
+          "weaponSlots": [
+            1
+          ],
+          "armorSlots": [
+            1,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}

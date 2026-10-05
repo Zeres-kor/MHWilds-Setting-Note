@@ -238,6 +238,7 @@ function render() {
   for (const id of ['tag', 'untag', 'delete']) $(id).disabled = !selected.size;
   $('all').checked = list.length > 0 && list.every(({record}) => selected.has(record.id));
   $('all').indeterminate = list.some(({record}) => selected.has(record.id)) && !$('all').checked;
+  document.dispatchEvent(new Event('inventory-state-changed'));
 }
 
 function openEditor(record) {
@@ -627,3 +628,6 @@ for (const type of ['dragover', 'drop']) document.addEventListener(type, event =
   }
 });
 render();
+
+// Expose current state for candidate evaluation; candidates never enter inventory automatically.
+window.CandidateContext = {get: () => ({records, rules, inventoryVersion, rulesVersion})};

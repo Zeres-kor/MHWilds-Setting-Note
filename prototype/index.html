@@ -2,11 +2,11 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>와일즈 호석 보관함</title><link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"></head>
 <body><a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 20 8 17 19 12 22 7 19 4 8Z M4 8h16M7 19l5-11 5 11M12 2v6"/></svg></span><span>WILDS 호석 보관함</span></a><span class="version">이 브라우저에 저장</span></header>
-<nav aria-label="주 메뉴"><button aria-current="page">보유 호석</button><button id="rulesNav">태그 기준</button><button disabled>세팅 검색 · 준비 중</button><button disabled>저장 세팅 · 준비 중</button></nav>
+<nav aria-label="주 메뉴"><button aria-current="page">보유 호석</button><button id="rulesNav">태그 기준</button><button id="candidateNav">호석 후보 검색</button><button disabled>세팅 검색 · 준비 중</button><button disabled>저장 세팅 · 준비 중</button></nav>
 <main id="main" tabindex="-1">
 <div class="heading"><div><p class="eyebrow">MY TALISMANS</p><h1>보유 호석</h1><p class="muted">내 호석을 한곳에서 관리하고 평가하세요.</p></div><div class="actions"><button id="export">백업 저장</button><button id="restore" title="클릭하거나 JSON 백업 파일을 여기에 놓으세요">백업 복원<span class="drop-button-hint">JSON 끌어놓기</span></button><button id="bulkImport">일괄 가져오기</button><button id="add" class="primary">＋ 호석 입력</button><input id="restoreFile" type="file" accept=".json" hidden></div></div>
 <section class="overview" aria-label="보유 현황"><div class="overview-card"><span>보유 호석</span><strong id="statTotal">0개</strong></div><div class="overview-card"><span>현재 표시</span><strong id="statVisible">0개</strong></div><div class="overview-card"><span>활성 태그 기준</span><strong id="statRules">0개</strong></div></section>
-<p class="notice">태그 기준 엑셀을 올리면 보유 호석을 자동 분류합니다. 게임 내 생성 가능 여부와 세팅 검색은 아직 연결되지 않았습니다.</p>
+<p class="notice">태그 기준 엑셀을 올리면 보유 호석을 자동 분류합니다. 엑셀 기준 호석 후보는 메뉴에서 검색할 수 있습니다. 게임 내 생성 규칙 검증과 장비 세팅 검색은 준비 중입니다.</p>
 <section class="filters" aria-label="호석 필터"><div class="section-heading"><h2>호석 찾기</h2><span>스킬과 평가 조건으로 목록 좁히기</span></div>
 <label>평가할 무기<select id="weapon"></select></label>
 <label>스킬·메모 검색<input id="query" type="search" placeholder="예: 혼신, 납도술"></label>
@@ -55,4 +55,29 @@
 <div class="actions"><button type="button" id="importSelectAll" aria-describedby="importSelectionHint">오류 없는 행 모두 선택</button><button type="button" id="importSelectNone">선택 해제</button></div><p id="importSelectionHint" class="hint">모두 선택하면 중복·확인 필요 행도 포함합니다. 같은 호석을 여러 개 보유했다면 함께 추가하세요.</p>
 <p class="table-scroll-hint">행 상태를 보려면 표를 좌우로 스크롤하세요.</p><div class="import-table-wrap"><table><caption class="sr-only">가져오기 행별 검토 결과</caption><thead><tr><th scope="col">추가</th><th scope="col">행</th><th scope="col">호석</th><th scope="col">상태</th></tr></thead><tbody id="importRows"></tbody></table></div></section>
 <div class="dialog-footer"><button type="button" id="importCancel">취소</button><button type="button" id="importApply" class="primary" disabled>선택한 0개 추가</button></div></dialog>
-<script src="vendor/fflate-0.8.2.min.js"></script><script src="skill-names.js"></script><script src="tag-rules.js"></script><script src="xlsx-rules.js"></script><script src="inventory-import.js"></script><script src="app.js"></script></body></html>
+<dialog id="candidateDialog" class="candidate-dialog" aria-labelledby="candidateTitle">
+<div class="dialog-heading"><div><p class="eyebrow">TALISMAN CANDIDATES</p><h2 id="candidateTitle">엑셀 기준 호석 후보 검색</h2></div><button id="candidateClose" type="button" aria-label="후보 검색 닫기">✕</button></div>
+<p class="notice">제공된 호석테이블의 조합을 검색합니다. 게임 내 생성 가능성은 검증 전입니다. 동일 스킬이 중복되는 조합은 제외하며, W1은 무기 슬롯 1로 해석합니다. 장비·장식주 조합은 계산하지 않습니다.</p>
+<details class="candidate-source"><summary>규칙 데이터 범위 확인</summary><p>엑셀의 29개 조합 규칙을 사용합니다. 제공된 게임 추출 555개 중 536개는 이 규칙과 일치했고, 19개는 엑셀에 없는 가드 강화 Lv.1~3을 포함했습니다. 현재 검색에서 가드 강화 후보는 나오지 않습니다. 실제 게임의 모든 후보를 포함한다고 보장하지 않습니다.</p></details>
+<form id="candidateForm">
+<div class="candidate-fields">
+<label>스킬 조건 1<input id="candidateSkill1" list="skillSuggestions" required placeholder="예: 혼신"></label><label>최소 레벨 1<input id="candidateLevel1" type="number" min="1" max="10" value="1" required></label>
+<label>스킬 조건 2 · 선택<input id="candidateSkill2" list="skillSuggestions" placeholder="예: 납도술"></label><label>최소 레벨 2<input id="candidateLevel2" type="number" min="1" max="10" value="1"></label>
+<label>스킬 조건 3 · 선택<input id="candidateSkill3" list="skillSuggestions" placeholder="예: 무아지경"></label><label>최소 레벨 3<input id="candidateLevel3" type="number" min="1" max="10" value="1"></label>
+<label>레어도<select id="candidateRarity"><option value="0">전체</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option></select></label>
+<label>평가할 무기<select id="candidateWeapon"></select></label>
+<label>최소 무기 슬롯<input id="candidateWeaponSlots" placeholder="예: 1" aria-describedby="candidateSlotsHint"></label>
+<label>최소 방어구 슬롯<input id="candidateArmorSlots" placeholder="예: 1, 1" aria-describedby="candidateSlotsHint"></label>
+<label>범용 평가<select id="candidateCommonGrade"></select></label><label>무기별 평가<select id="candidateWeaponGrade"></select></label>
+</div>
+<p id="candidateSlotsHint" class="hint">스킬 조건은 모두 만족해야 합니다. 슬롯은 1~3 크기를 쉼표로 구분하고, 빈칸이면 제한하지 않습니다. 기준이 없어도 검색할 수 있습니다.</p>
+<div class="actions"><button id="candidateStart" class="primary" type="submit">후보 검색</button><button id="candidateCancel" type="button" disabled>검색 취소</button></div>
+</form>
+<p id="candidateError" role="alert"></p><p id="candidateStatus" role="status" aria-live="polite">스킬 조건을 입력하고 검색하세요.</p>
+<section id="candidateResults" hidden aria-label="호석 후보 결과">
+<p class="hint">같은 스킬·슬롯 구성은 하나로 합칩니다. 최대 200개를 엑셀 행 순서로 표시하며, 20,000개를 넘으면 검색을 중단합니다. 이 수치는 출현 확률이나 게임 내 전체 호석 수가 아닙니다.</p>
+<p class="table-scroll-hint">표의 나머지 열은 좌우로 스크롤해 확인하세요.</p>
+<div class="candidate-table-wrap"><table><thead><tr><th scope="col">스킬</th><th scope="col">슬롯</th><th scope="col">확인된 레어도 / 엑셀 No</th><th scope="col">범용 평가</th><th scope="col">무기별 평가</th><th scope="col">보유</th></tr></thead><tbody id="candidateRows"></tbody></table></div>
+</section>
+</dialog>
+<script src="vendor/fflate-0.8.2.min.js"></script><script src="skill-names.js"></script><script src="tag-rules.js"></script><script src="xlsx-rules.js"></script><script src="inventory-import.js"></script><script src="app.js"></script><script src="candidate-search-ui.js"></script></body></html>

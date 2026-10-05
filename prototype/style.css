@@ -194,3 +194,20 @@ input[type=file]::file-selector-button { padding: 7px 12px; margin-right: 12px; 
   .heading { padding-bottom: 18px; }
   .brand-mark { width: 28px; height: 28px; margin: 3px; }
 }
+
+.candidate-dialog { width: min(1180px, calc(100% - 24px)); }
+.candidate-fields { display: grid; grid-template-columns: 2fr 1fr 2fr 1fr; gap: 14px; }
+.candidate-table-wrap { max-height: 420px; overflow: auto; border: 1px solid var(--line); }
+.candidate-table-wrap table { min-width: 940px; }
+.candidate-table-wrap th { position: sticky; top: 0; }
+.candidate-table-wrap th:first-child, .candidate-table-wrap td:first-child { width: 30%; min-width: 260px; padding-right: 16px; word-break: keep-all; }
+.candidate-table-wrap td:first-child { font-weight: 700; }
+#candidateError { color: var(--danger); }
+#candidateStatus { color: var(--accent); font-weight: 600; }
+@media (max-width: 720px) {
+  .candidate-fields { grid-template-columns: 2fr 1fr; }
+  .candidate-dialog { padding: 16px; }
+}
+
+.candidate-source { margin-bottom: 16px; padding: 12px; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); font-size: 14px; }
+.candidate-source summary { color: var(--accent); cursor: pointer; font-weight: 700; }
