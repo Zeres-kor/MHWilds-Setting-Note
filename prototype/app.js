@@ -5,6 +5,7 @@ const {WEAPONS, GRADES} = TagRules;
 const LEGACY_KEY = 'mhwilds-inventory-prototype-v1';
 const STATE_KEY = 'mhwilds-app-v2';
 const BACKUP_FORMAT = 'mhwilds-backup-v2';
+let savedBuilds = [];
 let records = [], rules = [], revision = 0, inventoryVersion = 0, rulesVersion = 0, stateRaw = null, storageReady = true;
 let selected = new Set(), tagMode = 'add', uploadedRules = null, pendingImport = null;
 let pendingInventory = null, importTrigger = null;
@@ -115,6 +116,7 @@ function readState() {
       if (saved.format !== STATE_KEY || !Number.isSafeInteger(saved.revision) || saved.revision < 0) throw Error('저장 버전 형식이 잘못됐습니다.');
       records = validateList(saved.records);
       rules = TagRules.validateRules(saved.rules, SKILL_NAMES);
+      savedBuilds = SavedBuilds.validateList(saved.savedBuilds || []);
       revision = saved.revision;
       inventoryVersion = saved.inventoryVersion || 0;
       rulesVersion = saved.rulesVersion || 0;
@@ -122,6 +124,7 @@ function readState() {
     } else {
       records = validateList(JSON.parse(localStorage.getItem(LEGACY_KEY) || '[]'));
       rules = [];
+      savedBuilds = [];
       revision = 0;
       inventoryVersion = 0;
       rulesVersion = 0;
@@ -131,12 +134,13 @@ function readState() {
     storageReady = false;
     records = [];
     rules = [];
+    savedBuilds = [];
     announce('저장 데이터를 읽지 못했습니다. 백업을 복원하기 전에는 저장하지 않습니다. ' + error.message);
   }
 }
 readState();
 
-function commit(nextRecords, nextRules = rules, recovery = false) {
+function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = savedBuilds) {
   if (!storageReady && !recovery) {
     announce('저장 데이터 오류가 있어 변경하지 않았습니다. 정상 백업을 복원하세요.');
     return false;
@@ -149,15 +153,17 @@ function commit(nextRecords, nextRules = rules, recovery = false) {
       return false;
     }
     const cleanRecords = validateList(nextRecords), cleanRules = TagRules.validateRules(nextRules, SKILL_NAMES);
+    const cleanBuilds = SavedBuilds.validateList(nextBuilds);
     const nextRevision = revision + 1;
     const nextInventoryVersion = inventoryVersion + Number(JSON.stringify(cleanRecords) !== JSON.stringify(records));
     const nextRulesVersion = rulesVersion + Number(JSON.stringify(cleanRules) !== JSON.stringify(rules));
     const raw = JSON.stringify({format: STATE_KEY, revision: nextRevision, inventoryVersion: nextInventoryVersion,
-      rulesVersion: nextRulesVersion, records: cleanRecords, rules: cleanRules});
+      rulesVersion: nextRulesVersion, records: cleanRecords, rules: cleanRules, savedBuilds: cleanBuilds});
     localStorage.setItem(STATE_KEY, raw);
     stateRaw = raw;
     records = cleanRecords;
     rules = cleanRules;
+    savedBuilds = cleanBuilds;
     revision = nextRevision;
     inventoryVersion = nextInventoryVersion;
     rulesVersion = nextRulesVersion;
@@ -335,14 +341,14 @@ $('delete').onclick = () => {
   }
 };
 $('export').onclick = () => {
-  const data = {format: BACKUP_FORMAT, inventoryVersion, rulesVersion, records, rules};
+  const data = {format: BACKUP_FORMAT, inventoryVersion, rulesVersion, records, rules, savedBuilds};
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'}));
   const anchor = document.createElement('a');
   anchor.href = url;
   anchor.download = '와일즈_호석_백업.json';
   anchor.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  announce('호석과 자동 태그 기준을 함께 백업했습니다.');
+  announce('호석·태그 기준·저장 세팅을 함께 백업했습니다.');
 };
 $('restore').onclick = () => $('restoreFile').click();
 connectFileUpload({zone:$('restore'), input:$('restoreFile'), extension:'.json', maxBytes:10 * 1048576,
@@ -354,12 +360,13 @@ connectFileUpload({zone:$('restore'), input:$('restoreFile'), extension:'.json',
     if (data.format !== LEGACY_KEY && data.format !== BACKUP_FORMAT) throw Error('지원하지 않는 백업 파일입니다.');
     const nextRecords = validateList(data.records);
     const nextRules = data.format === BACKUP_FORMAT ? TagRules.validateRules(data.rules, SKILL_NAMES) : rules;
+    const nextBuilds = data.format === BACKUP_FORMAT ? SavedBuilds.validateList(data.savedBuilds || []) : savedBuilds;
     const ruleNotice = data.format === BACKUP_FORMAT ? ', 태그 기준 ' + nextRules.length + '개' : ' (기존 태그 기준 유지)';
-    if (confirm('현재 데이터를 호석 ' + nextRecords.length + '개' + ruleNotice + '로 교체할까요?')) {
-      if (commit(nextRecords, nextRules, !storageReady)) {
+    if (confirm('현재 데이터를 호석 ' + nextRecords.length + '개' + ruleNotice + ', 저장 세팅 ' + nextBuilds.length + '개로 교체할까요?')) {
+      if (commit(nextRecords, nextRules, !storageReady, nextBuilds)) {
         selected.clear();
         render();
-        announce('호석과 해당 백업의 태그 기준을 복원했습니다.');
+        announce('호석·태그 기준·저장 세팅을 복원했습니다.');
       }
     }
   }
@@ -631,3 +638,5 @@ render();
 
 // Expose current state for candidate evaluation; candidates never enter inventory automatically.
 window.CandidateContext = {get: () => ({records, rules, inventoryVersion, rulesVersion})};
+
+window.SavedBuildStore = {get:()=>savedBuilds, set:next=>commit(records,rules,false,next)};
