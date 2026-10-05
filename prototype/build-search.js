@@ -1,5 +1,6 @@
 'use strict';
 const BuildSearch = (() => {
+  const weaponBonusesApi = typeof module !== 'undefined' ? require('./weapon-bonuses.js') : WeaponBonuses;
   const candidatesApi = typeof module !== 'undefined' ? require('./talisman-candidates.js') : TalismanCandidates;
   const PARTS = ['head','chest','arms','waist','legs'];
   const counts = slots => {
@@ -33,7 +34,9 @@ const BuildSearch = (() => {
       seen.add(goal.id);
       if(['set','group'].includes(skill.kind) && !skill.ranks.some(r=>r.level===goal.level && Number.isInteger(r.pieces) && r.pieces>0))throw Error('세트 효과의 필요 부위 수를 확인하지 못했습니다.');
     }
-    if(!data.weapons.some(w=>w.id===request.weaponId))throw Error('검색할 무기를 선택하세요.');
+    const weapon=data.weapons.find(w=>w.id===request.weaponId);
+    if(!weapon)throw Error('검색할 무기를 선택하세요.');
+    weaponBonusesApi.selected(data,weapon,request);
     if(!['all','owned','none'].includes(request.charmMode))throw Error('호석 모드를 확인하세요.');
     if(!['high','low','all'].includes(request.rank))throw Error('방어구 등급을 확인하세요.');
     if(!Number.isInteger(request.minDefense) || request.minDefense<0 || request.minDefense>2000)throw Error('최소 방어력은 0~2000 정수로 입력하세요.');
@@ -77,7 +80,7 @@ const BuildSearch = (() => {
     const goals=request.goals.map(g=>({...g,skill:model.get(g.id),bonus:['set','group'].includes(model.get(g.id).kind)}));
     const target=goals.map(g=>g.bonus?g.skill.ranks.find(r=>r.level===g.level).pieces:g.level);
     const vector=item=>goals.map((g,i)=>Math.min(target[i],g.bonus?(item.bonuses||[]).includes(g.id)?1:0:item.skills[g.id]||0));
-    const weapon=data.weapons.find(w=>w.id===request.weaponId);
+    const weapon=weaponBonusesApi.apply(data,data.weapons.find(w=>w.id===request.weaponId),request);
     const projected=item=>({item,v:vector(item),slots:itemCounts(item),defense:item.defense||0});
     let nodes=0,reason=null,excludedCharms=0;const results=[];
     const stop=why=>{throw {searchStop:true,reason:why};};

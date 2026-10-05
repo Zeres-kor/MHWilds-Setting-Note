@@ -1,5 +1,5 @@
 'use strict';
-importScripts('talisman-candidates.js','build-search.js');
+importScripts('talisman-candidates.js','weapon-bonuses.js','build-search.js');
 self.onmessage=async ({data:request})=>{
   try {
     const files=await Promise.all(['data/equipment-snapshot.json','data/talisman-recipes.json'].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error('검색 데이터를 불러오지 못했습니다.');return r.json();}));
