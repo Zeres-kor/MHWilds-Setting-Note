@@ -21,16 +21,13 @@
     el('candidateError').textContent = '';
     el('candidateStatus').textContent = message;
   }
-  el('candidateNav').onclick = () => {
+  el('candidateDialog').addEventListener('page-enter', () => {
     const weapon = document.getElementById('weapon').value;
     if (el('candidateWeapon').value !== weapon) clear('평가할 무기가 변경됐습니다. 다시 검색하세요.');
     el('candidateWeapon').value = weapon;
-    el('candidateDialog').showModal(); el('candidateSkill1').focus();
-  };
-  el('candidateClose').onclick = () => el('candidateDialog').close();
-  el('candidateDialog').addEventListener('close', () => {
+  });
+  el('candidateDialog').addEventListener('page-leave', () => {
     if (worker) clear('검색이 취소됐습니다. 조건을 확인하고 다시 검색하세요.');
-    el('candidateNav').focus();
   });
   el('candidateCancel').onclick = () => clear('검색이 취소됐습니다.');
   el('candidateForm').addEventListener('input', () => clear('조건이 변경됐습니다. 다시 검색하세요.'));

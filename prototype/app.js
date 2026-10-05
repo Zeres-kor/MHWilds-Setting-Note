@@ -556,7 +556,7 @@ function preparePreview() {
     pendingImport = {rules: candidate, snapshot: stateRaw};
   } catch (error) { $('rulesErrors').textContent = error.message; }
 }
-$('rulesNav').onclick = () => {
+$('rulesDialog').addEventListener('page-enter', () => {
   rulesUpload.cancel();
   uploadedRules = null;
   $('rulesFileStatus').textContent = '';
@@ -564,10 +564,8 @@ $('rulesNav').onclick = () => {
   $('rulesErrors').textContent = '';
   clearPreview();
   renderRuleList();
-  $('rulesDialog').showModal();
-};
-$('rulesClose').onclick = $('rulesCancel').onclick = () => $('rulesDialog').close();
-$('rulesDialog').addEventListener('close', () => rulesUpload.cancel());
+});
+$('rulesDialog').addEventListener('page-leave', () => rulesUpload.cancel());
 $('rulesMode').onchange = preparePreview;
 const rulesUpload = connectFileUpload({zone:$('rulesDropZone'), input:$('rulesFile'), extension:'.xlsx', maxBytes:2 * 1048576,
   before:() => {
@@ -578,7 +576,7 @@ const rulesUpload = connectFileUpload({zone:$('rulesDropZone'), input:$('rulesFi
   read:async (file, isCurrent) => {
     $('rulesFileStatus').textContent = file.name + ' · 읽는 중…';
     const result = await XlsxRules.parseFile(file, SKILL_NAMES);
-    if (!isCurrent() || !$('rulesDialog').open) return;
+    if (!isCurrent() || $('rulesDialog').hidden) return;
     $('rulesFileStatus').textContent = file.name + ' · 파일 읽기 완료';
     if (result.errors.length) {
       $('rulesErrors').textContent = result.errors.slice(0, 20).join('\n') + (result.errors.length > 20 ? '\n외 ' + (result.errors.length - 20) + '개 오류' : '');
@@ -599,7 +597,9 @@ $('rulesApply').onclick = () => {
     return;
   }
   if (commit(records, pendingImport.rules)) {
-    $('rulesDialog').close();
+    renderRuleList();
+    clearPreview();
+    $('rulesFileStatus').textContent = '태그 기준을 적용했습니다.';
     pendingImport = null;
     announce('태그 기준을 적용하고 보유 호석의 자동 평가를 갱신했습니다.');
   }
@@ -623,7 +623,7 @@ for (const type of ['dragover', 'drop']) document.addEventListener(type, event =
   if (type === 'drop') {
     const message = '파일을 화면의 파일 업로드 영역에 놓아주세요.';
     if ($('importDialog').open) showImportError(message);
-    else if ($('rulesDialog').open) { $('rulesErrors').textContent = message; $('rulesErrors').focus(); }
+    else if (!$('rulesDialog').hidden) { $('rulesErrors').textContent = message; $('rulesErrors').focus(); }
     else announce(message);
   }
 });

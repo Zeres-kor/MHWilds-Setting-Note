@@ -2,8 +2,9 @@
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>와일즈 호석 보관함</title><link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"></head>
 <body><a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 20 8 17 19 12 22 7 19 4 8Z M4 8h16M7 19l5-11 5 11M12 2v6"/></svg></span><span>WILDS 호석 보관함</span></a><span class="version">이 브라우저에 저장</span></header>
-<nav aria-label="주 메뉴"><button aria-current="page">보유 호석</button><button id="rulesNav">태그 기준</button><button id="candidateNav">호석 후보 검색</button><button id="buildNav">세팅 검색</button><button disabled>저장 세팅 · 준비 중</button></nav>
+<nav aria-label="주 메뉴"><button id="inventoryNav" data-route="inventory" aria-current="page">보유 호석</button><button id="rulesNav" data-route="rules">태그 기준</button><button id="candidateNav" data-route="candidates">호석 후보 검색</button><button id="buildNav" data-route="build">세팅 검색</button><button disabled>저장 세팅 · 준비 중</button></nav>
 <main id="main" tabindex="-1">
+<section id="inventoryPage" class="app-page" aria-label="보유 호석">
 <div class="heading"><div><p class="eyebrow">MY TALISMANS</p><h1>보유 호석</h1><p class="muted">내 호석을 한곳에서 관리하고 평가하세요.</p></div><div class="actions"><button id="export">백업 저장</button><button id="restore" title="클릭하거나 JSON 백업 파일을 여기에 놓으세요">백업 복원<span class="drop-button-hint">JSON 끌어놓기</span></button><button id="bulkImport">일괄 가져오기</button><button id="add" class="primary">＋ 호석 입력</button><input id="restoreFile" type="file" accept=".json" hidden></div></div>
 <section class="overview" aria-label="보유 현황"><div class="overview-card"><span>보유 호석</span><strong id="statTotal">0개</strong></div><div class="overview-card"><span>현재 표시</span><strong id="statVisible">0개</strong></div><div class="overview-card"><span>활성 태그 기준</span><strong id="statRules">0개</strong></div></section>
 <p class="notice">태그 기준 엑셀을 올리면 보유 호석을 자동 분류합니다. 엑셀 기준 호석 후보는 메뉴에서 검색할 수 있습니다. 세팅 검색에서 목표 스킬에 맞는 장비와 장식주 조합을 찾을 수 있습니다.</p>
@@ -24,15 +25,8 @@
 <div class="table-wrap"><table><thead><tr><th scope="col"><input id="all" type="checkbox" aria-label="표시된 호석 모두 선택"></th><th scope="col">호석 / 스킬</th><th scope="col">슬롯</th><th scope="col">범용 평가</th><th scope="col" id="weaponHeading">무기별 평가</th><th scope="col">수동 태그</th><th scope="col">메모</th><th scope="col">상세</th></tr></thead><tbody id="rows"></tbody></table></div>
 <div id="empty" class="empty"><div class="gem">◇</div><h2>첫 호석을 등록해보세요</h2><p class="muted">직접 입력하거나 표·기존 TXT를 가져올 수 있습니다.</p><button id="emptyAdd" class="primary">호석 입력</button> <button id="emptyImport">일괄 가져오기</button></div>
 </section><p id="message" role="status" aria-live="polite"></p>
-</main>
-<dialog id="editor" aria-labelledby="formTitle"><form id="form"><div class="dialog-heading"><h2 id="formTitle">호석 입력</h2><button type="button" id="close" aria-label="입력 닫기">✕</button></div><input id="editId" type="hidden">
-<p class="muted">스킬을 최대 3개 입력하세요. 게임 규칙 검증 전에는 입력값만 저장합니다.</p><div id="evaluationDetails" class="evaluation-details" hidden></div>
-<div id="skills" class="skill-inputs"></div><datalist id="skillSuggestions"></datalist>
-<fieldset><legend>슬롯</legend><div class="slot-inputs"><label>무기 슬롯<input id="weaponSlots" placeholder="예: 1" inputmode="numeric"></label><label>방어구 슬롯<input id="armorSlots" placeholder="예: 2, 1" inputmode="numeric"></label></div><p class="hint">쉼표로 구분합니다. 빈칸은 슬롯 없음입니다.</p></fieldset>
-<label>수동 태그<input id="tags" placeholder="쉼표로 구분 · 예: 보관, 비교"></label><label>메모<textarea id="memo" rows="3"></textarea></label><p id="formError" role="alert"></p>
-<div class="dialog-footer"><label class="continue"><input type="checkbox" id="continue">저장 후 계속 입력</label><button type="submit" class="primary">저장</button></div></form></dialog>
-<dialog id="tagDialog" aria-labelledby="tagTitle"><form id="tagForm"><h2 id="tagTitle">수동 태그 일괄 추가</h2><label>태그명<input id="bulkTag" required maxlength="40"></label><p>범용·무기별 자동 평가는 변경하지 않습니다.</p><div class="dialog-footer"><button type="button" id="tagCancel">취소</button><button class="primary">적용</button></div></form></dialog>
-<dialog id="rulesDialog" class="rules-dialog" aria-labelledby="rulesTitle"><div class="dialog-heading"><h2 id="rulesTitle">자동 평가 태그 기준</h2><button type="button" id="rulesClose" aria-label="태그 기준 닫기">✕</button></div>
+</section>
+<section class="app-page" hidden id="rulesDialog" aria-labelledby="rulesTitle"><div class="dialog-heading"><h1 id="rulesTitle">자동 평가 태그 기준</h1><button type="button" id="rulesClose" data-route="inventory">보유 호석으로</button></div>
 <p class="muted">태그기준 시트가 있는 .xlsx 파일을 선택하세요. 기준은 보유 호석과 별도로 저장되며, 적용 전에 변경 내용을 확인합니다.</p>
 <p id="rulesCurrent"></p><ul id="rulesList" class="rules-list"></ul>
 <label>적용 방식<select id="rulesMode"><option value="replace">전체 교체 · 파일에 없는 기준 삭제</option><option value="merge">ID 병합 · 파일에 없는 기준 유지</option></select></label>
@@ -40,23 +34,9 @@
 <strong>태그 기준 엑셀을 여기에 끌어놓으세요</strong><p class="hint">.xlsx · 최대 2MB · 한 번에 1개</p>
 <label>또는 파일 선택<input id="rulesFile" type="file" accept=".xlsx"></label><p id="rulesFileStatus" role="status" class="file-status"></p></div>
 <p id="rulesErrors" role="alert" tabindex="-1"></p><div id="rulesPreview" class="rules-preview" hidden></div>
-<div class="dialog-footer"><button type="button" id="rulesCancel">취소</button><button type="button" id="rulesApply" class="primary" disabled>기준 적용</button></div></dialog>
-<dialog id="importDialog" class="import-dialog" aria-labelledby="importTitle"><div class="dialog-heading"><h2 id="importTitle">호석 일괄 가져오기</h2><button type="button" id="importClose" aria-label="가져오기 닫기">✕</button></div>
-<p class="muted">저장하기 전에 모든 행을 검토합니다. 중복 호석은 기본으로 선택되지 않으며, 여러 개를 보유했다면 직접 선택할 수 있습니다.</p>
-<div id="importDropZone" class="file-drop-zone" role="group" aria-label="호석 TXT 파일 업로드">
-<strong>게임에서 추출한 TXT를 여기에 끌어놓으세요</strong><p class="hint">Exported_Talismans.txt 및 기존 호석 TXT · 최대 2MB, 5,000행 · 한 번에 1개</p>
-<label>또는 파일 선택<input id="importFile" type="file" accept=".txt,text/plain"></label><p id="importFileStatus" role="status" class="file-status"></p></div>
-<label>데이터 형식<select id="importSource"><option value="txt">게임 추출·기존 TXT (12열)</option><option value="paste">표 붙여넣기 (메모 열 추가 가능)</option></select></label>
-<label>호석 데이터 · 붙여넣기 또는 수정<textarea id="importText" rows="7" spellcheck="false" aria-describedby="importHint"></textarea></label>
-<p id="importHint" class="hint">스킬·레벨 3쌍, 방어구 슬롯 3칸, 무기 슬롯 3칸의 순서입니다. 표 붙여넣기는 맨 끝에 메모 열을 추가할 수 있습니다.</p>
-<details><summary>열 순서와 입력 예시</summary><p>스킬1, 레벨1, 스킬2, 레벨2, 스킬3, 레벨3, 방어구슬롯1~3, 무기슬롯1~3, 선택 메모</p><pre>혼신,2,,,,0,1,1,0,0,0,0,비교용 호석</pre><p>엑셀 표는 열을 선택해 그대로 붙여넣으세요. TXT 파일의 레어도·태그·메모는 복원할 수 없습니다.</p></details>
-<p id="importError" role="alert" tabindex="-1"></p><button type="button" id="importCheck">행 검토</button>
-<section id="importPreview" aria-labelledby="importPreviewTitle" hidden><h3 id="importPreviewTitle">검토 결과</h3><p id="importSummary" role="status" tabindex="-1"></p>
-<div class="actions"><button type="button" id="importSelectAll" aria-describedby="importSelectionHint">오류 없는 행 모두 선택</button><button type="button" id="importSelectNone">선택 해제</button></div><p id="importSelectionHint" class="hint">모두 선택하면 중복·확인 필요 행도 포함합니다. 같은 호석을 여러 개 보유했다면 함께 추가하세요.</p>
-<p class="table-scroll-hint">행 상태를 보려면 표를 좌우로 스크롤하세요.</p><div class="import-table-wrap"><table><caption class="sr-only">가져오기 행별 검토 결과</caption><thead><tr><th scope="col">추가</th><th scope="col">행</th><th scope="col">호석</th><th scope="col">상태</th></tr></thead><tbody id="importRows"></tbody></table></div></section>
-<div class="dialog-footer"><button type="button" id="importCancel">취소</button><button type="button" id="importApply" class="primary" disabled>선택한 0개 추가</button></div></dialog>
-<dialog id="candidateDialog" class="candidate-dialog" aria-labelledby="candidateTitle">
-<div class="dialog-heading"><div><p class="eyebrow">TALISMAN CANDIDATES</p><h2 id="candidateTitle">규칙 기준 호석 후보 검색</h2></div><button id="candidateClose" type="button" aria-label="후보 검색 닫기">✕</button></div>
+<div class="dialog-footer"><button type="button" id="rulesCancel" data-route="inventory">보유 호석으로</button><button type="button" id="rulesApply" class="primary" disabled>기준 적용</button></div></section>
+<section class="app-page" hidden id="candidateDialog" aria-labelledby="candidateTitle">
+<div class="dialog-heading"><div><p class="eyebrow">TALISMAN CANDIDATES</p><h1 id="candidateTitle">규칙 기준 호석 후보 검색</h1></div><button id="candidateClose" type="button" data-route="inventory">보유 호석으로</button></div>
 <p class="notice">제공된 호석테이블과 커뮤니티 보완 규칙을 검색합니다. 같은 스킬은 그룹·레벨이 달라도 중복 배정하거나 합산하지 않습니다. 공식 게임 규칙은 미확인입니다. 장비·장식주 조합은 세팅 검색에서 확인하세요.</p>
 <details class="candidate-source"><summary>규칙 데이터 범위 확인</summary><p>엑셀의 29개 조합 규칙에 가드 강화 Lv.1~3의 그룹 배정을 보완했습니다. 제공된 게임 추출 555개 모두 보완 규칙과 일치했습니다. 이는 해당 파일과의 대조 결과이며 게임의 모든 후보를 포함한다고 보장하지 않습니다. W1은 무기 슬롯 1로 해석합니다.</p><p>출처: <a href="https://docs.google.com/spreadsheets/d/1nL4GrZ2gMc5yb5zfwctMpxncRQmQ4JTl-zjvzHHxkzQ/edit" target="_blank" rel="noopener noreferrer">커뮤니티 호석 원본 표</a>. 개인이 정리한 비공식 자료이며 실제 게임 동작과 다를 수 있습니다. 참고용입니다.</p></details>
 <form id="candidateForm">
@@ -79,9 +59,9 @@
 <p class="table-scroll-hint">표의 나머지 열은 좌우로 스크롤해 확인하세요.</p>
 <div class="candidate-table-wrap"><table><thead><tr><th scope="col">스킬</th><th scope="col">슬롯</th><th scope="col">확인된 레어도 / 엑셀 No</th><th scope="col">범용 평가</th><th scope="col">무기별 평가</th><th scope="col">보유</th></tr></thead><tbody id="candidateRows"></tbody></table></div>
 </section>
-</dialog>
-<dialog id="buildDialog" class="build-dialog" aria-labelledby="buildTitle">
-<div class="dialog-heading"><div><p class="eyebrow">EQUIPMENT BUILD SEARCH</p><h2 id="buildTitle">세팅 검색</h2></div><button id="buildClose" type="button" aria-label="세팅 검색 닫기">✕</button></div>
+</section>
+<section class="app-page" hidden id="buildDialog" aria-labelledby="buildTitle">
+<div class="dialog-heading"><div><p class="eyebrow">EQUIPMENT BUILD SEARCH</p><h1 id="buildTitle">세팅 검색</h1></div><button id="buildClose" type="button" data-route="inventory">보유 호석으로</button></div>
 <p id="buildSource" class="hint"></p>
 <details><summary>검색 범위와 데이터 출처</summary><p><a href="https://docs.wilds.mhdb.io/" target="_blank" rel="noopener noreferrer">MHDB</a>의 한국어 장비 데이터와 커뮤니티 호석 규칙을 사용합니다. 공식 최신 게임 데이터와 일치한다고 보장하지 않습니다. 파생 정보가 없는 무기 84개(변동 강화 무기 등)는 제외했습니다.</p><p>장식주는 수량 제한 없이 사용합니다. 방어력은 최대 강화 기준입니다. 목표 스킬·슬롯·방어력 조건에서 대표 장비를 추려 최대 20개를 찾습니다. 모든 외형·장비 조합이나 공격력 최적 순위를 제공하지 않습니다. 장비 데이터에 없는 호석 스킬은 제외합니다. 검색은 20초 또는 탐색량 제한에서 중단될 수 있습니다.</p></details>
 <form id="buildForm"><div class="candidate-fields">
@@ -92,5 +72,30 @@
 <div id="buildGoals"></div><button id="buildAddGoal" type="button">목표 스킬 추가 · 최대 8개</button>
 <div class="actions"><button id="buildStart" type="submit" class="primary" disabled>세팅 검색</button><button id="buildCancel" type="button" disabled>검색 취소</button></div></form>
 <p id="buildError" role="alert"></p><p id="buildStatus" role="status" aria-live="polite"></p><section id="buildResults" aria-label="세팅 검색 결과"></section>
-</dialog>
-<script src="vendor/fflate-0.8.2.min.js"></script><script src="skill-names.js"></script><script src="tag-rules.js"></script><script src="xlsx-rules.js"></script><script src="inventory-import.js"></script><script src="app.js"></script><script src="candidate-search-ui.js"></script><script src="build-search-ui.js"></script></body></html>
+</section>
+</main>
+<dialog id="editor" aria-labelledby="formTitle"><form id="form"><div class="dialog-heading"><h2 id="formTitle">호석 입력</h2><button type="button" id="close" aria-label="입력 닫기">✕</button></div><input id="editId" type="hidden">
+<p class="muted">스킬을 최대 3개 입력하세요. 게임 규칙 검증 전에는 입력값만 저장합니다.</p><div id="evaluationDetails" class="evaluation-details" hidden></div>
+<div id="skills" class="skill-inputs"></div><datalist id="skillSuggestions"></datalist>
+<fieldset><legend>슬롯</legend><div class="slot-inputs"><label>무기 슬롯<input id="weaponSlots" placeholder="예: 1" inputmode="numeric"></label><label>방어구 슬롯<input id="armorSlots" placeholder="예: 2, 1" inputmode="numeric"></label></div><p class="hint">쉼표로 구분합니다. 빈칸은 슬롯 없음입니다.</p></fieldset>
+<label>수동 태그<input id="tags" placeholder="쉼표로 구분 · 예: 보관, 비교"></label><label>메모<textarea id="memo" rows="3"></textarea></label><p id="formError" role="alert"></p>
+<div class="dialog-footer"><label class="continue"><input type="checkbox" id="continue">저장 후 계속 입력</label><button type="submit" class="primary">저장</button></div></form></dialog>
+<dialog id="tagDialog" aria-labelledby="tagTitle"><form id="tagForm"><h2 id="tagTitle">수동 태그 일괄 추가</h2><label>태그명<input id="bulkTag" required maxlength="40"></label><p>범용·무기별 자동 평가는 변경하지 않습니다.</p><div class="dialog-footer"><button type="button" id="tagCancel">취소</button><button class="primary">적용</button></div></form></dialog>
+
+<dialog id="importDialog" class="import-dialog" aria-labelledby="importTitle"><div class="dialog-heading"><h2 id="importTitle">호석 일괄 가져오기</h2><button type="button" id="importClose" aria-label="가져오기 닫기">✕</button></div>
+<p class="muted">저장하기 전에 모든 행을 검토합니다. 중복 호석은 기본으로 선택되지 않으며, 여러 개를 보유했다면 직접 선택할 수 있습니다.</p>
+<div id="importDropZone" class="file-drop-zone" role="group" aria-label="호석 TXT 파일 업로드">
+<strong>게임에서 추출한 TXT를 여기에 끌어놓으세요</strong><p class="hint">Exported_Talismans.txt 및 기존 호석 TXT · 최대 2MB, 5,000행 · 한 번에 1개</p>
+<label>또는 파일 선택<input id="importFile" type="file" accept=".txt,text/plain"></label><p id="importFileStatus" role="status" class="file-status"></p></div>
+<label>데이터 형식<select id="importSource"><option value="txt">게임 추출·기존 TXT (12열)</option><option value="paste">표 붙여넣기 (메모 열 추가 가능)</option></select></label>
+<label>호석 데이터 · 붙여넣기 또는 수정<textarea id="importText" rows="7" spellcheck="false" aria-describedby="importHint"></textarea></label>
+<p id="importHint" class="hint">스킬·레벨 3쌍, 방어구 슬롯 3칸, 무기 슬롯 3칸의 순서입니다. 표 붙여넣기는 맨 끝에 메모 열을 추가할 수 있습니다.</p>
+<details><summary>열 순서와 입력 예시</summary><p>스킬1, 레벨1, 스킬2, 레벨2, 스킬3, 레벨3, 방어구슬롯1~3, 무기슬롯1~3, 선택 메모</p><pre>혼신,2,,,,0,1,1,0,0,0,0,비교용 호석</pre><p>엑셀 표는 열을 선택해 그대로 붙여넣으세요. TXT 파일의 레어도·태그·메모는 복원할 수 없습니다.</p></details>
+<p id="importError" role="alert" tabindex="-1"></p><button type="button" id="importCheck">행 검토</button>
+<section id="importPreview" aria-labelledby="importPreviewTitle" hidden><h3 id="importPreviewTitle">검토 결과</h3><p id="importSummary" role="status" tabindex="-1"></p>
+<div class="actions"><button type="button" id="importSelectAll" aria-describedby="importSelectionHint">오류 없는 행 모두 선택</button><button type="button" id="importSelectNone">선택 해제</button></div><p id="importSelectionHint" class="hint">모두 선택하면 중복·확인 필요 행도 포함합니다. 같은 호석을 여러 개 보유했다면 함께 추가하세요.</p>
+<p class="table-scroll-hint">행 상태를 보려면 표를 좌우로 스크롤하세요.</p><div class="import-table-wrap"><table><caption class="sr-only">가져오기 행별 검토 결과</caption><thead><tr><th scope="col">추가</th><th scope="col">행</th><th scope="col">호석</th><th scope="col">상태</th></tr></thead><tbody id="importRows"></tbody></table></div></section>
+<div class="dialog-footer"><button type="button" id="importCancel">취소</button><button type="button" id="importApply" class="primary" disabled>선택한 0개 추가</button></div></dialog>
+
+
+<script src="vendor/fflate-0.8.2.min.js"></script><script src="skill-names.js"></script><script src="tag-rules.js"></script><script src="xlsx-rules.js"></script><script src="inventory-import.js"></script><script src="page-navigation.js"></script><script src="app.js"></script><script src="candidate-search-ui.js"></script><script src="build-search-ui.js"></script></body></html>
