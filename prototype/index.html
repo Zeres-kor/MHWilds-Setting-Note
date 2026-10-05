@@ -56,9 +56,9 @@
 <p class="table-scroll-hint">행 상태를 보려면 표를 좌우로 스크롤하세요.</p><div class="import-table-wrap"><table><caption class="sr-only">가져오기 행별 검토 결과</caption><thead><tr><th scope="col">추가</th><th scope="col">행</th><th scope="col">호석</th><th scope="col">상태</th></tr></thead><tbody id="importRows"></tbody></table></div></section>
 <div class="dialog-footer"><button type="button" id="importCancel">취소</button><button type="button" id="importApply" class="primary" disabled>선택한 0개 추가</button></div></dialog>
 <dialog id="candidateDialog" class="candidate-dialog" aria-labelledby="candidateTitle">
-<div class="dialog-heading"><div><p class="eyebrow">TALISMAN CANDIDATES</p><h2 id="candidateTitle">엑셀 기준 호석 후보 검색</h2></div><button id="candidateClose" type="button" aria-label="후보 검색 닫기">✕</button></div>
-<p class="notice">제공된 호석테이블의 조합을 검색합니다. 게임 내 생성 가능성은 검증 전입니다. 동일 스킬이 중복되는 조합은 제외하며, W1은 무기 슬롯 1로 해석합니다. 장비·장식주 조합은 계산하지 않습니다.</p>
-<details class="candidate-source"><summary>규칙 데이터 범위 확인</summary><p>엑셀의 29개 조합 규칙을 사용합니다. 제공된 게임 추출 555개 중 536개는 이 규칙과 일치했고, 19개는 엑셀에 없는 가드 강화 Lv.1~3을 포함했습니다. 현재 검색에서 가드 강화 후보는 나오지 않습니다. 실제 게임의 모든 후보를 포함한다고 보장하지 않습니다.</p></details>
+<div class="dialog-heading"><div><p class="eyebrow">TALISMAN CANDIDATES</p><h2 id="candidateTitle">규칙 기준 호석 후보 검색</h2></div><button id="candidateClose" type="button" aria-label="후보 검색 닫기">✕</button></div>
+<p class="notice">제공된 호석테이블과 커뮤니티 보완 규칙을 검색합니다. 같은 스킬은 그룹·레벨이 달라도 중복 배정하거나 합산하지 않습니다. 공식 게임 규칙과 장비·장식주 세팅 검증은 준비 중입니다.</p>
+<details class="candidate-source"><summary>규칙 데이터 범위 확인</summary><p>엑셀의 29개 조합 규칙에 가드 강화 Lv.1~3의 그룹 배정을 보완했습니다. 제공된 게임 추출 555개 모두 보완 규칙과 일치했습니다. 이는 해당 파일과의 대조 결과이며 게임의 모든 후보를 포함한다고 보장하지 않습니다. W1은 무기 슬롯 1로 해석합니다.</p><p>출처: <a href="https://docs.google.com/spreadsheets/d/1nL4GrZ2gMc5yb5zfwctMpxncRQmQ4JTl-zjvzHHxkzQ/edit" target="_blank" rel="noopener noreferrer">커뮤니티 호석 원본 표</a>. 개인이 정리한 비공식 자료이며 실제 게임 동작과 다를 수 있습니다. 참고용입니다.</p></details>
 <form id="candidateForm">
 <div class="candidate-fields">
 <label>스킬 조건 1<input id="candidateSkill1" list="skillSuggestions" required placeholder="예: 혼신"></label><label>최소 레벨 1<input id="candidateLevel1" type="number" min="1" max="10" value="1" required></label>

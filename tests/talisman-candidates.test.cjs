@@ -33,9 +33,11 @@ test('canonical identity ignores assignment order; rarity provenance is separate
 });
 test('export preserves source rules and explicitly records unresolved assumptions',()=>{
  assert.equal(data.recipes.length,29);
- assert.equal(data.rawAssignmentsWithSlots,2134102);
- assert.equal(data.rawSkillAssignments,633379);
+ assert.equal(data.rawAssignmentsWithSlots,2222626);
+ assert.equal(data.rawSkillAssignments,660352);
  assert.equal(data.verifiedInGame,false);
+ assert.equal(data.duplicateSkillPolicy,'distinct-skill-names-community');
+ assert.equal(data.overridesSha256,require('node:crypto').createHash('sha256').update(require('node:fs').readFileSync(require('node:path').join(__dirname,'../inputs/talisman-rule-overrides.json'))).digest('hex'));
  assert.match(data.sourceSha256,/^[a-f0-9]{64}$/);
  assert.equal(data.sourceSha256,require('node:crypto').createHash('sha256').update(require('node:fs').readFileSync(require('node:path').join(__dirname,'../inputs/호석테이블.xlsx'))).digest('hex'));
  const r=data.recipes.find(r=>r.id===22);
@@ -67,4 +69,30 @@ test('optimized recipe pruning matches an independent brute-force reference on a
   const actual=candidates(tiny,q).map(r=>JSON.stringify([r.recipeId,C.key(r.record)]));
   assert.deepEqual(actual.sort(),expected.sort());
  }
+});
+
+test('documented Guard Up additions cover all four group placements without merging levels',()=>{
+ for(const [group,level] of [[1,1],[2,2],[3,3],[4,2]])assert(data.groups[group].some(s=>s.name==='가드 강화'&&s.level===level));
+ const sample={skills:[skill('가드 강화',2),skill('공격',1),skill('간파',1)],weaponSlots:[1],armorSlots:[1,1]};
+ const result=C.matchRecord(data,sample);
+ assert.equal(result.reason,'matched');assert(result.matches.some(m=>m.recipeId===29));
+ const rows=candidates(data,query(sample.skills,{rarity:8,weaponSlots:[1],armorSlots:[1,1]}));
+ assert(rows.some(r=>r.recipeId===29&&C.key(r.record)===C.key(sample)));
+ assert(rows.every(r=>r.record.skills.filter(s=>s.name==='가드 강화').length===1));
+});
+test('exact record coverage requires exact levels and typed slots, independent of skill order',()=>{
+ const sample={skills:[skill('A',2),skill('B',2)],weaponSlots:[1],armorSlots:[1,1]};
+ assert.deepEqual(C.matchRecord(tiny,sample),{reason:'matched',matches:[{recipeId:2,rarity:8}]});
+ assert.deepEqual(C.matchRecord(tiny,{...sample,skills:sample.skills.slice().reverse()}),C.matchRecord(tiny,sample));
+ assert.equal(C.matchRecord(tiny,{...sample,skills:[skill('A',3),skill('B',2)]}).reason,'unknown-skill-level');
+ assert.equal(C.matchRecord(tiny,{...sample,weaponSlots:[],armorSlots:[3]}).reason,'slot-mismatch');
+ assert.equal(C.matchRecord(tiny,{...sample,skills:[skill('B',2),skill('C',1),skill('A',1)]}).reason,'group-mismatch');
+ assert.equal(C.matchRecord(tiny,{...sample,skills:[skill('A',1),skill('A',2)]}).reason,'duplicate-skill');
+ assert.equal(C.matchRecord(tiny,{...sample,weaponSlots:[0]}).reason,'invalid-record');
+});
+test('community duplicate policy excludes the same skill across different groups and levels',()=>{
+ const d={groups:{1:[skill('A',1)],2:[skill('A',2)]},recipes:[{id:1,rarity:8,groups:[1,2],slots:[{weaponSlots:[1],armorSlots:[]}]}]};
+ assert.equal(candidates(d,query([skill('A',1)])).length,0);
+ assert.equal(candidates(d,query([skill('A',3)])).length,0);
+ assert.equal(C.matchRecord(d,{skills:[skill('A',1),skill('A',2)],weaponSlots:[1],armorSlots:[]}).reason,'duplicate-skill');
 });

@@ -2,6 +2,7 @@
 import hashlib
 import json
 import re
+import math
 from pathlib import Path
 import openpyxl
 
@@ -19,6 +20,16 @@ for n in range(1, 11):
         assert isinstance(name, str) and int(level) == level and 1 <= level <= 10
         entries.append({'name': aliases.get(name.strip(), name.strip()), 'level': int(level)})
     groups[str(n)] = entries
+overrides_path = ROOT / 'inputs/talisman-rule-overrides.json'
+overrides = json.loads(overrides_path.read_text())
+assert overrides['format'] == 'mhwilds-rule-overrides-v1'
+assert overrides['duplicateSkillPolicy']['mode'] == 'distinct-skill-names-community'
+for addition in overrides['additions']:
+    group, name, level = str(addition['group']), addition['name'], addition['level']
+    assert group in groups and isinstance(name, str) and 1 <= level <= 10
+    entry = {'name': name, 'level': level}
+    if entry not in groups[group]:
+        groups[group].append(entry)
 recipes = []
 for row in list(w['0_슬롯표'].values)[1:]:
     if not isinstance(row[0], (int, float)):
@@ -39,12 +50,14 @@ for row in list(w['0_슬롯표'].values)[1:]:
     assert slots
     recipes.append({'id': int(number), 'rarity': int(re.search(r'\d+', rarity).group()), 'groups': ids, 'slots': slots})
 assert len(recipes) == 29
-raw = sum(__import__('math').prod(len(groups[str(g)]) for g in r['groups']) for r in recipes)
+raw = sum(math.prod(len(groups[str(g)]) for g in r['groups']) for r in recipes)
 result = {'format': 'mhwilds-workbook-recipes-v1', 'source': '호석테이블.xlsx',
           'sourceSha256': hashlib.sha256(source.read_bytes()).hexdigest(),
-          'verifiedInGame': False, 'duplicateSkillPolicy': 'exclude-unverified',
+          'verifiedInGame': False, 'duplicateSkillPolicy': overrides['duplicateSkillPolicy']['mode'],
+          'overridesSha256': hashlib.sha256(overrides_path.read_bytes()).hexdigest(),
+          'ruleOverrides': overrides,
           'slotInterpretation': 'Wn=weapon; n=armor; 0=empty (workbook interpretation)',
-          'rawSkillAssignments': raw, 'rawAssignmentsWithSlots': sum(__import__('math').prod(len(groups[str(g)]) for g in r['groups']) * len(r['slots']) for r in recipes), 'groups': groups, 'recipes': recipes}
+          'rawSkillAssignments': raw, 'rawAssignmentsWithSlots': sum(math.prod(len(groups[str(g)]) for g in r['groups']) * len(r['slots']) for r in recipes), 'groups': groups, 'recipes': recipes}
 output = ROOT / 'prototype/data/talisman-recipes.json'
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')

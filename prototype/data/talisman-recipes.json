@@ -3,10 +3,76 @@
   "source": "호석테이블.xlsx",
   "sourceSha256": "3f13c2dfe2ae93837b3b91695048877a5777ff1cce0b07441b8e24230fc1adaf",
   "verifiedInGame": false,
-  "duplicateSkillPolicy": "exclude-unverified",
+  "duplicateSkillPolicy": "distinct-skill-names-community",
+  "overridesSha256": "f449328abb8c03a7f5c657d46f3e53540f3d84ed9645ec18f2f8b9411572f659",
+  "ruleOverrides": {
+    "format": "mhwilds-rule-overrides-v1",
+    "reviewedOn": "2026-10-05",
+    "officiallyVerified": false,
+    "sources": [
+      {
+        "id": "community-sheet",
+        "title": "커뮤니티 호석 원본 표",
+        "url": "https://docs.google.com/spreadsheets/d/1nL4GrZ2gMc5yb5zfwctMpxncRQmQ4JTl-zjvzHHxkzQ/edit",
+        "snapshotSha256": "27612d89543752d6dcd4ff5f77f6b0fd442866edabbc68b040b7d3162e7acca0",
+        "originalNotice": "本表格為自行整理非官方資料，內容可能與實際機制略有出入，僅供參考。",
+        "reuseNotice": "歡迎轉載、引用，但請附上原表格連結，並保留原註記。",
+        "noticeKo": "개인이 정리한 비공식 자료이며 실제 게임 동작과 다를 수 있습니다. 참고용입니다."
+      },
+      {
+        "id": "community-generator",
+        "url": "https://github.com/MaximilianLJ/Wilds-Charm-Gen/blob/83ce86245eb13c2c98aa94ab61559471194f5e52/charm_main.py",
+        "evidence": "Guard Up levels in groups 1,2,3,4; skill_assign excludes repeated skill names across every position."
+      },
+      {
+        "id": "community-calculator",
+        "url": "https://github.com/ni-null/MHWilds-Charm-Odds-Calculator/blob/90e1d852c0fa20ce3e38f36dbc679c0d105fe6dd/src/lib/amuletProb.js",
+        "evidence": "usedBaseNamesGlobal excludes a previously selected skill name from later groups. Its documentation warns that actual game mechanics may differ."
+      }
+    ],
+    "additions": [
+      {
+        "group": 1,
+        "name": "가드 강화",
+        "level": 1,
+        "source": "community-sheet",
+        "cell": "荒野 護石!M19"
+      },
+      {
+        "group": 2,
+        "name": "가드 강화",
+        "level": 2,
+        "source": "community-sheet",
+        "cell": "荒野 護石!N19"
+      },
+      {
+        "group": 3,
+        "name": "가드 강화",
+        "level": 3,
+        "source": "community-sheet",
+        "cell": "荒野 護石!O19"
+      },
+      {
+        "group": 4,
+        "name": "가드 강화",
+        "level": 2,
+        "source": "community-sheet",
+        "cell": "荒野 護石!P19"
+      }
+    ],
+    "duplicateSkillPolicy": {
+      "mode": "distinct-skill-names-community",
+      "rule": "동일 스킬명은 그룹과 레벨에 관계없이 한 호석에 한 번만 배정하고 레벨을 합산하지 않는다.",
+      "sources": [
+        "community-generator",
+        "community-calculator"
+      ],
+      "confidence": "community-corroborated; not an official game specification"
+    }
+  },
   "slotInterpretation": "Wn=weapon; n=armor; 0=empty (workbook interpretation)",
-  "rawSkillAssignments": 633379,
-  "rawAssignmentsWithSlots": 2134102,
+  "rawSkillAssignments": 660352,
+  "rawAssignmentsWithSlots": 2222626,
   "groups": {
     "1": [
       {
@@ -155,6 +221,10 @@
       },
       {
         "name": "물속성 공격 강화",
+        "level": 1
+      },
+      {
+        "name": "가드 강화",
         "level": 1
       }
     ],
@@ -330,6 +400,10 @@
       {
         "name": "물속성 공격 강화",
         "level": 2
+      },
+      {
+        "name": "가드 강화",
+        "level": 2
       }
     ],
     "3": [
@@ -492,6 +566,10 @@
       {
         "name": "물속성 공격 강화",
         "level": 3
+      },
+      {
+        "name": "가드 강화",
+        "level": 3
       }
     ],
     "4": [
@@ -577,6 +655,10 @@
       },
       {
         "name": "물속성 공격 강화",
+        "level": 2
+      },
+      {
+        "name": "가드 강화",
         "level": 2
       }
     ],

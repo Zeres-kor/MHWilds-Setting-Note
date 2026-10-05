@@ -78,7 +78,7 @@
         } else if (data.kind === 'complete') {
           snapshotRows = data.rows;
           showRows(snapshotRows); el('candidateResults').hidden = false;
-          el('candidateStatus').textContent = (data.truncated ? '제한 도달 · 부분 검색: 최소 ' : '엑셀 기준 검색 완료: ') + data.count.toLocaleString() + '개 구성 · ' + data.rows.length + '개 표시' + (data.count === 0 ? ' · 조건을 줄여보세요.' : '') + (data.truncated ? ' · 레어도와 스킬 조건을 더 지정하세요.' : '');
+          el('candidateStatus').textContent = (data.truncated ? '제한 도달 · 부분 검색: 최소 ' : '규칙 기준 검색 완료: ') + data.count.toLocaleString() + '개 구성 · ' + data.rows.length + '개 표시' + (data.count === 0 ? ' · 조건을 줄여보세요.' : '') + (data.truncated ? ' · 레어도와 스킬 조건을 더 지정하세요.' : '');
           stop();
         } else if (data.kind === 'error') {
           el('candidateError').textContent = data.message; el('candidateStatus').textContent = '검색하지 못했습니다.'; stop();

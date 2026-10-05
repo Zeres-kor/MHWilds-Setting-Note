@@ -16,4 +16,4 @@ UI 작업용 `ui-ux-pro-max` 스킬은 `.agents/skills/ui-ux-pro-max/`에 포함
 
 엑셀 압축 해제에는 함께 포함한 fflate 0.8.2를 사용합니다. 라이선스는 `vendor/fflate-LICENSE`에 있습니다. 단위 테스트는 `node --test tests/*.test.cjs`로 실행합니다.
 
-메뉴의 호석 후보 검색은 엑셀의 29개 규칙을 Web Worker에서 검색하고 평가·보유 수량을 표시합니다. HTTP(S) 실행이 필요합니다. 가드 강화 누락과 동일 스킬 중복 규칙 미확정 때문에 게임 전체 후보를 보장하지 않습니다. 장비 세팅 검색은 별도 미구현입니다. 상세 범위는 `docs/CANDIDATE-SEARCH.md`를 참고하세요.
+메뉴의 호석 후보 검색은 엑셀의 29개 규칙을 Web Worker에서 검색하고 평가·보유 수량을 표시합니다. HTTP(S) 실행이 필요합니다. 가드 강화 그룹 배정을 커뮤니티 표로 보완했고 같은 스킬명은 중복 배정하거나 합산하지 않습니다. 보완 후 추출 555개가 규칙과 일치하지만 공식 명세·게임 전체 후보를 보장하는 것은 아닙니다. 출처는 `docs/TALISMAN-RULE-AUDIT.md`에 있습니다. 장비 세팅 검색은 별도 미구현입니다. 상세 범위는 `docs/CANDIDATE-SEARCH.md`를 참고하세요.
