@@ -4,6 +4,7 @@ import hashlib
 import json
 import urllib.request
 from pathlib import Path
+from weapon_selection import select_weapons
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = 'https://wilds.mhdb.io/'
@@ -42,10 +43,13 @@ def slots(a):
     return values
 armor = [{'id':a['id'], 'name':a['name'], 'part':a['kind'], 'rank':a['rank'], 'rarity':a['rarity'],
           'slots':slots(a), 'defense':a['defense']['max'], **abilities(a['skills'])} for a in raw['armor']]
-# Series-less weapons contain variable/unclear variants. Do not model rolled stats as fixed.
-weapons = [{'id':a['id'], 'name':a['name'], 'kind':a['kind'], 'rarity':a['rarity'],
-            'slots':slots(a), 'defenseBonus':a['defenseBonus'], **abilities(a['skills'])}
-           for a in raw['weapons'] if a.get('series') is not None]
+# Artian rows are series-less in this API snapshot. Keep skill/slot-equivalent variants once.
+selected_weapons = select_weapons(raw['weapons'])
+weapons = [{'id':entry['weapon']['id'], 'name':entry['weapon']['name'],
+            'kind':entry['weapon']['kind'], 'rarity':entry['weapon']['rarity'],
+            'slots':slots(entry['weapon']), 'defenseBonus':entry['weapon']['defenseBonus'],
+            'category':entry['category'], 'sourceIds':entry['sourceIds'],
+            **abilities(entry['weapon']['skills'])} for entry in selected_weapons]
 decorations = [{'id':a['id'], 'name':a['name'], 'kind':a['kind'], 'slot':a['slot'],
                 **abilities(a['skills'])} for a in raw['decorations']]
 assert all(a['part'] in ['head','chest','arms','waist','legs'] for a in armor)
@@ -56,7 +60,7 @@ result = {'format':'mhwilds-equipment-v1', 'source':'Monster Hunter Wilds DB (MH
           'sourceUrls':{kind:BASE+'ko/'+kind for kind in raw}, 'sourceSha256':hashes,
           'excludedWeapons':len(raw['weapons'])-len(weapons),
           'limitations':['API import timestamp is not the Capcom game version.',
-                         'Weapons without series metadata and rolled weapon modifications are not modeled.',
+                         'Only crafting tree leaves and Artian base skill/slot configurations are selectable; rolled bonuses are not modeled.',
                          'Decorations are assumed freely available; owned decoration quantities are not modeled.'],
           'skills':skills, 'armor':armor, 'weapons':weapons, 'decorations':decorations}
 output = ROOT / 'prototype/data/equipment-snapshot.json'
