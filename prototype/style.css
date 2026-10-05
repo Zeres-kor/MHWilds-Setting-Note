@@ -213,3 +213,5 @@ input[type=file]::file-selector-button { padding: 7px 12px; margin-right: 12px; 
 .candidate-source summary { color: var(--accent); cursor: pointer; font-weight: 700; }
 
 .candidate-source a { color: var(--accent); text-underline-offset: 3px; }
+.build-dialog{width:min(1050px,94vw);max-height:90vh;overflow:auto}.build-goal{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,2fr) auto;gap:12px;align-items:end;margin:16px 0}.build-goal select,.build-dialog select{max-width:100%;width:100%}.build-card{border:1px solid #846b39;background:rgba(80,79,49,.18);padding:20px;margin:18px 0;border-radius:8px}.build-card li{margin:6px 0}.build-card h3{color:#ffda5b}.build-card p{overflow-wrap:anywhere}#buildError{color:#ffb8a6}@media(max-width:600px){.build-goal{grid-template-columns:minmax(0,1fr)}.build-goal button{justify-self:start}.build-card{padding:12px}.build-dialog{padding:16px}}
+@media(max-width:600px){.build-dialog .candidate-fields{grid-template-columns:minmax(0,1fr)}}
