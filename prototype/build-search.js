@@ -25,7 +25,7 @@ const BuildSearch = (() => {
   }
   function validateRequest(data, request) {
     const model=new Map(data.skills.map(s=>[s.id,s]));
-    if (!request || !Array.isArray(request.goals) || request.goals.length<1 || request.goals.length>8) throw Error('목표 스킬을 1~8개 지정하세요.');
+    if (!request || !Array.isArray(request.goals) || request.goals.length<1) throw Error('목표 스킬을 하나 이상 지정하세요.');
     const seen=new Set();
     for(const goal of request.goals) {
       const skill=model.get(goal.id);
