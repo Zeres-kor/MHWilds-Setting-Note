@@ -106,3 +106,5 @@ docs/TAG-RULES.md의 업로드 전체 교체/ID 병합, 동순위 다른 태그�
 2026-10-07 사용자 지정 게임 TXT 추출 출처는 https://www.nexusmods.com/monsterhunterwilds/mods/3087 이다. 가져오기 화면과 README에 사용자 제공 Exported_Talismans.txt를 기준으로 확인했음을 명시했다. 다른 모드 출력 및 해당 모드의 모든 버전 호환은 검증하지 않았다.
 
 2026-10-07 공개 실행 안내는 GitHub Pages로 통일했다. README 로컬 실행 항목과 중복 실행 문서 prototype/README.md를 삭제하고 manifest의 해당 항목도 제거했다. 관련 문서의 실행 안내를 갱신하고 README/커뮤니티 소개 초안에 Codex를 활용한 AI 제작 사실을 명시했다. 실제 웹 앱·데이터·개발 검증 도구는 유지한다.
+
+2026-10-07 사용자 요청으로 README와 커뮤니티 소개 초안에 https://gall.dcinside.com/mgallery/board/view/?id=capcommh&no=1457496 게시글에서 제작 영감을 받았음을 명시했다. 게시글 내용이나 코드 이용 여부를 별도로 추정하지 않는다.

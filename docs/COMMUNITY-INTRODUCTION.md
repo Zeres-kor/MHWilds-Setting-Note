@@ -10,6 +10,9 @@
 
 보유 호석 정리하고 그 호석으로 원하는 스킬 세팅 찾으려고 **MHWilds 세팅노트**를 만들고 있음.
 
+만들게 된 계기는 아래 몬헌 갤러리 게시글을 보고 영감을 받은 거임.
+https://gall.dcinside.com/mgallery/board/view/?id=capcommh&no=1457496
+
 **AI 코딩 도구인 Codex를 활용해서 제작했음.** 원하는 기능과 디자인을 정하고 AI로 구현·수정하는 방식으로 작업했고, 테스트랑 실제 브라우저 확인을 하면서 개선 중임. 아직 데이터나 검색 오류가 있을 수 있어서 써보고 이상한 점 알려주면 좋겠음.
 
 사용 링크: https://zeres-kor.github.io/MHWilds-Setting-Note/

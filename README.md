@@ -4,6 +4,8 @@
 
 이 프로그램은 **AI 코딩 도구(Codex)를 활용해 제작**했습니다. 기능 요구사항과 디자인 방향을 정하고 AI로 구현·수정을 진행했으며, 검색 로직·데이터·화면을 테스트하며 개선하고 있습니다. 현재 검증 범위와 계산 제한은 아래에 명시합니다.
 
+제작 아이디어는 [디시인사이드 몬스터헌터 갤러리의 게시글](https://gall.dcinside.com/mgallery/board/view/?id=capcommh&no=1457496)에서 영감을 받았습니다.
+
 **[MHWilds 세팅노트 실행하기](https://zeres-kor.github.io/MHWilds-Setting-Note/)**
 
 ## 주요 기능
