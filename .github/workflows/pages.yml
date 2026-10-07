@@ -1,4 +1,4 @@
-name: Deploy MHWids to GitHub Pages
+name: Deploy MHWids Setting Note to GitHub Pages
 
 on:
   push:

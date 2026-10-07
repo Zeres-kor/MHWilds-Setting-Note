@@ -1,8 +1,8 @@
-# MHWids
+# MHWids 세팅노트
 
 Windows PC에서 로컬로 사용하는 프로그램을 만드는 프로젝트입니다. 보유 호석 관리·자동 평가, 호석 후보 검색, 장비 세팅 검색·저장·비교를 지원합니다.
 
-프로젝트명: `MHWids` · [웹에서 열기](https://zeres-kor.github.io/MWH-Armorset-Talisman-Simulator/)
+프로젝트명: **MHWids 세팅노트** · [웹에서 열기](https://zeres-kor.github.io/MWH-Armorset-Talisman-Simulator/)
 
 ## Windows에서 이어가기
 1. GitHub 저장소를 클론하거나 전달받은 ZIP을 `C:\Projects` 등 원하는 위치에 압축 해제합니다. 숨김 폴더 `.agents`도 유지하세요.
