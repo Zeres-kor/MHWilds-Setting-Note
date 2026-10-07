@@ -1,4 +1,4 @@
-name: Deploy MHWids Setting Note to GitHub Pages
+name: Deploy MHWilds Setting Note to GitHub Pages
 
 on:
   push:
