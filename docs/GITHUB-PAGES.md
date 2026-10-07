@@ -1,6 +1,6 @@
 # GitHub Pages 화면 배포
 
-배포 예정 주소: https://zeres-kor.github.io/MWH-Armorset-Talisman-Simulator/
+사이트 주소: https://zeres-kor.github.io/MWH-Armorset-Talisman-Simulator/
 
 ## 최초 설정
 
@@ -20,3 +20,5 @@
 저장소 반영 직후 즉시 바뀌는 방식은 아니며 GitHub Actions 배포가 완료된 뒤 새로고침하면 변경 사항을 볼 수 있다. 테스트나 배포에 실패하면 기존 사이트가 유지된다.
 
 호석과 태그 기준은 접속한 브라우저의 localStorage에 저장된다. 업로드 파일은 브라우저에서 읽고 서버로 전송하지 않는다. 로컬 실행 주소와 Pages 주소는 저장소가 다르므로 기존 데이터를 옮길 때는 JSON 백업·복원을 사용한다.
+
+프로그램/프로젝트 명칭은 와일즈 세팅노트(Wilds-Setting-Note)다. GitHub 저장소 이름은 연결 인증의 변경 권한 제한으로 기존 이름을 유지한다. 저장소 소유자가 Settings → General → Repository name에서 Wilds-Setting-Note로 변경하면 Pages 주소와 위 링크도 새 이름으로 갱신해야 한다.
