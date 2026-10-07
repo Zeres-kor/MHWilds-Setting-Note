@@ -232,3 +232,4 @@ main{background:rgba(17,19,16,.42)}
 nav{background:#35392a}
 @media(min-width:1100px){nav{top:110px;min-height:calc(100dvh - 110px)}}
 @media(max-width:600px){header{min-height:92px;padding:10px 14px}.brand{gap:12px}.wilds-logo{width:120px;height:67.5px}.brand-title{font-size:15px}body{background-attachment:scroll;background-size:auto 100vh;background-position:right top}main{background:rgba(17,19,16,.88)}.heading,.app-page>.dialog-heading{padding:14px}}
+.weapon-skill-note{color:var(--accent)}#buildChosenSkills button:disabled{opacity:1;color:var(--accent);border-color:#a48b50;cursor:default}
