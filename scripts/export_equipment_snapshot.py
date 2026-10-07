@@ -70,6 +70,8 @@ result = {'format':'mhwilds-equipment-v1', 'source':'Monster Hunter Wilds DB (MH
                          'Only crafting tree leaves and Artian base skill/slot configurations are selectable; rolled bonuses are not modeled.',
                          'Decorations are assumed freely available; owned decoration quantities are not modeled.'],
           'skills':skills, 'armor':armor, 'weapons':weapons, 'decorations':decorations}
+other_skill_ids = {int(sid) for a in armor + decorations for sid in a['skills']}
+result['weaponOnlySkillIds'] = [s['id'] for s in skills if s['kind'] == 'weapon' and s['id'] not in other_skill_ids]
 output = ROOT / 'prototype/data/equipment-snapshot.json'
 output.write_text(json.dumps(result, ensure_ascii=False, separators=(',',':'))+'\n')
 print({kind:len(result[kind]) for kind in ['skills','armor','weapons','decorations']}, result['apiImportVersion'], 'excluded weapons',result['excludedWeapons'])
