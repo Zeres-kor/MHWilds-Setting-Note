@@ -9,3 +9,6 @@ personal-data/
 *.log
 playwright-report/
 test-results/
+
+# Community post draft is local-only.
+docs/COMMUNITY-INTRODUCTION.md
