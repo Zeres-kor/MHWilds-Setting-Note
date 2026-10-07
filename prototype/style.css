@@ -249,3 +249,11 @@ nav{background:#35392a}
 @media(max-width:700px){.build-equipment-fields{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.build-weapon-field{grid-column:1/-1;grid-row:2}.build-mode-field{grid-column:2;grid-row:1}.build-equipment-fields #buildWeaponBonuses{grid-column:1/-1;grid-row:3}.build-defense-fields{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}}
 
 .header-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.feedback-link{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:3px;background:var(--surface);color:var(--accent);font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}.feedback-link:hover{background:var(--raised);border-color:var(--accent)}.feedback-link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(max-width:600px){header{flex-wrap:wrap}.header-actions{width:100%;justify-content:flex-end}}
+
+/* Keep the desktop logo visible and align the sidebar to the actual header height. */
+@media(min-width:1100px){
+  header{position:sticky;top:0;z-index:3;background:#0c0f0b}
+  nav{top:var(--app-header-height,110px);min-height:0;height:calc(100dvh - var(--app-header-height,110px));overflow-y:auto}
+  .skip-link:focus{z-index:4}
+  #main{scroll-margin-top:var(--app-header-height,110px)}
+}
