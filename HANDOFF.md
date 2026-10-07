@@ -1,4 +1,4 @@
-# 와일즈 세팅노트 — 로컬 Codex 작업 인계
+# MHWids — 로컬 Codex 작업 인계
 
 - 2026-10-07 세팅 검색/검색 취소 버튼 영역의 sticky를 제거했다. 스크롤 시 본문과 함께 화면 밖으로 이동한다.
 
@@ -101,3 +101,5 @@ docs/TAG-RULES.md의 업로드 전체 교체/ID 병합, 동순위 다른 태그�
 
 2026-10-07 프로그램 이름은 와일즈 세팅노트, GitHub 저장소 이름은 Wilds-Setting-Note로 변경한다. 화면 제목·브랜드·README·PRD·Pages 링크·배포 워크플로 이름에 반영했다. 브라우저 저장 키와 백업 형식은 기존 사용자 데이터 호환을 위해 유지한다.
 GitHub 저장소 rename PATCH는 403 Resource not accessible by integration으로 거부되어 원격 이름과 Pages 주소는 기존 값을 유지한다. 소유자가 저장소 Settings → General에서 이름 변경 후 원격 주소와 문서 링크를 갱신해야 한다.
+
+2026-10-07 최신 사용자 지정 명칭은 MHWids다. 화면·문서·배포 이름에 적용한다. 사용자는 저장소 이름을 변경했다고 알렸으나 연결 API에서는 기존 저장소명만 확인되고 Zeres-kor/MHWids는 404여서 실제 새 URL 확인이 필요하다.
