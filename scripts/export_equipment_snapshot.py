@@ -49,7 +49,7 @@ def slots(a):
     assert len(values) <= 3 and all(isinstance(v,int) and 1 <= v <= 3 for v in values)
     return values
 armor = [{'id':a['id'], 'name':a['name'], 'part':a['kind'], 'rank':a['rank'], 'rarity':a['rarity'],
-          'slots':slots(a), 'defense':a['defense']['max'], **abilities(a['skills'])} for a in raw['armor']]
+          'slots':slots(a), 'defense':a['defense']['max'], 'resistances':a['resistances'], **abilities(a['skills'])} for a in raw['armor']]
 # Artian rows are series-less in this API snapshot. Keep skill/slot-equivalent variants once.
 selected_weapons = select_weapons(raw['weapons'])
 weapons = [{'id':entry['weapon']['id'], 'name':entry['weapon']['name'],
