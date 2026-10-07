@@ -323,11 +323,6 @@
       "sha256": "3f13c2dfe2ae93837b3b91695048877a5777ff1cce0b07441b8e24230fc1adaf"
     },
     {
-      "path": "prototype/README.md",
-      "bytes": 978,
-      "sha256": "e640b7db141a1e001e51eaf6c8c29ff314b54fdf4690daec7f904a7868afee2f"
-    },
-    {
       "path": "prototype/app.js",
       "bytes": 9615,
       "sha256": "1f005cec80836f277ed39d55f7a371efec5f87b1189910085bff0ad57a7ab1b5"
