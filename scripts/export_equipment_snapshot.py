@@ -26,11 +26,18 @@ for s in raw['skills']:
     skills.append({'id':s['id'], 'name':s['name'], 'kind':s['kind'],
                    'maxLevel':max(r['level'] for r in s['ranks']),
                    'ranks':[{'level':r['level'], 'name':r['name'], 'pieces':r['setPiecesRequired']} for r in s['ranks']]})
+# User-requested exclusions, not a claim that every item is absent from Wilds.
+excluded_skill_names = {'권의 극에 달한 자', '주먹밥'}
+excluded_skills = [{'id':s['id'], 'name':s['name']} for s in skills if s['name'] in excluded_skill_names]
+excluded_skill_ids = {s['id'] for s in excluded_skills}
+skills = [s for s in skills if s['id'] not in excluded_skill_ids]
 skill_map = {s['id']:s for s in skills}
 def abilities(entries):
     normal, bonuses = {}, set()
     for entry in entries:
         sid = entry['skill']['id']
+        if sid in excluded_skill_ids:
+            continue
         assert sid in skill_map
         if skill_map[sid]['kind'] in ['set', 'group']:
             bonuses.add(sid)
@@ -56,7 +63,7 @@ assert all(a['part'] in ['head','chest','arms','waist','legs'] for a in armor)
 assert all(a['kind'] in ['weapon','armor'] and 1 <= a['slot'] <= 3 and not a['bonuses'] for a in decorations)
 result = {'format':'mhwilds-equipment-v1', 'source':'Monster Hunter Wilds DB (MHDB)',
           'sourceUrl':'https://docs.wilds.mhdb.io', 'apiImportVersion':version['version'],
-          'gameVersion':None, 'retrievedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+          'excludedSkills':excluded_skills, 'gameVersion':None, 'retrievedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
           'sourceUrls':{kind:BASE+'ko/'+kind for kind in raw}, 'sourceSha256':hashes,
           'excludedWeapons':len(raw['weapons'])-len(weapons),
           'limitations':['API import timestamp is not the Capcom game version.',
