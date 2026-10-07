@@ -68,6 +68,12 @@
 
 자세한 근거와 범위는 [장비 검색](docs/BUILD-SEARCH.md), [호석 후보 검색](docs/CANDIDATE-SEARCH.md), [호석 규칙 검토](docs/TALISMAN-RULE-AUDIT.md), [저장·백업 호환](docs/SAVED-BUILDS.md)을 참고하세요.
 
+## 피드백·오류 제보
+
+화면 상단의 **피드백·오류 제보** 링크 또는 [GitHub Issues](https://github.com/Zeres-kor/MHWilds-Setting-Note/issues)에서 의견을 남길 수 있습니다. 이슈 작성에는 GitHub 로그인이 필요합니다.
+
+검색 오류는 무기·호석 범위·목표 스킬·방어력/내성 조건, 예상 결과와 실제 결과, 사용 브라우저를 함께 알려주세요. 데이터 오류는 장비명과 게임 화면 또는 출처가 있으면 확인에 도움이 됩니다. 전체 개인 백업 대신 오류를 재현하는 데 필요한 정보만 공유해 주세요.
+
 ## 로컬 실행
 
 Python이 설치되어 있다면 프로젝트 폴더에서 실행합니다.
