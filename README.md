@@ -2,7 +2,7 @@
 
 몬스터헌터 와일즈의 **보유 호석을 관리하고, 원하는 스킬을 갖춘 장비 세팅을 검색·저장·비교하는 프로그램**입니다. 브라우저에서 바로 사용할 수 있으며, 호석과 저장 세팅은 사용하는 브라우저에 보관됩니다.
 
-**[MHWilds 세팅노트 실행하기](https://zeres-kor.github.io/MWH-Armorset-Talisman-Simulator/)**
+**[MHWilds 세팅노트 실행하기](https://zeres-kor.github.io/MHWilds-Setting-Note/)**
 
 ## 주요 기능
 
