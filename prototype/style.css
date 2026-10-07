@@ -1,5 +1,5 @@
 /* Official manual reference: dark field, olive navigation, brass frames.
-   All decoration is created locally; no remote fonts or reference artwork. */
+   User-supplied Wilds artwork is bundled locally; no remote fonts or images. */
 :root {
   color-scheme: dark;
   --bg: #111310;
@@ -222,3 +222,13 @@ input[type=file]::file-selector-button { padding: 7px 12px; margin-right: 12px; 
 #buildWeaponBonuses,#buildGoalHeading{scroll-margin-top:90px}.build-shortcuts{margin-bottom:20px}#buildWeaponBonuses select:disabled{opacity:.6}
 .skill-category-menu,.chosen-skill-list{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.skill-category-menu button[aria-pressed=true]{background:#d9bd77;color:#171d14;border-color:#d9bd77}.chosen-skills-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:18px 0}.skill-menu-group{margin:24px 0;padding:18px;border:1px solid var(--line);background:var(--surface)}.skill-menu-group h3{color:var(--accent);margin:0 0 16px}.skill-menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.skill-menu-item{display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--line);min-width:0}.skill-menu-item select{width:100%;min-width:0}.skill-menu-item.is-selected{border-color:var(--accent);background:#373a27}.skill-menu-item[hidden],.skill-menu-group[hidden]{display:none}@media(max-width:600px){.skill-menu-grid{grid-template-columns:minmax(0,1fr)}.skill-menu-group{padding:12px}}
 .build-search-actions{position:sticky;top:76px;z-index:1;background:var(--surface);padding:12px;border:1px solid var(--line);margin:18px 0}@media(min-width:1100px){.build-search-actions{top:12px}}
+
+/* User-supplied original artwork; preserve its proportions and keep forms opaque. */
+body{background:linear-gradient(90deg,rgba(12,15,11,.84),rgba(12,15,11,.38)),url('assets/STDB-Wallpaper.png') center top / cover fixed no-repeat;background-color:var(--bg)}
+header{min-height:110px;background:rgba(12,15,11,.95)}
+.brand{gap:18px}.wilds-logo{display:block;width:160px;height:90px;object-fit:contain;flex:none}.brand-title{font-size:18px;line-height:1.4;font-weight:700}
+main{background:rgba(17,19,16,.42)}
+.heading,.app-page>.dialog-heading{background:rgba(20,24,17,.94);padding:20px;border:1px solid var(--line)}
+nav{background:#35392a}
+@media(min-width:1100px){nav{top:110px;min-height:calc(100dvh - 110px)}}
+@media(max-width:600px){header{min-height:92px;padding:10px 14px}.brand{gap:12px}.wilds-logo{width:120px;height:67.5px}.brand-title{font-size:15px}body{background-attachment:scroll;background-size:auto 100vh;background-position:right top}main{background:rgba(17,19,16,.88)}.heading,.app-page>.dialog-heading{padding:14px}}
