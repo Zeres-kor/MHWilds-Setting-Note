@@ -78,11 +78,11 @@ const BuildDetail = (() => {
   function skillIcon(skill){if(skill.kind==='weapon')return ['affinity','gold'];if(/내성|방어|가호|회피|납도/.test(skill.name))return ['shield','blue'];return ['chest','red'];}
   function bonusPanel(info,kind){
     const section=el('section',`game-panel game-bonus-section is-${kind}`);section.append(title(kind==='set'?'시리즈 스킬':'그룹 스킬'));
-    const bonuses=info.bonuses.filter(s=>s.kind===kind);if(!bonuses.length)section.append(el('p','game-muted','해당 스킬 없음'));
+    const bonuses=info.bonuses.filter(s=>s.kind===kind&&s.ranks.some(r=>r.active));if(!bonuses.length)section.append(el('p','game-muted','발동 스킬 없음'));
     for(const bonus of bonuses){const row=el('div','game-bonus');const heading=el('div','game-bonus-name');heading.append(icon(kind,kind==='set'?'red':'teal'),el('strong','',bonus.name),el('span','game-piece-count',`${bonus.pieces}부위`));row.append(heading);
       const pieces=el('div','game-contributors');pieces.setAttribute('aria-label','기여 장비: '+bonus.contributors.map(c=>c.label).join(', '));
       for(const item of info.equipment){const active=bonus.contributors.some(c=>c.part===item.part);const mark=icon(item.part==='weapon'?item.kind:item.part,active?gearTone(item.rarity):'muted');mark.classList.toggle('is-inactive',!active);mark.title=`${item.label}${active?' · 포함':''}`;pieces.append(mark);}row.append(pieces);
-      const ranks=el('ul','game-bonus-ranks');for(const rank of bonus.ranks){const li=el('li',rank.active?'is-active':'is-inactive');li.append(el('span','game-rank-pieces',String(rank.pieces)),el('span','',rank.name),el('span','game-rank-state',rank.active?'발동':'미발동'));ranks.append(li);}row.append(ranks);section.append(row);
+      const ranks=el('ul','game-bonus-ranks');for(const rank of bonus.ranks.filter(r=>r.active).sort((a,b)=>b.level-a.level).slice(0,1)){const li=el('li','is-active');li.append(el('span','game-rank-pieces',String(rank.pieces)),el('span','',rank.name),el('span','game-rank-state','발동'));ranks.append(li);}row.append(ranks);section.append(row);
     }return section;
   }
   function render(result,data,index){
