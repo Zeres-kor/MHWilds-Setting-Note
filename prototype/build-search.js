@@ -141,7 +141,8 @@ const BuildSearch = (() => {
         const activeBonuses=data.skills.filter(s=>['set','group'].includes(s.kind)).flatMap(s=>{const ranks=s.ranks.filter(r=>r.pieces<=(bonuses[s.id]||0));if(!ranks.length)return [];const rank=ranks.sort((a,b)=>b.level-a.level)[0];return [{name:s.name,effect:rank.name,level:rank.level,pieces:bonuses[s.id]}];});
         const resistances=Object.fromEntries(ELEMENTS.map(e=>[e,selected.reduce((n,a)=>n+(a.item.resistances?.[e]||0),0)]));
         if(resistanceKeys.some(e=>resistances[e]<request.minResistances[e]))throw Error('내성 결과 검증에 실패했습니다.');
-        return {resistances,minResistances:request.minResistances||{},weapon,armor:selected.map(a=>a.item),charm:charm.item.skills.length?charm.item:null,charmOwned:charm.owned,recipeIds:charm.recipeIds,decorations:placements,achieved,activeBonuses,defense};
+        const charmRarities=[...new Set((recipeData.recipes||[]).filter(r=>charm.recipeIds.includes(r.id)).map(r=>r.rarity))].sort((a,b)=>a-b);
+        return {charmRarities,resistances,minResistances:request.minResistances||{},weapon,armor:selected.map(a=>a.item),charm:charm.item.skills.length?charm.item:null,charmOwned:charm.owned,recipeIds:charm.recipeIds,decorations:placements,achieved,activeBonuses,defense};
       }
       function walk(depth,v,resources,defense,resistances){
         step();
