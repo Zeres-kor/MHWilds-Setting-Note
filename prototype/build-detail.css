@@ -7,7 +7,7 @@
 .game-build-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 16px;border-bottom:1px solid var(--game-rule);padding-bottom:10px}
 .game-build-heading h3{margin:0;color:var(--game-gold);font-size:19px;letter-spacing:.02em}
 .game-heading-note{font-size:12px;font-weight:400;color:var(--game-muted)}
-.game-loadout-layout{display:grid;grid-template-columns:minmax(360px,1.65fr) minmax(240px,1fr) minmax(180px,.7fr);gap:14px;align-items:start}
+.game-loadout-layout{display:grid;grid-template-columns:minmax(280px,1.7fr) minmax(0,3fr) minmax(155px,.85fr);gap:10px;align-items:start}
 .game-loadout-left{min-width:0;display:grid;gap:18px}
 .game-panel{background:var(--game-panel);border:1px solid #665e3e;box-shadow:inset 0 1px #b5a05a33,0 3px 12px #0004;min-width:0}
 .game-panel-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0;padding:9px 12px;color:var(--game-gold);font-size:15px;font-weight:600;line-height:1.4;border-bottom:1px solid var(--game-rule);background:linear-gradient(90deg,#74623733,transparent);letter-spacing:.04em}
@@ -50,7 +50,8 @@
 .game-charm-jewels{min-width:0;border-left:1px solid #665e3e;padding:5px 0}
 .game-charm-jewels .game-slot-list{border:0;padding-top:3px}
 .game-subtitle{font-size:12px;color:var(--game-gold);margin:6px 10px;font-weight:500}
-.game-skills-panel>.game-panel-title{margin-bottom:3px}
+.game-skills-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:start;min-width:0}
+.game-equipment-skills>.game-panel-title{margin-bottom:3px}
 .game-skill-list{list-style:none;margin:0;padding:2px 9px 8px}
 .game-build-card li.game-skill-row{display:flex;align-items:center;gap:7px;margin:0;padding:5px 0;border-bottom:1px solid #90805b33}
 .game-skill-row .game-icon{width:25px;height:27px;border-radius:8px;flex:none}
@@ -62,7 +63,7 @@
 .game-level-bars i{display:block;width:8px;height:6px;background:#302f23;border:1px solid #85734877}
 .game-level-bars i.is-filled{background:linear-gradient(#f1cf7c,#b88943);border-color:#d3b274;box-shadow:0 0 3px #d4ac5633}
 .game-skill-level{font-size:12px;color:var(--game-gold);white-space:nowrap;align-self:flex-end;margin-bottom:2px}
-.game-bonus-section{margin:8px 0 0}
+.game-bonus-section{margin:0}
 .game-bonus{padding:9px 9px 7px;border-bottom:1px solid #90805b33}
 .game-bonus-name{display:flex;align-items:center;gap:7px;font-size:13px}
 .game-bonus-name strong{font-weight:500;flex:1;overflow-wrap:anywhere}
@@ -95,5 +96,7 @@
 .game-bonus-section>p.game-muted{padding:2px 12px 8px}
 .game-build-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px;padding-top:12px;border-top:1px solid var(--game-rule)}
 .game-build-footer button{min-height:44px}
-@media(max-width:1250px){.game-loadout-layout{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.game-loadout-left{grid-row:span 2}.game-defense-panel{grid-column:2}.game-build-card{padding:12px}.game-loadout-layout{gap:10px}}
+.game-skills-panel .game-panel-title{padding-left:8px;padding-right:8px}
+.game-skills-panel .game-bonus{padding-left:7px;padding-right:7px}
+@media(max-width:1250px){.game-skills-panel{grid-template-columns:minmax(0,1fr)}.game-loadout-layout{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}.game-loadout-left{grid-row:span 2}.game-defense-panel{grid-column:2}.game-build-card{padding:12px}.game-loadout-layout{gap:10px}}
 @media(max-width:700px){.game-loadout-layout{grid-template-columns:minmax(0,1fr)}.game-loadout-left{grid-row:auto}.game-defense-panel{grid-column:auto}.game-build-card{padding:10px}.game-pair-head,.game-equipment-row,.game-charm-body{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.game-gear{gap:6px;padding:10px 6px}.game-gear>.game-icon{width:23px;height:27px}.game-gear-name{font-size:12px}.game-slot-list{padding:5px}.game-slot-name{font-size:11px}.game-slot-number{display:none}.game-panel-title{padding:8px;font-size:14px}.game-build-footer{align-items:stretch;flex-direction:column}.game-charm-skill{flex-wrap:wrap}}
