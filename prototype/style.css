@@ -280,3 +280,10 @@ nav{background:#35392a}
 .chosen-skill-auto{color:var(--accent);font-size:12px}
 .chosen-skill-item button{min-width:44px;min-height:44px;padding:4px;font-size:20px}
 #buildChosenSkills .chosen-skill-item button:disabled{opacity:.4;border-color:var(--line)}
+
+/* Saved build collections share the existing gold/olive controls. */
+.saved-folders{border:1px solid var(--border,#665e40);padding:16px;margin-bottom:20px}
+.folder-form{display:flex;flex-wrap:wrap;align-items:end;gap:10px;margin-top:14px}
+.folder-form[hidden]{display:none}.folder-form label{display:grid;gap:6px;flex:1 1 240px;max-width:480px}
+.build-save-form{display:flex;flex-wrap:wrap;align-items:end;gap:12px;width:100%;min-width:0}
+.build-save-form label{display:grid;gap:6px;flex:1 1 180px;min-width:0}.build-save-form input,.build-save-form select{width:100%;min-width:0}.build-save-form .save-form-status{flex-basis:100%;margin:0}.saved-folders button{overflow-wrap:anywhere;max-width:100%}
