@@ -218,13 +218,10 @@ input[type=file]::file-selector-button { padding: 7px 12px; margin-right: 12px; 
 .candidate-condition-group { min-width: 0; margin: 0; padding: 16px; background: var(--surface); }
 .candidate-condition-group legend { padding: 0 8px; color: var(--accent); font-weight: 700; }
 .candidate-condition-group .hint { margin: 12px 0 0; }
-.candidate-skill-fields, .candidate-filter-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.candidate-skill-pair { display: grid; grid-template-columns: minmax(0, 1fr) 92px; gap: 10px; }
+.candidate-skill-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.candidate-filter-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.candidate-skill-pair { display: grid; grid-template-columns: minmax(0, 1fr) 120px; gap: 10px; }
 .candidate-condition-group label { min-width: 0; }
-@media (max-width: 1250px) {
-  .candidate-skill-fields { grid-template-columns: minmax(0, 1fr); }
-  .candidate-skill-pair { grid-template-columns: minmax(0, 1fr) 120px; }
-}
 @media (max-width: 600px) {
   .candidate-condition-group { padding: 12px; }
   .candidate-filter-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
