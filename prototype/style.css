@@ -214,6 +214,22 @@ input[type=file]::file-selector-button { padding: 7px 12px; margin-right: 12px; 
 
 .candidate-dialog { width: min(1180px, calc(100% - 24px)); }
 .candidate-fields { display: grid; grid-template-columns: 2fr 1fr 2fr 1fr; gap: 14px; }
+.candidate-condition-groups { display: grid; gap: 20px; margin: 24px 0 20px; }
+.candidate-condition-group { min-width: 0; margin: 0; padding: 16px; background: var(--surface); }
+.candidate-condition-group legend { padding: 0 8px; color: var(--accent); font-weight: 700; }
+.candidate-condition-group .hint { margin: 12px 0 0; }
+.candidate-skill-fields, .candidate-filter-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.candidate-skill-pair { display: grid; grid-template-columns: minmax(0, 1fr) 92px; gap: 10px; }
+.candidate-condition-group label { min-width: 0; }
+@media (max-width: 1250px) {
+  .candidate-skill-fields { grid-template-columns: minmax(0, 1fr); }
+  .candidate-skill-pair { grid-template-columns: minmax(0, 1fr) 120px; }
+}
+@media (max-width: 600px) {
+  .candidate-condition-group { padding: 12px; }
+  .candidate-filter-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .candidate-skill-pair { grid-template-columns: minmax(0, 1fr) 92px; }
+}
 .candidate-table-wrap { max-height: 420px; overflow: auto; border: 1px solid var(--line); }
 .candidate-table-wrap table { min-width: 940px; }
 .candidate-table-wrap th { position: sticky; top: 0; }
