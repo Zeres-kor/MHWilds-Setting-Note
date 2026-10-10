@@ -214,17 +214,24 @@ input[type=file]::file-selector-button { padding: 7px 12px; margin-right: 12px; 
 
 .candidate-dialog { width: min(1180px, calc(100% - 24px)); }
 .candidate-fields { display: grid; grid-template-columns: 2fr 1fr 2fr 1fr; gap: 14px; }
-.candidate-condition-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); align-items: start; gap: 20px; width: 100%; max-width: 1240px; margin: 24px 0 20px; }
+.candidate-condition-groups { display: grid; grid-template-columns: 376px minmax(0, 560px); align-items: start; gap: 20px; width: 100%; max-width: 956px; margin: 24px 0 20px; }
+.candidate-condition-group:first-child { grid-row: 1 / 3; }
+.candidate-condition-group:not(:first-child) { grid-column: 2; }
 .candidate-condition-group { min-width: 0; margin: 0; padding: 16px; background: var(--surface); }
 .candidate-condition-group legend { padding: 0 8px; color: var(--accent); font-weight: 700; }
 .candidate-condition-group .hint { margin: 12px 0 0; }
 .candidate-skill-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
-.candidate-filter-fields { display: grid; grid-template-columns: minmax(0, 160px); gap: 16px; }
+.candidate-filter-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 160px)); gap: 12px; }
 .candidate-skill-pair { display: grid; grid-template-columns: minmax(0, 240px) 92px; gap: 10px; }
 .candidate-condition-group label { min-width: 0; }
+@media (max-width: 1050px) {
+  .candidate-condition-groups { grid-template-columns: minmax(0, 560px); }
+  .candidate-condition-group:first-child { grid-row: auto; max-width: 376px; }
+  .candidate-condition-group:not(:first-child) { grid-column: auto; }
+}
 @media (max-width: 600px) {
   .candidate-condition-group { padding: 12px; }
-  .candidate-filter-fields { gap: 12px; }
+  .candidate-filter-fields { grid-template-columns: repeat(auto-fit, minmax(140px, 160px)); }
 }
 .candidate-table-wrap { max-height: 420px; overflow: auto; border: 1px solid var(--line); }
 .candidate-table-wrap table { min-width: 940px; }
