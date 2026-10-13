@@ -67,7 +67,7 @@
    const count=state.group.charmVariantCount??state.variants.length,ownedCount=state.group.charmOwnedCount??state.variants.filter(v=>v.charmOwned).length;
    text(heading,'span',r.charm||count>1?`확인한 호석 후보 ${count}개 · 보유 후보 ${ownedCount}개${state.group.charmVariantsTruncated?` · ${state.variants.length}개 표시`:''}`:'호석 사용 안 함').className='build-result-charm-count';
    state.overview=document.createElement('span');state.overview.className='build-overview-wrap';summary.append(state.overview);entry.append(summary);
-   {const controls=CharmCandidates.panel(state.variants.map(v=>({charm:v.charm})),()=>state.active,n=>{state.active=n;updateSummaries();renderDetail(state,i);},'',state.group.charmVariantCount??state.variants.length);if(state.group.charmVariantsTruncated)text(controls.querySelector('.charm-options-menu'),'p',`확인한 후보 ${count}개 중 표시된 ${state.variants.length}개를 저장합니다. 표시되지 않은 후보는 포함되지 않습니다.`).className='hint';state.controls=controls;}
+   {const controls=CharmCandidates.panel(state.variants.map(v=>({charm:v.charm,charmRarities:v.charmRarities})),()=>state.active,n=>{state.active=n;updateSummaries();renderDetail(state,i);},'',state.group.charmVariantCount??state.variants.length);if(state.group.charmVariantsTruncated)text(controls.querySelector('.charm-options-menu'),'p',`확인한 후보 ${count}개 중 표시된 ${state.variants.length}개를 저장합니다. 표시되지 않은 후보는 포함되지 않습니다.`).className='hint';state.controls=controls;}
    const details=document.createElement('details');details.className='build-result-details';text(details,'summary','장비·장식주 상세');state.details=details;entry.append(details);
    renderDetail(state,i);container.append(entry);
   });
