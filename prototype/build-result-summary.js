@@ -2,8 +2,8 @@
 const BuildResultSummary=(()=>{
  const snapshots=typeof module!=='undefined'?require('./saved-builds.js'):SavedBuilds;
  const parts=['head','chest','arms','waist','legs'];
- const preferred={푸른:'푸른',퀸:'퀸',이그:'이',오메:'오',레다:'레',다하:'다',고그:'그',스컬:'스컬',기운:'모리바',미러:'미러',애널:'애널라이즈',오리:'오리온',푸푸:'푸푸로',고어:'고',다마:'다마',도베:'도',라기:'라',라운:'라운드'};
- const familyKey=name=>{const compact=name.replace(/\s/g,'');return compact.startsWith('퀸')?'퀸':compact.startsWith('본')?'본':letters(name).slice(0,2).join('');};
+ const preferred={푸른:'푸른',퀸:'퀸',이그:'이',오메:'오',레다:'레',다하:'다',고그:'그',스컬:'스컬',기운:'모리바',미러:'미러',애널:'애널라이즈',오리:'오리온',푸푸:'푸푸로',고어:'고',다마:'다마',도베:'도',라기:'라',라운:'라운드',가쟈:'가쟈',데스:'데스',귀신:'귀신',도샤:'도샤',레우:'레우',모험:'호크',미츠:'미',배틀:'배틀',봉인:'봉인',블랑:'블',수호:'세크',스퀘:'스퀘',실드:'실드',아즈:'아즈즈',아티:'아티어',언더:'언더',길드에이스:'길',길드크로스:'길크',조사단:'조',조사대:'조사대'};
+ const familyKey=name=>{const compact=name.replace(/\s/g,'');for(const series of ['길드에이스','길드크로스','조사단','조사대'])if(compact.startsWith(series))return series;return compact.startsWith('퀸')?'퀸':compact.startsWith('본')?'본':letters(name).slice(0,2).join('');};
  const letters=name=>Array.from(name.replace(/\s/g,'').replace(/[αβγ]$/u,''));
  function abbreviationMap(armor){
   const families=[...new Set(armor.map(a=>familyKey(a.name)))];
