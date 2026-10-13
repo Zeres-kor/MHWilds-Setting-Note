@@ -54,7 +54,8 @@
   if(states.length){const common=text(container,'p',`${states[0].variants[0].weapon.name} · ${$('buildLimitBreak').value==='on'?'한계돌파 ON':'한계돌파 OFF'}`);common.className='setting-list-context';container.append(BuildOverview.header());}
   function activeResult(state){return state.variants[state.active];}
   function updateSummaries(){const focused=document.activeElement;const summaries=BuildResultSummary.compare(states.map(activeResult),data);states.forEach((state,i)=>{
-   const info=summaries[i],r=activeResult(state);state.overview.replaceChildren(BuildOverview.render(SavedBuilds.snapshot(r,data,$('buildMode').value),{additional:info.additional,charmControls:state.controls}));
+   const info=summaries[i],r=activeResult(state);state.overview.replaceChildren(BuildOverview.render(SavedBuilds.snapshot(r,data,$('buildMode').value),{additional:info.additional,charmControls:state.controls,title:info.title}));
+   BuildOverview.bindRow(state.overview.firstElementChild,state.details);
   });if(focused?.isConnected)focused.focus({preventScroll:true});}
   function renderDetail(state,i){state.card?.remove();const r=activeResult(state),info=BuildResultSummary.describe(r,data),card=BuildDetail.render(r,data,i);card.querySelector('h3').textContent=`세팅 ${i+1} · ${info.title} · 장비 상세`;card.querySelector('.game-build-footer').append(window.createBuildSaveForm(()=>({...SavedBuilds.snapshot(activeResult(state),data,$('buildMode').value),candidates:state.variants.map(v=>SavedBuilds.snapshot(v,data,$('buildMode').value))}),`세팅 ${i+1} · ${info.title}`));state.card=card;state.details.append(card);}
   states.forEach((state,i)=>{

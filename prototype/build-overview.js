@@ -18,7 +18,7 @@ const BuildOverview=(()=>{
  function render(snapshot,options={}){
   const info=model(snapshot),root=node('div','build-overview');
   const weapon=node('span','overview-weapon');weapon.append(node('span','overview-label','무기'),node('span','',info.weapon.name),node('span','overview-status',info.limitBreak===undefined?'한계돌파 미기록':info.limitBreak?(info.limitBreakDefense===undefined?'한계돌파 슬롯 ON':'한계돌파 ON'):'한계돌파 OFF'));root.append(weapon);
-  const gear=node('span','overview-equipment');gear.setAttribute('role','group');gear.setAttribute('aria-label','부위별 장비');
+  const gear=node('span','overview-equipment');const names=BuildResultSummary.abbreviationMap(info.armor);const abbr=options.title||info.armor.map(a=>BuildResultSummary.abbreviation(a.name,names)).join('·');const setName=node('button','overview-set-name',abbr);setName.type='button';setName.title='장비·장식주 상세 펼치기';setName.setAttribute('aria-label',abbr+' 장비·장식주 상세');gear.append(setName);gear.setAttribute('role','group');gear.setAttribute('aria-label','부위별 장비');
   for(const a of info.armor){const cell=node('span','overview-gear-cell');cell.setAttribute('aria-label',a.label+': '+a.name);const name=node('span','overview-gear-name');name.append(BuildDetail.icon(a.part),node('span','',a.name));cell.append(node('span','overview-part',a.label),name);gear.append(cell);}
   const charm=node('div','overview-gear-cell overview-charm'),header=node('span','overview-charm-header');header.append(node('span','overview-part','호석'));charm.append(header);
   if(info.charm){
@@ -26,7 +26,7 @@ const BuildOverview=(()=>{
    if(info.charm.name)charm.append(node('span','overview-gear-name',info.charm.name));
    const skills=node('span','overview-charm-skills',info.charm.skills.map(s=>`${s.name} Lv.${s.level}`).join(' / '));charm.append(skills);
    const charmSlots=node('span','overview-charm-slots');
-   for(const kind of ['weapon','armor']){const sizes=info.charm[kind+'Slots'],group=node('span','overview-charm-slot-kind');group.setAttribute('aria-label',`${kind==='weapon'?'무기':'방어구'} 슬롯 ${sizes.map(n=>'레벨 '+n).join(', ')||'없음'}`);group.append(BuildDetail.icon(kind==='weapon'?(snapshot.detail?.equipment.find(a=>a.part==='weapon')?.kind||'great-sword'):'chest'),node('span','',sizes.map(n=>'Lv'+n).join('·')||'없음'));charmSlots.append(group);}header.append(charmSlots);
+   for(const kind of ['weapon','armor']){const sizes=info.charm[kind+'Slots'];if(!sizes.length)continue;const group=node('span','overview-charm-slot-kind');group.setAttribute('aria-label',`${kind==='weapon'?'무기':'방어구'} 슬롯 ${sizes.map(n=>'레벨 '+n).join(', ')||'없음'}`);if(kind==='weapon')group.append(BuildDetail.icon(snapshot.detail?.equipment.find(a=>a.part==='weapon')?.kind||'great-sword'));group.append(node('span','','Lv'+sizes.join('-')));charmSlots.append(group);}header.append(charmSlots);
   }else charm.append(node('span','overview-gear-name','사용 안 함'));
   if(options.charmControls)charm.append(options.charmControls);gear.append(charm);root.append(gear);
   const numbers=node('span','overview-numbers'),stats=node('span','overview-stats');stats.setAttribute('role','group');stats.setAttribute('aria-label','방어력과 기본 내성');
@@ -40,7 +40,8 @@ const BuildOverview=(()=>{
   for(const skill of items){const chip=node('span','overview-skill'+(skill.different?' is-different':''));if(options.saved&&skill.target)chip.append(node('small','','목표'));chip.append(node('span','',skill.label));skillRow.append(chip);}root.append(skillRow);
   return root;
  }
- function header(){const root=node('div','setting-column-header');root.setAttribute('aria-label','장비 열 제목');for(const label of [...parts.map(p=>p[1]),'호석'])root.append(node('span','',label));return root;}
- return {parts,elements,model,render,header};
+ function header(){const root=node('div','setting-column-header');root.setAttribute('aria-label','장비 열 제목');for(const label of ['세팅',...parts.map(p=>p[1]),'호석'])root.append(node('span','',label));return root;}
+ function bindRow(row,details){const button=row.querySelector('.overview-set-name');const sync=()=>button?.setAttribute('aria-expanded',String(details.open));if(button){button.addEventListener('click',()=>{details.open=!details.open;sync();});sync();}row.addEventListener('click',event=>{if(event.target.closest('button,select,input,textarea,label,a,details')||String(window.getSelection()).trim())return;details.open=!details.open;sync();});details.addEventListener('toggle',sync);}
+ return {parts,elements,model,render,header,bindRow};
 })();
 if(typeof module!=='undefined')module.exports=BuildOverview;
