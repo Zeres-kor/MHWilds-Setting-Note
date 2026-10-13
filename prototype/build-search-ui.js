@@ -50,7 +50,8 @@
  function render(result){
   const container=$('buildResults');container.replaceChildren();
   const states=result.results.map(group=>({group,variants:group.charmVariants?.length?group.charmVariants:[group],active:0}));
-  if(states.length){const guide=text(container,'p','같은 방어구 구성은 한 카드로 묶었습니다. 호석 후보를 선택하면 장식주 배치·추가 스킬·빈 슬롯·저장 내용이 바뀝니다. 후보는 이번 탐색에서 확인한 대표 구성입니다. 제목은 머리→상의→팔→허리→다리 약어 순서입니다.');guide.className='hint build-result-guide';}
+  if(states.length){const guide=text(container,'p','같은 방어구 구성은 한 행으로 묶었습니다. 호석 후보를 선택하면 장식주 배치·추가 스킬·빈 슬롯·저장 내용이 바뀝니다. 후보는 이번 탐색에서 확인한 대표 구성입니다. 각 행의 호석 메뉴에서 후보를 변경할 수 있습니다.');guide.className='hint build-result-guide';}
+  if(states.length){const common=text(container,'p',`${states[0].variants[0].weapon.name} · ${$('buildLimitBreak').value==='on'?'한계돌파 ON':'한계돌파 OFF'}`);common.className='setting-list-context';container.append(BuildOverview.header());}
   function activeResult(state){return state.variants[state.active];}
   function updateSummaries(){const focused=document.activeElement;const summaries=BuildResultSummary.compare(states.map(activeResult),data);states.forEach((state,i)=>{
    const info=summaries[i],r=activeResult(state);state.overview.replaceChildren(BuildOverview.render(SavedBuilds.snapshot(r,data,$('buildMode').value),{additional:info.additional,charmControls:state.controls}));

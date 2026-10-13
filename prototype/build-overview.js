@@ -19,7 +19,7 @@ const BuildOverview=(()=>{
   const info=model(snapshot),root=node('div','build-overview');
   const weapon=node('span','overview-weapon');weapon.append(node('span','overview-label','무기'),node('span','',info.weapon.name),node('span','overview-status',info.limitBreak===undefined?'한계돌파 미기록':info.limitBreak?(info.limitBreakDefense===undefined?'한계돌파 슬롯 ON':'한계돌파 ON'):'한계돌파 OFF'));root.append(weapon);
   const gear=node('span','overview-equipment');gear.setAttribute('role','group');gear.setAttribute('aria-label','부위별 장비');
-  for(const a of info.armor){const cell=node('span','overview-gear-cell');cell.append(node('span','overview-part',a.label),node('span','overview-gear-name',a.name));gear.append(cell);}
+  for(const a of info.armor){const cell=node('span','overview-gear-cell');cell.setAttribute('aria-label',a.label+': '+a.name);const name=node('span','overview-gear-name');name.append(BuildDetail.icon(a.part),node('span','',a.name));cell.append(node('span','overview-part',a.label),name);gear.append(cell);}
   const charm=node('div','overview-gear-cell overview-charm'),header=node('span','overview-charm-header');header.append(node('span','overview-part','호석'));charm.append(header);
   if(info.charm){
    if(options.ownership!==undefined||info.ownership!==null)header.append(node('span','overview-owned'+((options.ownership??info.ownership)?' is-owned':''),((options.ownership??info.ownership)?'보유':'미보유')));
@@ -40,6 +40,7 @@ const BuildOverview=(()=>{
   for(const skill of items){const chip=node('span','overview-skill'+(skill.different?' is-different':''));if(options.saved&&skill.target)chip.append(node('small','','목표'));chip.append(node('span','',skill.label));skillRow.append(chip);}root.append(skillRow);
   return root;
  }
- return {parts,elements,model,render};
+ function header(){const root=node('div','setting-column-header');root.setAttribute('aria-label','장비 열 제목');for(const label of [...parts.map(p=>p[1]),'호석'])root.append(node('span','',label));return root;}
+ return {parts,elements,model,render,header};
 })();
 if(typeof module!=='undefined')module.exports=BuildOverview;
