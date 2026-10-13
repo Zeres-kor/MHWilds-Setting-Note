@@ -2,16 +2,18 @@
 const BuildResultSummary=(()=>{
  const snapshots=typeof module!=='undefined'?require('./saved-builds.js'):SavedBuilds;
  const parts=['head','chest','arms','waist','legs'];
+ const preferred={푸른:'푸른',퀸:'퀸',이그:'이',오메:'오'};
+ const familyKey=name=>{const compact=name.replace(/\s/g,'');return compact.startsWith('퀸')?'퀸':compact.startsWith('본')?'본':letters(name).slice(0,2).join('');};
  const letters=name=>Array.from(name.replace(/\s/g,'').replace(/[αβγ]$/u,''));
  function abbreviationMap(armor){
-  const families=[...new Set(armor.map(a=>letters(a.name).slice(0,2).join('')))];
-  const labels=new Map(families.map(f=>{const chars=Array.from(f),overlap=families.some(other=>other!==f&&Array.from(other)[0]===chars[0]);return [f,overlap?(chars[1]||chars[0]):chars[0]];}));
+  const families=[...new Set(armor.map(a=>familyKey(a.name)))];
+  const labels=new Map(families.map(f=>{const chars=Array.from(f),overlap=families.some(other=>other!==f&&Array.from(other)[0]===chars[0]);return [f,preferred[f]||(overlap?(chars[1]||chars[0]):chars[0])];}));
   // If second letters also collide, keep two letters to preserve the distinction.
   const counts=new Map();for(const label of labels.values())counts.set(label,(counts.get(label)||0)+1);
-  for(const [family,label]of labels)if(counts.get(label)>1)labels.set(family,family);
+  for(const [family,label]of labels)if(counts.get(label)>1&&!preferred[family])labels.set(family,family);
   return labels;
  }
- function abbreviation(name,labels=new Map()){const chars=letters(name),family=chars.slice(0,2).join('');return (labels.get(family)||chars[0]||'')+(name.replace(/\s/g,'').match(/[αβγ]$/u)?.[0]||'');}
+ function abbreviation(name,labels=new Map()){const chars=letters(name),family=familyKey(name);return (preferred[family]||labels.get(family)||chars[0]||'')+(name.replace(/\s/g,'').match(/[αβγ]$/u)?.[0]||'');}
 
  function emptySlots(result){
   const slots=[...result.weapon.slots.map((size,index)=>({owner:'weapon',kind:'weapon',size,index})),
@@ -32,6 +34,6 @@ const BuildResultSummary=(()=>{
   return {title,armor,abbreviations,additional,charmLabel:charm?`${charmType}${charm.name?' · '+charm.name:''} · ${charmSkills}`:charmType,emptySlots:slotText(empty),charmEmptySlots:slotText(empty.filter(s=>s.owner==='talisman'))};
  }
  function compare(results,data){const source=data.armor?data:{...data,armor:results.flatMap(r=>r.armor)};const summaries=results.map(r=>describe(r,source));return summaries.map(s=>({...s,additional:s.additional.map(a=>({...a,different:summaries.length>1&&summaries.some(other=>(other.additional.find(x=>x.key===a.key)?.amount||0)!==a.amount)})).sort((a,b)=>Number(b.different)-Number(a.different)||b.amount-a.amount||a.name.localeCompare(b.name,'ko'))}));}
- return {abbreviation,emptySlots,slotText,describe,compare};
+ return {familyKey,abbreviationMap,abbreviation,emptySlots,slotText,describe,compare};
 })();
 if(typeof module!=='undefined')module.exports=BuildResultSummary;
