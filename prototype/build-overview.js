@@ -22,7 +22,7 @@ const BuildOverview=(()=>{
   for(const a of info.armor){const cell=node('span','overview-gear-cell');cell.append(node('span','overview-part',a.label),node('span','overview-gear-name',a.name));gear.append(cell);}
   const charm=node('span','overview-gear-cell overview-charm');charm.append(node('span','overview-part','호석'));
   if(info.charm){
-   if(info.ownership!==null)charm.append(node('span','overview-owned'+(info.ownership?' is-owned':''),(options.saved?'저장 당시 ':'')+(info.ownership?'보유':'미보유')));
+   if(options.ownership!==undefined||info.ownership!==null)charm.append(node('span','overview-owned'+((options.ownership??info.ownership)?' is-owned':''),((options.ownership??info.ownership)?'보유':'미보유')));
    if(info.charm.name)charm.append(node('span','overview-gear-name',info.charm.name));
    const skills=node('span','overview-charm-skills',info.charm.skills.map(s=>`${s.name} Lv.${s.level}`).join(' / '));charm.append(skills);
    charm.append(node('span','overview-charm-slots',`무기 ${info.charm.weaponSlots.join('/')||'없음'} · 방어구 ${info.charm.armorSlots.join('/')||'없음'}`));

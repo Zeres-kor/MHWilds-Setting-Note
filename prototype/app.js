@@ -7,6 +7,7 @@ const STATE_KEY = 'mhwilds-app-v2';
 const BACKUP_FORMAT = 'mhwilds-backup-v2';
 let savedBuilds = [];
 let savedFolders = [];
+let charmWishlist = [];
 let records = [], rules = [], revision = 0, inventoryVersion = 0, rulesVersion = 0, stateRaw = null, storageReady = true;
 let selected = new Set(), tagMode = 'add', uploadedRules = null, pendingImport = null;
 let pendingInventory = null, importTrigger = null;
@@ -120,6 +121,7 @@ function readState() {
       const collection = SavedBuilds.validateCollection(saved.savedBuilds || [], saved.savedFolders || []);
       savedBuilds = collection.entries;
       savedFolders = collection.folders;
+      charmWishlist = SavedBuilds.validateWishlist(saved.charmWishlist || []);
       revision = saved.revision;
       inventoryVersion = saved.inventoryVersion || 0;
       rulesVersion = saved.rulesVersion || 0;
@@ -129,6 +131,7 @@ function readState() {
       rules = [];
       savedBuilds = [];
       savedFolders = [];
+      charmWishlist = [];
       revision = 0;
       inventoryVersion = 0;
       rulesVersion = 0;
@@ -140,12 +143,13 @@ function readState() {
     rules = [];
     savedBuilds = [];
     savedFolders = [];
+    charmWishlist = [];
     announce('저장 데이터를 읽지 못했습니다. 백업을 복원하기 전에는 저장하지 않습니다. ' + error.message);
   }
 }
 readState();
 
-function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = savedBuilds, nextFolders = savedFolders) {
+function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = savedBuilds, nextFolders = savedFolders, nextWishlist = charmWishlist) {
   if (!storageReady && !recovery) {
     announce('저장 데이터 오류가 있어 변경하지 않았습니다. 정상 백업을 복원하세요.');
     return false;
@@ -160,17 +164,19 @@ function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = s
     const cleanRecords = validateList(nextRecords), cleanRules = TagRules.validateRules(nextRules, SKILL_NAMES);
     const collection = SavedBuilds.validateCollection(nextBuilds, nextFolders);
     const cleanBuilds = collection.entries, cleanFolders = collection.folders;
+    const cleanWishlist = SavedBuilds.validateWishlist(nextWishlist);
     const nextRevision = revision + 1;
     const nextInventoryVersion = inventoryVersion + Number(JSON.stringify(cleanRecords) !== JSON.stringify(records));
     const nextRulesVersion = rulesVersion + Number(JSON.stringify(cleanRules) !== JSON.stringify(rules));
     const raw = JSON.stringify({format: STATE_KEY, revision: nextRevision, inventoryVersion: nextInventoryVersion,
-      rulesVersion: nextRulesVersion, records: cleanRecords, rules: cleanRules, savedBuilds: cleanBuilds, savedFolders: cleanFolders});
+      rulesVersion: nextRulesVersion, records: cleanRecords, rules: cleanRules, savedBuilds: cleanBuilds, savedFolders: cleanFolders, charmWishlist: cleanWishlist});
     localStorage.setItem(STATE_KEY, raw);
     stateRaw = raw;
     records = cleanRecords;
     rules = cleanRules;
     savedBuilds = cleanBuilds;
     savedFolders = cleanFolders;
+    charmWishlist = cleanWishlist;
     revision = nextRevision;
     inventoryVersion = nextInventoryVersion;
     rulesVersion = nextRulesVersion;
@@ -348,7 +354,7 @@ $('delete').onclick = () => {
   }
 };
 $('export').onclick = () => {
-  const data = {format: BACKUP_FORMAT, inventoryVersion, rulesVersion, records, rules, savedBuilds, savedFolders};
+  const data = {format: BACKUP_FORMAT, inventoryVersion, rulesVersion, records, rules, savedBuilds, savedFolders, charmWishlist};
   const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'}));
   const anchor = document.createElement('a');
   anchor.href = url;
@@ -369,10 +375,11 @@ connectFileUpload({zone:$('restore'), input:$('restoreFile'), extension:'.json',
     const nextRules = data.format === BACKUP_FORMAT ? TagRules.validateRules(data.rules, SKILL_NAMES) : rules;
     const nextBuilds = data.format === BACKUP_FORMAT ? SavedBuilds.validateList(data.savedBuilds || []) : savedBuilds;
     const nextFolders = data.format === BACKUP_FORMAT ? SavedBuilds.validateFolders(data.savedFolders || []) : savedFolders;
+    const nextWishlist = data.format === BACKUP_FORMAT ? SavedBuilds.validateWishlist(data.charmWishlist || []) : charmWishlist;
     SavedBuilds.validateCollection(nextBuilds, nextFolders);
     const ruleNotice = data.format === BACKUP_FORMAT ? ', 태그 기준 ' + nextRules.length + '개' : ' (기존 태그 기준 유지)';
     if (confirm('현재 데이터를 호석 ' + nextRecords.length + '개' + ruleNotice + ', 저장 세팅 ' + nextBuilds.length + '개, 보관함 ' + nextFolders.length + '개로 교체할까요?')) {
-      if (commit(nextRecords, nextRules, !storageReady, nextBuilds, nextFolders)) {
+      if (commit(nextRecords, nextRules, !storageReady, nextBuilds, nextFolders, nextWishlist)) {
         selected.clear();
         render();
         announce('호석·태그 기준·저장 세팅을 복원했습니다.');
@@ -649,3 +656,5 @@ render();
 window.CandidateContext = {get: () => ({records, rules, inventoryVersion, rulesVersion})};
 
 window.SavedBuildStore = {get:()=>savedBuilds, folders:()=>savedFolders, set:(next,folders=savedFolders)=>commit(records,rules,false,next,folders)};
+
+window.CharmWishlistStore = {get:()=>charmWishlist,set:next=>commit(records,rules,false,savedBuilds,savedFolders,next)};

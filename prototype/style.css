@@ -400,3 +400,5 @@ nav{background:#35392a}
 .saved-build-detail>summary { cursor:pointer; min-height:32px; padding:4px 0; }
 .saved-build-detail>summary:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 .overview-status { margin-left:auto; font-size:12px; color:var(--muted); }
+/* Shared candidate choices and persistent charm wishlist. */
+.build-charm-variants select{max-width:100%;min-width:0}.build-charm-variants label{display:block;margin:8px 0}.charm-wish-button[aria-pressed="true"]{color:var(--accent,#ffda5b);border-color:#846b39}#charmWishlist{padding:16px;margin:18px 0;border:1px solid #564e34;background:rgba(12,15,10,.9)}.charm-wishlist-controls{display:flex;gap:12px;flex-wrap:wrap}.charm-wishlist-controls label{display:flex;flex-direction:column;gap:6px;max-width:100%}.charm-wishlist-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #564e34}.charm-wishlist-row span{overflow-wrap:anywhere}.charm-wishlist-row button{flex-shrink:0}@media(max-width:600px){.charm-wishlist-row{align-items:flex-start;flex-direction:column}}

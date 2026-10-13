@@ -55,7 +55,7 @@
   function updateSummaries(){const summaries=BuildResultSummary.compare(states.map(activeResult),data);states.forEach((state,i)=>{
    const info=summaries[i],r=activeResult(state);state.overview.replaceChildren(BuildOverview.render(SavedBuilds.snapshot(r,data,$('buildMode').value),{additional:info.additional}));
   });}
-  function renderDetail(state,i){state.card?.remove();const r=activeResult(state),info=BuildResultSummary.describe(r,data),card=BuildDetail.render(r,data,i);card.querySelector('h3').textContent=`세팅 ${i+1} · ${info.title} · 장비 상세`;card.querySelector('.game-build-footer').append(window.createBuildSaveForm(()=>SavedBuilds.snapshot(activeResult(state),data,$('buildMode').value),`세팅 ${i+1} · ${info.title}`));state.card=card;state.entry.append(card);}
+  function renderDetail(state,i){state.card?.remove();const r=activeResult(state),info=BuildResultSummary.describe(r,data),card=BuildDetail.render(r,data,i);card.querySelector('h3').textContent=`세팅 ${i+1} · ${info.title} · 장비 상세`;card.querySelector('.game-build-footer').append(window.createBuildSaveForm(()=>({...SavedBuilds.snapshot(activeResult(state),data,$('buildMode').value),candidates:state.variants.map(v=>SavedBuilds.snapshot(v,data,$('buildMode').value))}),`세팅 ${i+1} · ${info.title}`));state.card=card;state.entry.append(card);}
   states.forEach((state,i)=>{
    const r=activeResult(state),info=BuildResultSummary.describe(r,data),entry=document.createElement('details');state.entry=entry;entry.className='build-result-entry';
    const summary=document.createElement('summary'),heading=document.createElement('span');heading.className='build-result-heading';
@@ -65,11 +65,7 @@
    const count=state.group.charmVariantCount??state.variants.length,ownedCount=state.group.charmOwnedCount??state.variants.filter(v=>v.charmOwned).length;
    text(summary,'span',r.charm||count>1?`확인한 호석 후보 ${count}개 · 보유 후보 ${ownedCount}개${state.group.charmVariantsTruncated?` · ${state.variants.length}개 표시`:''}`:'호석 사용 안 함').className='build-result-charm-count';
    state.overview=document.createElement('span');state.overview.className='build-overview-wrap';summary.append(state.overview);entry.append(summary);
-   if(state.variants.length>1||state.group.charmVariantsTruncated){const panel=document.createElement('section');panel.className='build-charm-variants';text(panel,'h3','호석 가능한 경우');const label=text(panel,'label','호석 후보 선택'),select=document.createElement('select');select.className='build-charm-select';select.setAttribute('aria-label',`세팅 ${i+1} 호석 후보 선택`);
-    state.variants.forEach((variant,n)=>{const detail=BuildResultSummary.describe(variant,data),charm=variant.charm;option(select,n,`${variant.charmOwned?'보유 · ':charm?'미보유 · ':''}${detail.charmLabel.replace(/^보유 호석 · /,'')}${charm?` · 슬롯 무기 ${charm.weaponSlots.join('/')||'없음'} / 방어구 ${charm.armorSlots.join('/')||'없음'}`:''}`);});label.append(select);panel.append(label);
-    const note=text(panel,'p',state.group.charmVariantsTruncated?`확인한 대표 후보 ${count}개 중 ${state.variants.length}개 표시 · 미보유 후보는 최대 200개 표시하며 확인된 보유 후보를 함께 포함합니다.`:'탐색에서 확인한 대표 호석 후보입니다. 보유 후보를 먼저 표시하며 목표·슬롯이 동등한 미보유 후보는 대표 구성으로 합칩니다.');note.className='hint';
-    select.addEventListener('change',()=>{state.active=Number(select.value);updateSummaries();renderDetail(state,i);});entry.append(panel);
-   }
+   {const controls=CharmCandidates.panel(state.variants.map(v=>({charm:v.charm})),()=>state.active,n=>{state.active=n;updateSummaries();renderDetail(state,i);});if(state.group.charmVariantsTruncated)text(controls,'p',`확인한 후보 ${count}개 중 표시된 ${state.variants.length}개를 저장합니다. 표시되지 않은 후보는 포함되지 않습니다.`).className='hint';entry.append(controls);}
    renderDetail(state,i);container.append(entry);
   });
   updateSummaries();
