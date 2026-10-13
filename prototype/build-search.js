@@ -93,13 +93,16 @@ const BuildSearch = (() => {
     try {
       const pools=PARTS.map(part=>frontier(data.armor.filter(a=>a.part===part&&a.rank==='high').map(a=>limitBreakApi.apply(a,limitBreakApi.enabled(request))).map(projected),timeCheck));
       if(pools.some(p=>!p.length))return {results:[],partial:false,reason:null,nodes,excludedCharms};
-      const charmBuckets=new Map();
+      const charmBuckets=new Map(),ownedCandidates=new Map();
+      const ownedKeys=new Set((request.records||[]).map(record=>candidatesApi.key(record)));
       const craftedByKey=new Map((data.craftedCharms||[]).map(c=>[candidatesApi.key(c),c]));
       const addCharm=(record,owned=false,recipeIds=[])=>{
-        if(owned&&request.charmMode!=='rules'&&craftedByKey.has(candidatesApi.key(record)))record={...record,...craftedByKey.get(candidatesApi.key(record))};
+        const identity=candidatesApi.key(record);owned=owned||ownedKeys.has(identity);
+        if(owned&&request.charmMode!=='rules'&&craftedByKey.has(identity))record={...record,...craftedByKey.get(identity)};
         if(record.skills.some(s=>!names.has(s.name) || s.level>names.get(s.name).maxLevel)) {excludedCharms++;return;}
         const skills=Object.fromEntries(record.skills.map(s=>[names.get(s.name).id,s.level]));
-        const candidate={item:record,v:vector({skills,bonuses:[]}),slots:itemCounts(record,true),defense:0,owned,recipeIds};
+        const candidate={identity,item:record,v:vector({skills,bonuses:[]}),slots:itemCounts(record,true),defense:0,owned,recipeIds};
+        if(owned)ownedCandidates.set(candidate.identity,candidate);
         const key=candidate.v.join(',')+'|'+candidate.slots.join(',');
         if(!charmBuckets.has(key) || owned&&!charmBuckets.get(key).owned)charmBuckets.set(key,candidate);
       };
@@ -119,13 +122,15 @@ const BuildSearch = (() => {
         const eligible=request.charmMode==='owned'||request.charmMode==='all'&&(match.matches.length||crafted)||request.charmMode==='rules'&&match.matches.length||request.charmMode==='crafted'&&crafted;
         if(eligible)addCharm(record,true,request.charmMode==='crafted'?[]:match.matches.map(m=>m.recipeId));
       }
-      const charms=frontier([...charmBuckets.values()],timeCheck);
+      const charmChoices=new Map([...charmBuckets.values()].map(c=>[c.identity,c]));
+      for(const [identity,candidate]of ownedCandidates)charmChoices.set(identity,candidate);
+      const charms=[...charmChoices.values()].sort((a,b)=>Number(b.owned)-Number(a.owned));
       const decorationBuckets=new Map();
       for(const item of data.decorations){const v=vector(item);if(!v.some(Boolean))continue;const key=item.kind+'|'+item.slot+'|'+v.join(',');if(!decorationBuckets.has(key))decorationBuckets.set(key,{item,v});}
       const decorations=[...decorationBuckets.values()];
       const maxJewel=goals.map((g,i)=>Array.from({length:6},(_,n)=>Math.max(0,...decorations.filter(d=>d.item.kind===(n<3?'weapon':'armor') && d.item.slot<=n%3+1).map(d=>d.v[i]))));
-      const charmMax=target.map((_,i)=>Math.max(...charms.map(c=>c.v[i])));
-      const charmSlots=Array.from({length:6},(_,i)=>Math.max(...charms.map(c=>c.slots[i])));
+      const charmMax=target.map((_,i)=>charms.reduce((max,c)=>Math.max(max,c.v[i]),0));
+      const charmSlots=Array.from({length:6},(_,i)=>charms.reduce((max,c)=>Math.max(max,c.slots[i]),0));
       const remaining=[null,null,null,null,null,{v:target.map(()=>0),slots:[0,0,0,0,0,0],defense:0,resistances:resistanceKeys.map(()=>0)}];
       for(let n=4;n>=0;n--)remaining[n]={v:plus(remaining[n+1].v,target.map((_,i)=>Math.max(...pools[n].map(a=>a.v[i])))),slots:plus(remaining[n+1].slots,Array.from({length:6},(_,i)=>Math.max(...pools[n].map(a=>a.slots[i])))),defense:remaining[n+1].defense+Math.max(...pools[n].map(a=>a.defense)),resistances:plus(remaining[n+1].resistances,resistanceKeys.map((_,i)=>Math.max(...pools[n].map(a=>a.resistances[i]))))};
       const memo=new Map(), selected=[];
@@ -149,7 +154,7 @@ const BuildSearch = (() => {
         const resistances=Object.fromEntries(ELEMENTS.map(e=>[e,selected.reduce((n,a)=>n+(a.item.resistances?.[e]||0),0)]));
         if(resistanceKeys.some(e=>resistances[e]<request.minResistances[e]))throw Error('내성 결과 검증에 실패했습니다.');
         const charmRarities=charm.item.category==='crafted'?[charm.item.rarity]:[...new Set((recipeData.recipes||[]).filter(r=>charm.recipeIds.includes(r.id)).map(r=>r.rarity))].sort((a,b)=>a-b);
-        return {armorLimitBreak:limitBreakApi.enabled(request),charmRarities,resistances,minResistances:request.minResistances||{},weapon,armor:selected.map(a=>a.item),charm:charm.item.skills.length?charm.item:null,charmOwned:charm.owned,recipeIds:charm.recipeIds,decorations:placements,achieved,activeBonuses,defense};
+        return {armorLimitBreakDefense:limitBreakApi.enabled(request),armorLimitBreak:limitBreakApi.enabled(request),charmRarities,resistances,minResistances:request.minResistances||{},weapon,armor:selected.map(a=>a.item),charm:charm.item.skills.length?charm.item:null,charmOwned:charm.owned,recipeIds:charm.recipeIds,decorations:placements,achieved,activeBonuses,defense};
       }
       function walk(depth,v,resources,defense,resistances){
         step();
@@ -158,7 +163,15 @@ const BuildSearch = (() => {
         if(resistanceKeys.some((e,i)=>resistances[i]+remaining[depth].resistances[i]<request.minResistances[e]))return;
         if(target.some((need,i)=>v[i]+remaining[depth].v[i]+charmMax[i]+upperSlots.reduce((sum,n,j)=>sum+n*maxJewel[i][j],0)<need))return;
         if(depth<5){for(const item of pools[depth]){selected.push(item);walk(depth+1,plus(v,item.v),plus(resources,item.slots),defense+item.defense,plus(resistances,item.resistances));selected.pop();}return;}
-        for(const charm of charms){step();const have=plus(v,charm.v);const deficits=target.map((need,i)=>Math.max(0,need-have[i]));const allSlots=plus(resources,charm.slots);const plan=fillDecorations(deficits,allSlots,decorations,step,memo);if(plan===null)continue;results.push(buildResult(charm,plan,defense));if(results.length>=maxResults)stop('result-limit');}
+        let group=null,unownedShown=0;
+        for(const charm of charms){
+          step();const have=plus(v,charm.v);const deficits=target.map((need,i)=>Math.max(0,need-have[i]));const allSlots=plus(resources,charm.slots);const plan=fillDecorations(deficits,allSlots,decorations,step,memo);if(plan===null)continue;
+          if(!group){const first=buildResult(charm,plan,defense);group={...first,charmVariants:[],charmVariantCount:0,charmOwnedCount:0,charmVariantsTruncated:false};results.push(group);}
+          group.charmVariantCount++;if(charm.owned)group.charmOwnedCount++;
+          if(!charm.owned&&unownedShown>=(options.maxCharmVariants??200)){group.charmVariantsTruncated=true;continue;}
+          group.charmVariants.push(buildResult(charm,plan,defense));if(!charm.owned)unownedShown++;
+        }
+        if(results.length>=maxResults)stop('result-limit');
       }
       progress({phase:'equipment',nodes:0,results:0});walk(0,baseWeapon,weaponResources,weapon.defenseBonus||0,resistanceKeys.map(()=>0));
     } catch(error){if(error.searchStop)reason=error.reason;else throw error;}

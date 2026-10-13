@@ -9,4 +9,13 @@ def attach_limit_break(armor, supplement):
         assert row['baseSlots'] == item['slots'], 'Base slots changed; review limit-break supplement.'
         assert len(row['slots']) <= 3 and all(type(n) is int and 1 <= n <= 3 for n in row['slots'])
         item['limitBreakSlots'] = row['slots'][:]
+    policy = supplement.get('defensePolicy')
+    if policy:
+        for item in armor:
+            rarity = str(item['rarity'])
+            if item['rank'] != 'high' or rarity not in policy['limitBreakMaxLevel']:
+                continue
+            per_level = policy['defensePerUpgradeLevel']
+            assert item['defense'] == item['baseDefense'] + policy['normalMaxLevel'][rarity] * per_level, 'Normal maximum defense changed; review policy.'
+            item['limitBreakDefense'] = item['baseDefense'] + policy['limitBreakMaxLevel'][rarity] * per_level
     return armor

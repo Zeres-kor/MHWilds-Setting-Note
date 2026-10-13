@@ -33,7 +33,7 @@ const ManualBuild = (() => {
       const rank=s.ranks.filter(r=>r.pieces<= (counts[s.id]||0)).sort((a,b)=>b.level-a.level)[0];
       return rank?[{name:s.name,effect:rank.name,level:rank.level,pieces:counts[s.id]}]:[];
     });
-    return {armorLimitBreak:on,weapon,armor,charm,charmOwned:request.charmOwned===true,charmRarities:charm?.rarity?[charm.rarity]:[],recipeIds:[],decorations,achieved:[],activeBonuses,
+    return {armorLimitBreakDefense:on,armorLimitBreak:on,weapon,armor,charm,charmOwned:request.charmOwned===true,charmRarities:charm?.rarity?[charm.rarity]:[],recipeIds:[],decorations,achieved:[],activeBonuses,
       defense:(weapon.defenseBonus||0)+armor.reduce((n,a)=>n+a.defense,0),
       resistances:Object.fromEntries(elements.map(e=>[e,armor.reduce((n,a)=>n+(a.resistances?.[e]||0),0)])),minResistances:{}};
   }

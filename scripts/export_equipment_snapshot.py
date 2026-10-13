@@ -51,7 +51,7 @@ def slots(a):
     assert len(values) <= 3 and all(isinstance(v,int) and 1 <= v <= 3 for v in values)
     return values
 armor = [{'id':a['id'], 'name':a['name'], 'part':a['kind'], 'rank':a['rank'], 'rarity':a['rarity'],
-          'slots':slots(a), 'defense':a['defense']['max'], 'resistances':a['resistances'], **abilities(a['skills'])} for a in raw['armor']]
+          'slots':slots(a), 'baseDefense':a['defense']['base'], 'defense':a['defense']['max'], 'resistances':a['resistances'], **abilities(a['skills'])} for a in raw['armor']]
 limit_break = json.loads((ROOT / 'inputs/armor-limit-break-slots.json').read_text())
 attach_limit_break(armor, limit_break)
 # Artian rows are series-less in this API snapshot. Keep skill/slot-equivalent variants once.

@@ -49,28 +49,37 @@
  function text(parent,tag,value){const el=document.createElement(tag);el.textContent=value;parent.append(el);return el;}
  function render(result){
   const container=$('buildResults');container.replaceChildren();
-  const summaries=BuildResultSummary.compare(result.results,data);
-  if(summaries.length){const guide=text(container,'p','제목 약어는 머리 → 상의 → 팔 → 허리 → 다리 순서입니다. 추가 스킬은 목표 외 스킬과 목표 초과 레벨이며, ‘차이’ 표시가 있는 스킬은 이번 검색 결과마다 다릅니다. 빈 슬롯은 호석을 포함한 전체 합계입니다.');guide.className='hint build-result-guide';}
-  result.results.forEach((r,i)=>{
-   const info=summaries[i],entry=document.createElement('details');entry.className='build-result-entry';
+  const states=result.results.map(group=>({group,variants:group.charmVariants?.length?group.charmVariants:[group],active:0}));
+  if(states.length){const guide=text(container,'p','같은 방어구 구성은 한 카드로 묶었습니다. 호석 후보를 선택하면 장식주 배치·추가 스킬·빈 슬롯·저장 내용이 바뀝니다. 후보는 이번 탐색에서 확인한 대표 구성입니다. 제목은 머리→상의→팔→허리→다리 약어 순서이며, 추가 스킬의 ‘차이’는 결과마다 다른 항목입니다.');guide.className='hint build-result-guide';}
+  function activeResult(state){return state.variants[state.active];}
+  function updateSummaries(){const summaries=BuildResultSummary.compare(states.map(activeResult),data);states.forEach((state,i)=>{
+   const info=summaries[i],r=activeResult(state);state.extra.replaceChildren();text(state.extra,'span','추가 스킬').className='build-result-label';
+   if(!info.additional.length)text(state.extra,'span','없음');
+   for(const skill of info.additional){const chip=document.createElement('span');chip.className='build-result-skill'+(skill.different?' is-different':'');if(skill.different)text(chip,'small','차이');text(chip,'span',skill.label);state.extra.append(chip);}
+   state.charm.textContent=(r.charmOwned?'[보유] ':'')+info.charmLabel.replace(/^보유 호석 · /,'');
+   state.empty.textContent=`빈 슬롯: ${info.emptySlots}`;state.charmEmpty.textContent=`호석 빈 슬롯: ${info.charmEmptySlots}`;
+  });}
+  function renderDetail(state,i){state.card?.remove();const r=activeResult(state),info=BuildResultSummary.describe(r,data),card=BuildDetail.render(r,data,i);card.querySelector('h3').textContent=`세팅 ${i+1} · ${info.title} · 장비 상세`;card.querySelector('.game-build-footer').append(window.createBuildSaveForm(()=>SavedBuilds.snapshot(activeResult(state),data,$('buildMode').value),`세팅 ${i+1} · ${info.title}`));state.card=card;state.entry.append(card);}
+  states.forEach((state,i)=>{
+   const r=activeResult(state),info=BuildResultSummary.describe(r,data),entry=document.createElement('details');state.entry=entry;entry.className='build-result-entry';
    const summary=document.createElement('summary'),heading=document.createElement('span');heading.className='build-result-heading';
    const title=text(heading,'strong','');text(title,'span',`세팅 ${i+1} · `);info.armor.forEach((a,n)=>{const abbr=text(title,'span',`${n?'·':''}${info.abbreviations[n]}`);abbr.className='build-result-armor-abbr';abbr.title=`${parts[a.part]}: ${a.name}`;});title.title=info.armor.map(a=>`${parts[a.part]}: ${a.name}`).join(' / ');title.setAttribute('aria-label',`세팅 ${i+1} · ${title.title}`);
    text(heading,'span',`방어력 ${r.defense}`);summary.append(heading);
-   const weapon=text(summary,'span',r.weapon.name);weapon.className='build-result-weapon';
-   const extra=document.createElement('span');extra.className='build-result-extras';text(extra,'span','추가 스킬').className='build-result-label';
-   if(!info.additional.length)text(extra,'span','없음');
-   for(const skill of info.additional){const chip=document.createElement('span');chip.className='build-result-skill'+(skill.different?' is-different':'');if(skill.different)text(chip,'small','차이');text(chip,'span',skill.label);extra.append(chip);}
-   summary.append(extra);
-   const charm=text(summary,'span',info.charmLabel);charm.className='build-result-charm';
-   const empty=text(summary,'span',`빈 슬롯: ${info.emptySlots}`);empty.className='build-result-empty';
-   const charmEmpty=text(summary,'span',`호석 빈 슬롯: ${info.charmEmptySlots}`);charmEmpty.className='build-result-charm-empty';
-   entry.append(summary);
-   const card=BuildDetail.render(r,data,i);card.querySelector('h3').textContent=`세팅 ${i+1} · ${info.title} · 장비 상세`;
-   card.querySelector('.game-build-footer').append(window.createBuildSaveForm(()=>SavedBuilds.snapshot(r,data,$('buildMode').value),`세팅 ${i+1} · ${info.title}`));
-   entry.append(card);container.append(entry);
+   text(summary,'span',r.weapon.name).className='build-result-weapon';
+   const count=state.group.charmVariantCount??state.variants.length,ownedCount=state.group.charmOwnedCount??state.variants.filter(v=>v.charmOwned).length;
+   text(summary,'span',r.charm||count>1?`확인한 호석 후보 ${count}개 · 보유 후보 ${ownedCount}개${state.group.charmVariantsTruncated?` · ${state.variants.length}개 표시`:''}`:'호석 사용 안 함').className='build-result-charm-count';
+   state.extra=document.createElement('span');state.extra.className='build-result-extras';summary.append(state.extra);
+   state.charm=text(summary,'span','');state.charm.className='build-result-charm';state.empty=text(summary,'span','');state.empty.className='build-result-empty';state.charmEmpty=text(summary,'span','');state.charmEmpty.className='build-result-charm-empty';entry.append(summary);
+   if(state.variants.length>1||state.group.charmVariantsTruncated){const panel=document.createElement('section');panel.className='build-charm-variants';text(panel,'h3','호석 가능한 경우');const label=text(panel,'label','호석 후보 선택'),select=document.createElement('select');select.className='build-charm-select';select.setAttribute('aria-label',`세팅 ${i+1} 호석 후보 선택`);
+    state.variants.forEach((variant,n)=>{const detail=BuildResultSummary.describe(variant,data),charm=variant.charm;option(select,n,`${variant.charmOwned?'보유 · ':charm?'미보유 · ':''}${detail.charmLabel.replace(/^보유 호석 · /,'')}${charm?` · 슬롯 무기 ${charm.weaponSlots.join('/')||'없음'} / 방어구 ${charm.armorSlots.join('/')||'없음'}`:''}`);});label.append(select);panel.append(label);
+    const note=text(panel,'p',state.group.charmVariantsTruncated?`확인한 대표 후보 ${count}개 중 ${state.variants.length}개 표시 · 미보유 후보는 최대 200개 표시하며 확인된 보유 후보를 함께 포함합니다.`:'탐색에서 확인한 대표 호석 후보입니다. 보유 후보를 먼저 표시하며 목표·슬롯이 동등한 미보유 후보는 대표 구성으로 합칩니다.');note.className='hint';
+    select.addEventListener('change',()=>{state.active=Number(select.value);updateSummaries();renderDetail(state,i);});entry.append(panel);
+   }
+   renderDetail(state,i);container.append(entry);
   });
-  const limits={'result-limit':'대표 결과 20개 도달','time-limit':'60초 제한','node-limit':'탐색량 200만 회 제한'};
-  $('buildStatus').textContent=`${result.results.length}개 조합 · ${result.partial?`${limits[result.reason]||'제한'}으로 중단. 전체 탐색을 마치지 않았습니다.`:'지원 데이터 범위 검색 완료.'}${!result.results.length?' 조건을 낮추거나 호석 모드를 바꿔 보세요.':''}${result.excludedCharms?` 장비 데이터와 스킬이 맞지 않는 호석 후보 ${result.excludedCharms}건 제외.`:''}`;
+  updateSummaries();
+  const limits={'result-limit':'대표 방어구 구성 20개 도달','time-limit':'60초 제한','node-limit':'탐색량 200만 회 제한'};
+  $('buildStatus').textContent=`${states.length}개 방어구 구성 · ${result.partial?`${limits[result.reason]||'제한'}으로 중단. 전체 탐색을 마치지 않았습니다.`:'지원 데이터 범위 검색 완료.'}${!states.length?' 조건을 낮추거나 호석 모드를 바꿔 보세요.':''}${result.excludedCharms?` 장비 데이터와 스킬이 맞지 않는 호석 후보 ${result.excludedCharms}건 제외.`:''}`;
  }
 
  dialog.addEventListener('page-enter',async()=>{if(data||loading)return;loading=true;$('buildStatus').textContent='장비 데이터를 불러오는 중…';try{const files=await Promise.all(['data/equipment-snapshot.json','data/skill-categories.json'].map(async url=>{const response=await fetch(url);if(!response.ok)throw Error('검색 데이터 요청 실패');return response.json();}));[data,categories]=files;data.weaponOnlySkillIds ||= data.skills.filter(s=>s.kind==='weapon'&&![...data.armor,...data.decorations].some(a=>a.skills[s.id])).map(s=>s.id);for(const [id,kind]of [['buildWeaponSeries','set'],['buildWeaponGroup','group']])for(const skill of data.skills.filter(s=>s.kind===kind).sort((a,b)=>a.name.localeCompare(b.name,'ko')))option($(id),skill.id,`${skill.name} · ${skill.ranks.map(r=>r.name).join(' / ')}`);$('buildSource').textContent=`MHDB 데이터 반영: ${data.apiImportVersion} · 게임 버전 미확인`;for(const [key,value]of Object.entries(types))option($('buildType'),key,value);$('buildType').value='long-sword';weapons();renderSkillMenu();restoreDraft();restoring=false;$('buildReset').disabled=false;$('buildStart').disabled=false;$('buildStatus').textContent='목표 스킬을 선택하고 검색하세요.';}catch(e){$('buildError').textContent=e.message;}finally{loading=false;}});

@@ -346,3 +346,9 @@ nav{background:#35392a}
 .build-result-armor-abbr { display:inline-block; white-space:nowrap; }
 
 .limit-break-field { max-width:340px; }
+
+.build-result-charm-count { display:block; margin-top:8px; color:var(--accent); font-size:14px; font-weight:700; }
+.build-charm-variants { padding:16px; background:var(--surface); border-bottom:1px solid var(--line); }
+.build-charm-variants h3 { margin:0 0 12px; }
+.build-charm-variants label { display:grid; gap:8px; }
+.build-charm-select { width:100%; min-width:0; }

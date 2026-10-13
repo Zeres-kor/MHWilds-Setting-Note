@@ -6,7 +6,7 @@
   "sourceSha256": "c99031509c07e0bcbeadc89cf145de604cd0b13a0bcf8dc58e2dcbd85d477bc3",
   "identitySourceUrl": "https://wilds.mhdb.io/ja/armor",
   "identitySourceSha256": "7464735dd3a23613a871184065517d8079068b764ca329e2bc877c18316b7d82",
-  "scope": "Slots only. Defense upgrades are not included.",
+  "scope": "Slots and maximum armor defense after limit break.",
   "armor": [
     {
       "id": 418,
@@ -4563,5 +4563,23 @@
         1
       ]
     }
-  ]
+  ],
+  "defensePolicy": {
+    "sourceUrl": "https://gamewith.jp/mhwilds/487360",
+    "sourceSha256": "76f35330c199cd3c81c73bdce0f120ddf7f9facc46d66ae65a23ef773e6fbf0a",
+    "retrievedAt": "2026-10-13T04:20:31.567724+00:00",
+    "normalMaxLevel": {
+      "5": 20,
+      "6": 16,
+      "7": 11,
+      "8": 10
+    },
+    "limitBreakMaxLevel": {
+      "5": 28,
+      "6": 22,
+      "7": 16,
+      "8": 14
+    },
+    "defensePerUpgradeLevel": 2
+  }
 }
