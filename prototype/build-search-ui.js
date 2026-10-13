@@ -50,11 +50,11 @@
  function render(result){
   const container=$('buildResults');container.replaceChildren();
   const states=result.results.map(group=>({group,variants:group.charmVariants?.length?group.charmVariants:[group],active:0}));
-  if(states.length){const guide=text(container,'p','같은 방어구 구성은 한 카드로 묶었습니다. 호석 후보를 선택하면 장식주 배치·추가 스킬·빈 슬롯·저장 내용이 바뀝니다. 후보는 이번 탐색에서 확인한 대표 구성입니다. 제목은 머리→상의→팔→허리→다리 약어 순서이며, 추가 스킬의 ‘차이’는 결과마다 다른 항목입니다.');guide.className='hint build-result-guide';}
+  if(states.length){const guide=text(container,'p','같은 방어구 구성은 한 카드로 묶었습니다. 호석 후보를 선택하면 장식주 배치·추가 스킬·빈 슬롯·저장 내용이 바뀝니다. 후보는 이번 탐색에서 확인한 대표 구성입니다. 제목은 머리→상의→팔→허리→다리 약어 순서입니다.');guide.className='hint build-result-guide';}
   function activeResult(state){return state.variants[state.active];}
-  function updateSummaries(){const summaries=BuildResultSummary.compare(states.map(activeResult),data);states.forEach((state,i)=>{
-   const info=summaries[i],r=activeResult(state);state.overview.replaceChildren(BuildOverview.render(SavedBuilds.snapshot(r,data,$('buildMode').value),{additional:info.additional}));
-  });}
+  function updateSummaries(){const focused=document.activeElement;const summaries=BuildResultSummary.compare(states.map(activeResult),data);states.forEach((state,i)=>{
+   const info=summaries[i],r=activeResult(state);state.overview.replaceChildren(BuildOverview.render(SavedBuilds.snapshot(r,data,$('buildMode').value),{additional:info.additional,charmControls:state.controls}));
+  });if(focused?.isConnected)focused.focus({preventScroll:true});}
   function renderDetail(state,i){state.card?.remove();const r=activeResult(state),info=BuildResultSummary.describe(r,data),card=BuildDetail.render(r,data,i);card.querySelector('h3').textContent=`세팅 ${i+1} · ${info.title} · 장비 상세`;card.querySelector('.game-build-footer').append(window.createBuildSaveForm(()=>({...SavedBuilds.snapshot(activeResult(state),data,$('buildMode').value),candidates:state.variants.map(v=>SavedBuilds.snapshot(v,data,$('buildMode').value))}),`세팅 ${i+1} · ${info.title}`));state.card=card;state.details.append(card);}
   states.forEach((state,i)=>{
    const r=activeResult(state),info=BuildResultSummary.describe(r,data),entry=document.createElement('article');state.entry=entry;entry.className='build-result-entry';
@@ -65,7 +65,7 @@
    const count=state.group.charmVariantCount??state.variants.length,ownedCount=state.group.charmOwnedCount??state.variants.filter(v=>v.charmOwned).length;
    text(summary,'span',r.charm||count>1?`확인한 호석 후보 ${count}개 · 보유 후보 ${ownedCount}개${state.group.charmVariantsTruncated?` · ${state.variants.length}개 표시`:''}`:'호석 사용 안 함').className='build-result-charm-count';
    state.overview=document.createElement('span');state.overview.className='build-overview-wrap';summary.append(state.overview);entry.append(summary);
-   {const controls=CharmCandidates.panel(state.variants.map(v=>({charm:v.charm})),()=>state.active,n=>{state.active=n;updateSummaries();renderDetail(state,i);});if(state.group.charmVariantsTruncated)text(controls,'p',`확인한 후보 ${count}개 중 표시된 ${state.variants.length}개를 저장합니다. 표시되지 않은 후보는 포함되지 않습니다.`).className='hint';entry.append(controls);}
+   {const controls=CharmCandidates.panel(state.variants.map(v=>({charm:v.charm})),()=>state.active,n=>{state.active=n;updateSummaries();renderDetail(state,i);});if(state.group.charmVariantsTruncated)text(controls,'p',`확인한 후보 ${count}개 중 표시된 ${state.variants.length}개를 저장합니다. 표시되지 않은 후보는 포함되지 않습니다.`).className='hint';state.controls=controls;}
    const details=document.createElement('details');details.className='build-result-details';text(details,'summary','장비·장식주 상세');state.details=details;entry.append(details);
    renderDetail(state,i);container.append(entry);
   });
