@@ -75,7 +75,7 @@ const BuildSearch = (() => {
   }
   function search(data, recipeData, request, progress=()=>{}, options={}) {
     validateRequest(data,request);
-    const start=Date.now(), maxMs=options.maxMs??20000, maxNodes=options.maxNodes??200000, maxResults=options.maxResults??20;
+    const start=Date.now(), maxMs=options.maxMs??60000, maxNodes=options.maxNodes??2000000, maxResults=options.maxResults??20;
     const model=new Map(data.skills.map(s=>[s.id,s]));
     const names=new Map(data.skills.map(s=>[s.name,s]));
     const goals=request.goals.map(g=>({...g,skill:model.get(g.id),bonus:['set','group'].includes(model.get(g.id).kind)}));
@@ -92,7 +92,9 @@ const BuildSearch = (() => {
       const pools=PARTS.map(part=>frontier(data.armor.filter(a=>a.part===part&&a.rank==='high').map(projected),timeCheck));
       if(pools.some(p=>!p.length))return {results:[],partial:false,reason:null,nodes,excludedCharms};
       const charmBuckets=new Map();
+      const craftedByKey=new Map((data.craftedCharms||[]).map(c=>[candidatesApi.key(c),c]));
       const addCharm=(record,owned=false,recipeIds=[])=>{
+        if(owned&&craftedByKey.has(candidatesApi.key(record)))record={...record,...craftedByKey.get(candidatesApi.key(record))};
         if(record.skills.some(s=>!names.has(s.name) || s.level>names.get(s.name).maxLevel)) {excludedCharms++;return;}
         const skills=Object.fromEntries(record.skills.map(s=>[names.get(s.name).id,s.level]));
         const candidate={item:record,v:vector({skills,bonuses:[]}),slots:itemCounts(record,true),defense:0,owned,recipeIds};
@@ -102,6 +104,7 @@ const BuildSearch = (() => {
       const empty={skills:[],weaponSlots:[],armorSlots:[],tags:[],memo:''};
       addCharm(empty);
       if(request.charmMode==='all') {
+        for(const record of data.craftedCharms||[])addCharm(record);
         progress({phase:'charms',examined:0});
         for(const entry of candidatesApi.enumerate(recipeData,{skills:[],rarity:0,weaponSlots:[],armorSlots:[]})) {
           if(entry.kind==='progress'){timeCheck();progress({phase:'charms',examined:entry.examined});}
@@ -110,7 +113,7 @@ const BuildSearch = (() => {
       }
       if(request.charmMode!=='none')for(const record of request.records||[]) {
         const match=candidatesApi.matchRecord(recipeData,record);
-        if(request.charmMode==='owned'||match.matches.length)addCharm(record,true,match.matches.map(m=>m.recipeId));
+        if(request.charmMode==='owned'||match.matches.length||craftedByKey.has(candidatesApi.key(record)))addCharm(record,true,match.matches.map(m=>m.recipeId));
       }
       const charms=frontier([...charmBuckets.values()],timeCheck);
       const decorationBuckets=new Map();
@@ -141,7 +144,7 @@ const BuildSearch = (() => {
         const activeBonuses=data.skills.filter(s=>['set','group'].includes(s.kind)).flatMap(s=>{const ranks=s.ranks.filter(r=>r.pieces<=(bonuses[s.id]||0));if(!ranks.length)return [];const rank=ranks.sort((a,b)=>b.level-a.level)[0];return [{name:s.name,effect:rank.name,level:rank.level,pieces:bonuses[s.id]}];});
         const resistances=Object.fromEntries(ELEMENTS.map(e=>[e,selected.reduce((n,a)=>n+(a.item.resistances?.[e]||0),0)]));
         if(resistanceKeys.some(e=>resistances[e]<request.minResistances[e]))throw Error('내성 결과 검증에 실패했습니다.');
-        const charmRarities=[...new Set((recipeData.recipes||[]).filter(r=>charm.recipeIds.includes(r.id)).map(r=>r.rarity))].sort((a,b)=>a-b);
+        const charmRarities=charm.item.category==='crafted'?[charm.item.rarity]:[...new Set((recipeData.recipes||[]).filter(r=>charm.recipeIds.includes(r.id)).map(r=>r.rarity))].sort((a,b)=>a-b);
         return {charmRarities,resistances,minResistances:request.minResistances||{},weapon,armor:selected.map(a=>a.item),charm:charm.item.skills.length?charm.item:null,charmOwned:charm.owned,recipeIds:charm.recipeIds,decorations:placements,achieved,activeBonuses,defense};
       }
       function walk(depth,v,resources,defense,resistances){

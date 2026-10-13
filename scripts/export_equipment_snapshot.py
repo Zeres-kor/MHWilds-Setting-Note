@@ -5,6 +5,7 @@ import json
 import urllib.request
 from pathlib import Path
 from weapon_selection import select_weapons
+from crafted_charms import crafted_charms
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = 'https://wilds.mhdb.io/'
@@ -17,7 +18,7 @@ def download(route):
 version, _ = download('version')
 raw = {}
 hashes = {}
-for kind in ['skills', 'armor', 'weapons', 'decorations']:
+for kind in ['skills', 'armor', 'weapons', 'decorations', 'charms']:
     raw[kind], hashes[kind] = download('ko/' + kind)
 end_version, _ = download('version')
 assert version == end_version, 'API updated during snapshot; retry to capture a consistent import version.'
@@ -69,7 +70,8 @@ result = {'format':'mhwilds-equipment-v1', 'source':'Monster Hunter Wilds DB (MH
           'limitations':['API import timestamp is not the Capcom game version.',
                          'Only crafting tree leaves and Artian base skill/slot configurations are selectable; rolled bonuses are not modeled.',
                          'Decorations are assumed freely available; owned decoration quantities are not modeled.'],
-          'skills':skills, 'armor':armor, 'weapons':weapons, 'decorations':decorations}
+          'skills':skills, 'armor':armor, 'weapons':weapons, 'decorations':decorations,
+          'craftedCharms':crafted_charms(raw['charms'], skills)}
 other_skill_ids = {int(sid) for a in armor + decorations for sid in a['skills']}
 result['weaponOnlySkillIds'] = [s['id'] for s in skills if s['kind'] == 'weapon' and s['id'] not in other_skill_ids]
 output = ROOT / 'prototype/data/equipment-snapshot.json'

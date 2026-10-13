@@ -1,6 +1,6 @@
 'use strict';
 (() => {
-  const routes = {saved:['savedPage','저장 세팅'],inventory:['inventoryPage','보유 호석'],rules:['rulesDialog','태그 기준'],candidates:['candidateDialog','호석 후보 검색'],build:['buildDialog','세팅 검색']};
+  const routes = {manual:['manualPage','직접 세팅'],saved:['savedPage','저장 세팅'],inventory:['inventoryPage','보유 호석'],rules:['rulesDialog','태그 기준'],candidates:['candidateDialog','호석 후보 검색'],build:['buildDialog','세팅 검색']};
   let current = null;
   const header = document.querySelector('header');
   function syncHeaderHeight() {
