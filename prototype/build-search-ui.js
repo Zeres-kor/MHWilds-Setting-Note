@@ -54,7 +54,7 @@
   result.results.forEach((r,i)=>{
    const info=summaries[i],entry=document.createElement('details');entry.className='build-result-entry';
    const summary=document.createElement('summary'),heading=document.createElement('span');heading.className='build-result-heading';
-   const title=text(heading,'strong','');text(title,'span',`세팅 ${i+1} · `);info.armor.forEach((a,n)=>{const abbr=text(title,'span',`${n?'·':''}${BuildResultSummary.abbreviation(a.name)}`);abbr.className='build-result-armor-abbr';abbr.title=`${parts[a.part]}: ${a.name}`;});title.title=info.armor.map(a=>`${parts[a.part]}: ${a.name}`).join(' / ');title.setAttribute('aria-label',`세팅 ${i+1} · ${title.title}`);
+   const title=text(heading,'strong','');text(title,'span',`세팅 ${i+1} · `);info.armor.forEach((a,n)=>{const abbr=text(title,'span',`${n?'·':''}${info.abbreviations[n]}`);abbr.className='build-result-armor-abbr';abbr.title=`${parts[a.part]}: ${a.name}`;});title.title=info.armor.map(a=>`${parts[a.part]}: ${a.name}`).join(' / ');title.setAttribute('aria-label',`세팅 ${i+1} · ${title.title}`);
    text(heading,'span',`방어력 ${r.defense}`);summary.append(heading);
    const weapon=text(summary,'span',r.weapon.name);weapon.className='build-result-weapon';
    const extra=document.createElement('span');extra.className='build-result-extras';text(extra,'span','추가 스킬').className='build-result-label';
