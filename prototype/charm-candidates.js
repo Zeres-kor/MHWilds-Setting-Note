@@ -4,7 +4,7 @@ const CharmCandidates=(()=>{
  const owned=c=>!!c&&CandidateContext.get().records.some(r=>key(r)===key(c));
  const wished=c=>!!c&&CharmWishlistStore.get().some(r=>key(r)===key(c));
  const text=(p,tag,value)=>{const e=document.createElement(tag);e.textContent=value;p.append(e);return e;};
- const label=c=>c?`${c.name?c.name+' · ':''}${c.skills.map(s=>`${s.name} Lv.${s.level}`).join(' / ')} · 무기 ${c.weaponSlots.join('/')||'없음'} / 방어구 ${c.armorSlots.join('/')||'없음'}`:'호석 사용 안 함';
+ const label=c=>c?`${c.name?c.name+' · ':''}${c.skills.map(s=>`${s.name} Lv.${s.level}`).join(' / ')} · 무기 ${c.weaponSlots.map(n=>'Lv'+n).join('/')||'없음'} / 방어구 ${c.armorSlots.map(n=>'Lv'+n).join('/')||'없음'}`:'호석 사용 안 함';
  function toggle(c){if(!c)return false;return CharmWishlistStore.set(wished(c)?CharmWishlistStore.get().filter(r=>key(r)!==key(c)):[...CharmWishlistStore.get(),c]);}
  function panel(candidates,getActive,onChange,id=''){
   const root=document.createElement('section');root.className='build-charm-variants';text(root,'h3',`호석 후보 · ${candidates.length}개`);

@@ -20,12 +20,13 @@ const BuildOverview=(()=>{
   const weapon=node('span','overview-weapon');weapon.append(node('span','overview-label','무기'),node('span','',info.weapon.name),node('span','overview-status',info.limitBreak===undefined?'한계돌파 미기록':info.limitBreak?(info.limitBreakDefense===undefined?'한계돌파 슬롯 ON':'한계돌파 ON'):'한계돌파 OFF'));root.append(weapon);
   const gear=node('span','overview-equipment');gear.setAttribute('role','group');gear.setAttribute('aria-label','부위별 장비');
   for(const a of info.armor){const cell=node('span','overview-gear-cell');cell.append(node('span','overview-part',a.label),node('span','overview-gear-name',a.name));gear.append(cell);}
-  const charm=node('span','overview-gear-cell overview-charm');charm.append(node('span','overview-part','호석'));
+  const charm=node('span','overview-gear-cell overview-charm'),header=node('span','overview-charm-header');header.append(node('span','overview-part','호석'));charm.append(header);
   if(info.charm){
-   if(options.ownership!==undefined||info.ownership!==null)charm.append(node('span','overview-owned'+((options.ownership??info.ownership)?' is-owned':''),((options.ownership??info.ownership)?'보유':'미보유')));
+   if(options.ownership!==undefined||info.ownership!==null)header.append(node('span','overview-owned'+((options.ownership??info.ownership)?' is-owned':''),((options.ownership??info.ownership)?'보유':'미보유')));
    if(info.charm.name)charm.append(node('span','overview-gear-name',info.charm.name));
    const skills=node('span','overview-charm-skills',info.charm.skills.map(s=>`${s.name} Lv.${s.level}`).join(' / '));charm.append(skills);
-   charm.append(node('span','overview-charm-slots',`무기 ${info.charm.weaponSlots.join('/')||'없음'} · 방어구 ${info.charm.armorSlots.join('/')||'없음'}`));
+   const charmSlots=node('span','overview-charm-slots');
+   for(const kind of ['weapon','armor']){const sizes=info.charm[kind+'Slots'],group=node('span','overview-charm-slot-kind');group.setAttribute('aria-label',`${kind==='weapon'?'무기':'방어구'} 슬롯 ${sizes.map(n=>'레벨 '+n).join(', ')||'없음'}`);group.append(BuildDetail.icon(kind==='weapon'?(snapshot.detail?.equipment.find(a=>a.part==='weapon')?.kind||'great-sword'):'chest'),node('span','',sizes.map(n=>'Lv'+n).join('·')||'없음'));charmSlots.append(group);}header.append(charmSlots);
   }else charm.append(node('span','overview-gear-name','사용 안 함'));
   gear.append(charm);root.append(gear);
   const numbers=node('span','overview-numbers'),stats=node('span','overview-stats');stats.setAttribute('role','group');stats.setAttribute('aria-label','방어력과 기본 내성');
@@ -33,7 +34,7 @@ const BuildOverview=(()=>{
   for(const [icon,label,value]of values){const cell=node('span','overview-stat');cell.append(BuildDetail.icon(icon,icon==='shield'?'gold':icon),node('span','overview-stat-label',label),node('strong',value<0?'is-negative':'',value===undefined?'미기록':icon==='shield'?String(value):`${value>0?'+':''}${value}`));stats.append(cell);}numbers.append(stats);
   const slots=node('span','overview-empty-slots');slots.setAttribute('role','group');slots.setAttribute('aria-label','빈 장식주 슬롯 · 호석 포함');
   slots.append(node('span','overview-label','빈 슬롯'));
-  for(const kind of ['weapon','armor']){const group=node('span','overview-slot-kind');group.append(node('span','overview-slot-label',kind==='weapon'?'무기':'방어구'));for(const size of [3,2,1]){const count=info.empty[kind][size-1],cell=node('span','overview-slot-count'+(!count?' is-zero':''));cell.setAttribute('aria-label',`${kind==='weapon'?'무기':'방어구'} 레벨 ${size} 빈 슬롯 ${count}개`);cell.append(BuildDetail.gem({kind,size,decoration:null}),node('span','',`×${count}`));group.append(cell);}slots.append(group);}numbers.append(slots);root.append(numbers);
+  for(const kind of ['weapon','armor']){const group=node('span','overview-slot-kind');const slotLabel=node('span','overview-slot-label');slotLabel.append(BuildDetail.icon(kind==='weapon'?(snapshot.detail?.equipment.find(a=>a.part==='weapon')?.kind||'great-sword'):'chest'),node('span','',kind==='weapon'?'무기':'방어구'));group.append(slotLabel);for(const size of [3,2,1]){const count=info.empty[kind][size-1],cell=node('span','overview-slot-count'+(!count?' is-zero':''));cell.setAttribute('aria-label',`${kind==='weapon'?'무기':'방어구'} 레벨 ${size} 빈 슬롯 ${count}개`);const gem=BuildDetail.gem({kind,size,decoration:null});gem.querySelector('.game-gem-size').textContent='Lv'+size;cell.append(gem,node('span','',`×${count}`));group.append(cell);}slots.append(group);}numbers.append(slots);root.append(numbers);
   const skillRow=node('span','overview-skills'),items=options.additional|| (options.saved?info.allSkills:info.additional);skillRow.append(node('span','overview-label',options.saved?'장비 스킬':'추가 스킬'));
   if(!items.length)skillRow.append(node('span','overview-none','없음'));
   for(const skill of items){const chip=node('span','overview-skill'+(skill.different?' is-different':''));if(skill.different)chip.append(node('small','','차이'));if(options.saved&&skill.target)chip.append(node('small','','목표'));chip.append(node('span','',skill.label));skillRow.append(chip);}root.append(skillRow);
