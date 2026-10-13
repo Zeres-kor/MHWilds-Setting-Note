@@ -41,7 +41,7 @@ const BuildOverview=(()=>{
   return root;
  }
  function header(){const root=node('div','setting-column-header');root.setAttribute('aria-label','장비 열 제목');for(const label of ['세팅',...parts.map(p=>p[1]),'호석'])root.append(node('span','',label));return root;}
- function bindRow(row,details){const button=row.querySelector('.overview-set-name');const sync=()=>button?.setAttribute('aria-expanded',String(details.open));if(button){button.addEventListener('click',()=>{details.open=!details.open;sync();});sync();}row.addEventListener('click',event=>{if(event.target.closest('button,select,input,textarea,label,a,details')||String(window.getSelection()).trim())return;details.open=!details.open;sync();});details.addEventListener('toggle',sync);}
+ function bindRow(row,details){const button=row.querySelector('.overview-set-name');const sync=()=>button?.setAttribute('aria-expanded',String(details.open));if(button){button.addEventListener('click',()=>{details.open=!details.open;sync();});sync();}row.addEventListener('click',event=>{if(event.target.closest('button,select,input,textarea,label,a,details,.build-charm-variants')||String(window.getSelection()).trim())return;details.open=!details.open;sync();});details.addEventListener('toggle',sync);}
  return {parts,elements,model,render,header,bindRow};
 })();
 if(typeof module!=='undefined')module.exports=BuildOverview;
