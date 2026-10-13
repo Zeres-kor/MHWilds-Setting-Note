@@ -79,7 +79,7 @@
    const details=document.createElement('details');details.className='build-result-details';text(details,'summary','장비·장식주 상세');state.details=details;entry.append(details);
    renderDetail(state,i);container.append(entry);
   });
-  updateSummaries();
+  updateSummaries();BuildOverview.fitColumns(container);
   const limits={'result-limit':'대표 방어구 구성 20개 도달','time-limit':'60초 제한','node-limit':'탐색량 200만 회 제한'};
   $('buildStatus').textContent=`${states.length}개 방어구 구성 · ${result.partial?`${limits[result.reason]||'제한'}으로 중단. 전체 탐색을 마치지 않았습니다.`:'지원 데이터 범위 검색 완료.'}${!states.length?' 조건을 낮추거나 호석 모드를 바꿔 보세요.':''}${result.excludedCharms?` 장비 데이터와 스킬이 맞지 않는 호석 후보 ${result.excludedCharms}건 제외.`:''}`;
  }

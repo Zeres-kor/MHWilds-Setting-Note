@@ -535,6 +535,7 @@ $('importApply').onclick = () => {
 };
 
 function renderRuleList() {
+  if(window.RuleEditor){window.RuleEditor.renderList();return;}
   $('rulesCurrent').textContent = '기준 버전 ' + rulesVersion + ' · 현재 기준 ' + rules.length + '개 · 활성 ' + rules.filter(rule => rule.active).length + '개';
   $('rulesList').replaceChildren();
   for (const rule of rules.slice(0, 30)) {
@@ -658,3 +659,5 @@ window.CandidateContext = {get: () => ({records, rules, inventoryVersion, rulesV
 window.SavedBuildStore = {get:()=>savedBuilds, folders:()=>savedFolders, set:(next,folders=savedFolders)=>commit(records,rules,false,next,folders)};
 
 window.CharmWishlistStore = {get:()=>charmWishlist,set:next=>commit(records,rules,false,savedBuilds,savedFolders,next)};
+
+window.RuleStore={get:()=>rules,impact:impactCount,set:(next,expected)=>{if(JSON.stringify(rules)!==expected)throw Error('다른 작업에서 기준이 변경됐습니다. 다시 불러와 미리보기를 확인하세요.');clearPreview();uploadedRules=null;return commit(records,next);}};
