@@ -2,7 +2,7 @@
 const BuildResultSummary=(()=>{
  const snapshots=typeof module!=='undefined'?require('./saved-builds.js'):SavedBuilds;
  const parts=['head','chest','arms','waist','legs'];
- const preferred={푸른:'푸른',퀸:'퀸',이그:'이',오메:'오'};
+ const preferred={푸른:'푸른',퀸:'퀸',이그:'이',오메:'오',레다:'레',다하:'다'};
  const familyKey=name=>{const compact=name.replace(/\s/g,'');return compact.startsWith('퀸')?'퀸':compact.startsWith('본')?'본':letters(name).slice(0,2).join('');};
  const letters=name=>Array.from(name.replace(/\s/g,'').replace(/[αβγ]$/u,''));
  function abbreviationMap(armor){
