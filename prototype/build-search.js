@@ -1,5 +1,6 @@
 'use strict';
 const BuildSearch = (() => {
+  const limitBreakApi=typeof module!=='undefined'?require('./armor-limit-break.js'):ArmorLimitBreak;
   const weaponBonusesApi = typeof module !== 'undefined' ? require('./weapon-bonuses.js') : WeaponBonuses;
   const candidatesApi = typeof module !== 'undefined' ? require('./talisman-candidates.js') : TalismanCandidates;
   const ELEMENTS=['fire','water','thunder','ice','dragon'];
@@ -35,6 +36,7 @@ const BuildSearch = (() => {
       seen.add(goal.id);
       if(['set','group'].includes(skill.kind) && !skill.ranks.some(r=>r.level===goal.level && Number.isInteger(r.pieces) && r.pieces>0))throw Error('세트 효과의 필요 부위 수를 확인하지 못했습니다.');
     }
+    limitBreakApi.enabled(request);
     const weapon=data.weapons.find(w=>w.id===request.weaponId);
     if(!weapon)throw Error('검색할 무기를 선택하세요.');
     weaponBonusesApi.selected(data,weapon,request);
@@ -89,7 +91,7 @@ const BuildSearch = (() => {
     const timeCheck=()=>{if(Date.now()-start>maxMs)stop('time-limit');};
     const step=()=>{nodes++;if(nodes>maxNodes)stop('node-limit');if(nodes%500===0){timeCheck();if(nodes%5000===0)progress({phase:'equipment',nodes,results:results.length});}};
     try {
-      const pools=PARTS.map(part=>frontier(data.armor.filter(a=>a.part===part&&a.rank==='high').map(projected),timeCheck));
+      const pools=PARTS.map(part=>frontier(data.armor.filter(a=>a.part===part&&a.rank==='high').map(a=>limitBreakApi.apply(a,limitBreakApi.enabled(request))).map(projected),timeCheck));
       if(pools.some(p=>!p.length))return {results:[],partial:false,reason:null,nodes,excludedCharms};
       const charmBuckets=new Map();
       const craftedByKey=new Map((data.craftedCharms||[]).map(c=>[candidatesApi.key(c),c]));
@@ -147,7 +149,7 @@ const BuildSearch = (() => {
         const resistances=Object.fromEntries(ELEMENTS.map(e=>[e,selected.reduce((n,a)=>n+(a.item.resistances?.[e]||0),0)]));
         if(resistanceKeys.some(e=>resistances[e]<request.minResistances[e]))throw Error('내성 결과 검증에 실패했습니다.');
         const charmRarities=charm.item.category==='crafted'?[charm.item.rarity]:[...new Set((recipeData.recipes||[]).filter(r=>charm.recipeIds.includes(r.id)).map(r=>r.rarity))].sort((a,b)=>a-b);
-        return {charmRarities,resistances,minResistances:request.minResistances||{},weapon,armor:selected.map(a=>a.item),charm:charm.item.skills.length?charm.item:null,charmOwned:charm.owned,recipeIds:charm.recipeIds,decorations:placements,achieved,activeBonuses,defense};
+        return {armorLimitBreak:limitBreakApi.enabled(request),charmRarities,resistances,minResistances:request.minResistances||{},weapon,armor:selected.map(a=>a.item),charm:charm.item.skills.length?charm.item:null,charmOwned:charm.owned,recipeIds:charm.recipeIds,decorations:placements,achieved,activeBonuses,defense};
       }
       function walk(depth,v,resources,defense,resistances){
         step();

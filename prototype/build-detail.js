@@ -17,7 +17,7 @@ const BuildDetail = (() => {
     const charm=snapshot.charm?{...snapshot.charm,rarities:meta?.charmRarities||[],owned:meta?meta.charmOwned:snapshot.mode==='owned',weaponSlots:slots('talisman','weapon',snapshot.charm.weaponSlots),armorSlots:slots('talisman','armor',snapshot.charm.armorSlots)}:null;
     const skills=snapshot.skills.map(s=>({...s,...meta?.skills.find(x=>x.name===s.name),target:snapshot.goals.some(g=>g.name===s.name)})).sort((a,b)=>Number(b.target)-Number(a.target)||b.level-a.level||(a.id||0)-(b.id||0));
     const bonuses=(meta?.bonuses||[]).map(b=>({...b,contributors:equipment.filter(a=>b.parts.includes(a.part)),pieces:b.parts.length,ranks:b.ranks.map(r=>({...r,active:b.parts.length>=r.pieces}))}));
-    return {equipment,charm,skills,bonuses,legacyBonuses:meta?[]:snapshot.bonuses,weaponBonuses:snapshot.weaponBonuses||[],defense:snapshot.defense,resistances:snapshot.resistances};
+    return {...(snapshot.armorLimitBreak===undefined?{}:{armorLimitBreak:snapshot.armorLimitBreak}),equipment,charm,skills,bonuses,legacyBonuses:meta?[]:snapshot.bonuses,weaponBonuses:snapshot.weaponBonuses||[],defense:snapshot.defense,resistances:snapshot.resistances};
   }
   const paths = {
     head:'M7 23V13L11 6H21L25 13V23H20V16H12V23ZM9 12H23M16 6V12M12 23H20',
@@ -84,7 +84,7 @@ const BuildDetail = (() => {
   function renderSaved(snapshot,name){return renderModel(savedModel(snapshot),`${name} · 장비 상세`);}
   function renderModel(info,name){
     const card=el('article','build-card game-build-card');
-    const heading=el('div','game-build-heading');heading.append(el('h3','',name),el('span','game-heading-note','상위 · 최대 강화 기준'));card.append(heading);
+    const heading=el('div','game-build-heading');heading.append(el('h3','',name),el('span','game-heading-note',`상위 · ${info.armorLimitBreak===undefined?'':`한계돌파 슬롯 ${info.armorLimitBreak?'ON':'OFF'} · `}최대 강화 기준`));card.append(heading);
     const layout=el('div','game-loadout-layout'),left=el('div','game-loadout-left');
     const equipment=el('section','game-panel game-equipment-panel');equipment.setAttribute('aria-label','무기·방어구와 장식주');const headers=el('div','game-pair-head');headers.append(title('무기·방어구'),title('장식주'));equipment.append(headers);
     for(const item of info.equipment){const row=el('div','game-equipment-row');row.dataset.part=item.part;const gear=el('div','game-gear');gear.append(icon(item.part==='weapon'?item.kind:item.part,gearTone(item.rarity)));const names=el('div','game-gear-names');const caption=el('div','game-gear-caption');caption.append(el('span','game-gear-part',item.label),el('span','game-rarity',item.rarity?`RARE ${item.rarity}`:'RARE 미확인'));names.append(caption,el('strong','game-gear-name',item.name));const miniature=el('div','game-gear-slots');for(const slot of item.slots)miniature.append(gem(slot));names.append(miniature);const details=el('details','game-native-skills');details.append(el('summary','',item.nativeRecorded?`기본 스킬 ${item.nativeSkills.length+item.nativeBonuses.length}`:'기본 스킬 미기록'));const intrinsic=el('ul');for(const s of item.nativeSkills)intrinsic.append(el('li','',`${s.name} Lv.${s.level}`));for(const s of item.nativeBonuses)intrinsic.append(el('li','game-native-bonus',`${s.kind==='set'?'시리즈':'그룹'} · ${s.name} (1부위)`));if(!intrinsic.children.length)intrinsic.append(el('li','',item.nativeRecorded?'기본 스킬 없음':'저장 당시 기본 스킬 정보가 기록되지 않았습니다.'));details.append(intrinsic,el('p','game-native-note','장식주 효과 제외'));names.append(details);gear.append(names);row.append(gear,slotList(item.slots));equipment.append(row);}

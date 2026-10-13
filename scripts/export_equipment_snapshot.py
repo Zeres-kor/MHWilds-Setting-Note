@@ -6,6 +6,7 @@ import urllib.request
 from pathlib import Path
 from weapon_selection import select_weapons
 from crafted_charms import crafted_charms
+from armor_limit_break import attach_limit_break
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = 'https://wilds.mhdb.io/'
@@ -51,6 +52,8 @@ def slots(a):
     return values
 armor = [{'id':a['id'], 'name':a['name'], 'part':a['kind'], 'rank':a['rank'], 'rarity':a['rarity'],
           'slots':slots(a), 'defense':a['defense']['max'], 'resistances':a['resistances'], **abilities(a['skills'])} for a in raw['armor']]
+limit_break = json.loads((ROOT / 'inputs/armor-limit-break-slots.json').read_text())
+attach_limit_break(armor, limit_break)
 # Artian rows are series-less in this API snapshot. Keep skill/slot-equivalent variants once.
 selected_weapons = select_weapons(raw['weapons'])
 weapons = [{'id':entry['weapon']['id'], 'name':entry['weapon']['name'],
@@ -63,7 +66,8 @@ decorations = [{'id':a['id'], 'name':a['name'], 'kind':a['kind'], 'slot':a['slot
 assert all(a['part'] in ['head','chest','arms','waist','legs'] for a in armor)
 assert all(a['kind'] in ['weapon','armor'] and 1 <= a['slot'] <= 3 and not a['bonuses'] for a in decorations)
 result = {'format':'mhwilds-equipment-v1', 'source':'Monster Hunter Wilds DB (MHDB)',
-          'sourceUrl':'https://docs.wilds.mhdb.io', 'apiImportVersion':version['version'],
+          'sourceUrl':'https://docs.wilds.mhdb.io',
+          'armorLimitBreakSource':{k:v for k,v in limit_break.items() if k not in ['format','armor']}, 'apiImportVersion':version['version'],
           'excludedSkills':excluded_skills, 'gameVersion':None, 'retrievedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
           'sourceUrls':{kind:BASE+'ko/'+kind for kind in raw}, 'sourceSha256':hashes,
           'excludedWeapons':len(raw['weapons'])-len(weapons),

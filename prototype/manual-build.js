@@ -1,15 +1,17 @@
 'use strict';
 const ManualBuild = (() => {
+  const limitBreakApi=typeof module!=='undefined'?require('./armor-limit-break.js'):ArmorLimitBreak;
   const bonusesApi=typeof module!=='undefined'?require('./weapon-bonuses.js'):WeaponBonuses;
   const parts=['head','chest','arms','waist','legs'], elements=['fire','water','thunder','ice','dragon'];
   function compose(data, request) {
+    const on=limitBreakApi.enabled(request);
     const base=data.weapons.find(w=>w.id===request.weaponId);
     if(!base)throw Error('무기를 선택하세요.');
     const weapon=bonusesApi.apply(data,base,request);
     const armor=parts.map(part=>{
       const item=data.armor.find(a=>a.id===request.armorIds?.[part]&&a.part===part&&a.rank==='high');
       if(!item)throw Error('방어구 다섯 부위를 모두 선택하세요.');
-      return item;
+      return limitBreakApi.apply(item,on);
     });
     const charm=request.charm||null;
     if(charm){
@@ -31,7 +33,7 @@ const ManualBuild = (() => {
       const rank=s.ranks.filter(r=>r.pieces<= (counts[s.id]||0)).sort((a,b)=>b.level-a.level)[0];
       return rank?[{name:s.name,effect:rank.name,level:rank.level,pieces:counts[s.id]}]:[];
     });
-    return {weapon,armor,charm,charmOwned:request.charmOwned===true,charmRarities:charm?.rarity?[charm.rarity]:[],recipeIds:[],decorations,achieved:[],activeBonuses,
+    return {armorLimitBreak:on,weapon,armor,charm,charmOwned:request.charmOwned===true,charmRarities:charm?.rarity?[charm.rarity]:[],recipeIds:[],decorations,achieved:[],activeBonuses,
       defense:(weapon.defenseBonus||0)+armor.reduce((n,a)=>n+a.defense,0),
       resistances:Object.fromEntries(elements.map(e=>[e,armor.reduce((n,a)=>n+(a.resistances?.[e]||0),0)])),minResistances:{}};
   }

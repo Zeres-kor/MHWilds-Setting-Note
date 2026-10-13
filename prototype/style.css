@@ -344,3 +344,5 @@ nav{background:#35392a}
 .build-result-skill small { font-size:12px; font-weight:700; }
 
 .build-result-armor-abbr { display:inline-block; white-space:nowrap; }
+
+.limit-break-field { max-width:340px; }
