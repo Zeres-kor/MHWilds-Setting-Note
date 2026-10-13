@@ -55,10 +55,10 @@
   function updateSummaries(){const summaries=BuildResultSummary.compare(states.map(activeResult),data);states.forEach((state,i)=>{
    const info=summaries[i],r=activeResult(state);state.overview.replaceChildren(BuildOverview.render(SavedBuilds.snapshot(r,data,$('buildMode').value),{additional:info.additional}));
   });}
-  function renderDetail(state,i){state.card?.remove();const r=activeResult(state),info=BuildResultSummary.describe(r,data),card=BuildDetail.render(r,data,i);card.querySelector('h3').textContent=`세팅 ${i+1} · ${info.title} · 장비 상세`;card.querySelector('.game-build-footer').append(window.createBuildSaveForm(()=>({...SavedBuilds.snapshot(activeResult(state),data,$('buildMode').value),candidates:state.variants.map(v=>SavedBuilds.snapshot(v,data,$('buildMode').value))}),`세팅 ${i+1} · ${info.title}`));state.card=card;state.entry.append(card);}
+  function renderDetail(state,i){state.card?.remove();const r=activeResult(state),info=BuildResultSummary.describe(r,data),card=BuildDetail.render(r,data,i);card.querySelector('h3').textContent=`세팅 ${i+1} · ${info.title} · 장비 상세`;card.querySelector('.game-build-footer').append(window.createBuildSaveForm(()=>({...SavedBuilds.snapshot(activeResult(state),data,$('buildMode').value),candidates:state.variants.map(v=>SavedBuilds.snapshot(v,data,$('buildMode').value))}),`세팅 ${i+1} · ${info.title}`));state.card=card;state.details.append(card);}
   states.forEach((state,i)=>{
-   const r=activeResult(state),info=BuildResultSummary.describe(r,data),entry=document.createElement('details');state.entry=entry;entry.className='build-result-entry';
-   const summary=document.createElement('summary'),heading=document.createElement('span');heading.className='build-result-heading';
+   const r=activeResult(state),info=BuildResultSummary.describe(r,data),entry=document.createElement('article');state.entry=entry;entry.className='build-result-entry';
+   const summary=document.createElement('div');summary.className='build-result-summary';const heading=document.createElement('span');heading.className='build-result-heading';
    const title=text(heading,'strong','');text(title,'span',`세팅 ${i+1} · `);info.armor.forEach((a,n)=>{const abbr=text(title,'span',`${n?'·':''}${info.abbreviations[n]}`);abbr.className='build-result-armor-abbr';abbr.title=`${parts[a.part]}: ${a.name}`;});title.title=info.armor.map(a=>`${parts[a.part]}: ${a.name}`).join(' / ');title.setAttribute('aria-label',`세팅 ${i+1} · ${title.title}`);
    summary.append(heading);
 
@@ -66,6 +66,7 @@
    text(summary,'span',r.charm||count>1?`확인한 호석 후보 ${count}개 · 보유 후보 ${ownedCount}개${state.group.charmVariantsTruncated?` · ${state.variants.length}개 표시`:''}`:'호석 사용 안 함').className='build-result-charm-count';
    state.overview=document.createElement('span');state.overview.className='build-overview-wrap';summary.append(state.overview);entry.append(summary);
    {const controls=CharmCandidates.panel(state.variants.map(v=>({charm:v.charm})),()=>state.active,n=>{state.active=n;updateSummaries();renderDetail(state,i);});if(state.group.charmVariantsTruncated)text(controls,'p',`확인한 후보 ${count}개 중 표시된 ${state.variants.length}개를 저장합니다. 표시되지 않은 후보는 포함되지 않습니다.`).className='hint';entry.append(controls);}
+   const details=document.createElement('details');details.className='build-result-details';text(details,'summary','장비·장식주 상세');state.details=details;entry.append(details);
    renderDetail(state,i);container.append(entry);
   });
   updateSummaries();
