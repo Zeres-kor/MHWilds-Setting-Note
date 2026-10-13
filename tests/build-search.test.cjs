@@ -29,3 +29,16 @@ test('제작 호석 스냅샷은 고유 강화 단계와 지원 스킬만 포함
  const d=require('../prototype/data/equipment-snapshot.json');assert.equal(d.craftedCharms.length,182);assert.equal(new Set(d.craftedCharms.map(c=>c.id)).size,182);
  for(const c of d.craftedCharms){assert.equal(c.category,'crafted');assert.ok(c.name);assert.ok(c.rarity>0);assert.deepEqual(c.weaponSlots,[]);assert.deepEqual(c.armorSlots,[]);for(const s of c.skills)assert.ok(d.skills.some(x=>x.name===s.name&&s.level<=x.maxLevel));}
 });
+test('규칙·제작 범위는 서로의 후보와 보유 호석이 섞이지 않는다',()=>{
+ const d=fixture();d.weapons[0].slots=[];d.decorations=[];
+ const crafted={id:91,name:'공격의 호석Ⅲ',category:'crafted',rarity:7,skills:[{name:'공격',level:3}],weaponSlots:[],armorSlots:[]};
+ const random={skills:[{name:'방어',level:3}],weaponSlots:[],armorSlots:[]};d.craftedCharms=[crafted];
+ const recipes={groups:{1:random.skills},recipes:[{id:1,rarity:8,groups:[1],slots:[{weaponSlots:[],armorSlots:[]}]}]};
+ for(const records of [[],[crafted,random]]){
+  const q=request([{id:1,level:3}],{records});
+  assert.equal(B.search(d,recipes,{...q,charmMode:'rules'}).results.length,0);
+  const result=B.search(d,recipes,{...q,charmMode:'crafted'}).results[0];assert.equal(result.charm.category,'crafted');assert.deepEqual(result.charmRarities,[7]);
+  const defense={...q,goals:[{id:2,level:3}]};assert.equal(B.search(d,recipes,{...defense,charmMode:'crafted'}).results.length,0);
+  const rule=B.search(d,recipes,{...defense,charmMode:'rules'}).results[0];assert.ok(rule);assert.notEqual(rule.charm.category,'crafted');assert.deepEqual(rule.charmRarities,[8]);
+ }
+});

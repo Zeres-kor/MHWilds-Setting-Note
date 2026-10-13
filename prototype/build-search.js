@@ -38,7 +38,7 @@ const BuildSearch = (() => {
     const weapon=data.weapons.find(w=>w.id===request.weaponId);
     if(!weapon)throw Error('검색할 무기를 선택하세요.');
     weaponBonusesApi.selected(data,weapon,request);
-    if(!['all','owned','none'].includes(request.charmMode))throw Error('호석 모드를 확인하세요.');
+    if(!['all','rules','crafted','owned','none'].includes(request.charmMode))throw Error('호석 모드를 확인하세요.');
     if(request.minResistances!==undefined){if(!request.minResistances||typeof request.minResistances!=='object'||Array.isArray(request.minResistances))throw Error('내성 조건을 확인하세요.');for(const[key,n]of Object.entries(request.minResistances))if(!ELEMENTS.includes(key)||(n!==null&&(!Number.isInteger(n)||n < -25||n > 25)))throw Error('최소 내성은 -25~25 정수로 입력하세요.');}
     if(!Number.isInteger(request.minDefense) || request.minDefense<0 || request.minDefense>2000)throw Error('최소 방어력은 0~2000 정수로 입력하세요.');
     return request;
@@ -94,7 +94,7 @@ const BuildSearch = (() => {
       const charmBuckets=new Map();
       const craftedByKey=new Map((data.craftedCharms||[]).map(c=>[candidatesApi.key(c),c]));
       const addCharm=(record,owned=false,recipeIds=[])=>{
-        if(owned&&craftedByKey.has(candidatesApi.key(record)))record={...record,...craftedByKey.get(candidatesApi.key(record))};
+        if(owned&&request.charmMode!=='rules'&&craftedByKey.has(candidatesApi.key(record)))record={...record,...craftedByKey.get(candidatesApi.key(record))};
         if(record.skills.some(s=>!names.has(s.name) || s.level>names.get(s.name).maxLevel)) {excludedCharms++;return;}
         const skills=Object.fromEntries(record.skills.map(s=>[names.get(s.name).id,s.level]));
         const candidate={item:record,v:vector({skills,bonuses:[]}),slots:itemCounts(record,true),defense:0,owned,recipeIds};
@@ -103,8 +103,8 @@ const BuildSearch = (() => {
       };
       const empty={skills:[],weaponSlots:[],armorSlots:[],tags:[],memo:''};
       addCharm(empty);
-      if(request.charmMode==='all') {
-        for(const record of data.craftedCharms||[])addCharm(record);
+      if(['all','crafted'].includes(request.charmMode))for(const record of data.craftedCharms||[])addCharm(record);
+      if(['all','rules'].includes(request.charmMode)) {
         progress({phase:'charms',examined:0});
         for(const entry of candidatesApi.enumerate(recipeData,{skills:[],rarity:0,weaponSlots:[],armorSlots:[]})) {
           if(entry.kind==='progress'){timeCheck();progress({phase:'charms',examined:entry.examined});}
@@ -113,7 +113,9 @@ const BuildSearch = (() => {
       }
       if(request.charmMode!=='none')for(const record of request.records||[]) {
         const match=candidatesApi.matchRecord(recipeData,record);
-        if(request.charmMode==='owned'||match.matches.length||craftedByKey.has(candidatesApi.key(record)))addCharm(record,true,match.matches.map(m=>m.recipeId));
+        const crafted=craftedByKey.has(candidatesApi.key(record));
+        const eligible=request.charmMode==='owned'||request.charmMode==='all'&&(match.matches.length||crafted)||request.charmMode==='rules'&&match.matches.length||request.charmMode==='crafted'&&crafted;
+        if(eligible)addCharm(record,true,request.charmMode==='crafted'?[]:match.matches.map(m=>m.recipeId));
       }
       const charms=frontier([...charmBuckets.values()],timeCheck);
       const decorationBuckets=new Map();
