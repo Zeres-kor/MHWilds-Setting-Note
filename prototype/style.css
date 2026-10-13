@@ -352,3 +352,51 @@ nav{background:#35392a}
 .build-charm-variants h3 { margin:0 0 12px; }
 .build-charm-variants label { display:grid; gap:8px; }
 .build-charm-select { width:100%; min-width:0; }
+
+/* Shared search/saved overview: equipment first, then comparable numbers and skills. */
+.build-overview-wrap, .build-overview { display:block; min-width:0; }
+.build-overview { margin-top:12px; font-size:14px; }
+.overview-weapon { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px; color:var(--muted); }
+.overview-label { font-weight:700; color:var(--muted); white-space:nowrap; }
+.overview-equipment { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)) minmax(220px,1.8fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.overview-gear-cell { display:flex; flex-direction:column; gap:6px; min-width:0; padding:10px; border-right:1px solid var(--line); }
+.overview-gear-cell:last-child { border-right:0; }
+.overview-part { font-weight:700; color:var(--accent); }
+.overview-gear-name, .overview-charm-skills, .overview-charm-slots { overflow-wrap:anywhere; }
+.overview-charm-slots { font-size:12px; color:var(--muted); }
+.overview-owned { align-self:flex-start; font-size:12px; color:var(--muted); }
+.overview-owned.is-owned { color:var(--accent); font-weight:700; }
+.overview-numbers { display:flex; flex-wrap:wrap; gap:10px 24px; padding:10px 0; border-bottom:1px solid var(--line); }
+.overview-stats { display:flex; flex-wrap:wrap; gap:8px 16px; }
+.overview-stat { display:inline-flex; align-items:center; gap:5px; font-variant-numeric:tabular-nums; }
+.overview-stat .game-icon { width:21px; height:23px; background:none; border:0; box-shadow:none; }
+.overview-stat .game-icon svg { width:19px; height:21px; }
+.overview-stat-label { font-size:12px; color:var(--muted); }
+.overview-stat strong { font-size:15px; font-weight:600; }
+.overview-stat strong.is-negative { color:var(--danger); }
+.overview-empty-slots, .overview-slot-kind { display:inline-flex; align-items:center; flex-wrap:wrap; gap:7px; }
+.overview-empty-slots { gap:10px 16px; }
+.overview-slot-label { color:var(--muted); font-size:12px; }
+.overview-slot-count { display:inline-flex; align-items:center; gap:3px; font-variant-numeric:tabular-nums; }
+.overview-slot-count.is-zero { color:var(--muted); }
+.overview-slot-count .game-gem { width:21px; height:23px; }
+.overview-slot-count.is-zero .game-gem { opacity:.4; }
+.overview-skills { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; padding-top:10px; line-height:1.6; }
+.overview-skill { display:inline-flex; align-items:baseline; flex-wrap:wrap; gap:5px; }
+.overview-skill.is-different { color:var(--accent); }
+.overview-skill small { font-size:11px; color:var(--muted); border:1px solid var(--line); padding:0 3px; border-radius:2px; }
+.overview-skill.is-different small { border-color:var(--accent); color:var(--accent); }
+.saved-overview-heading { display:flex; justify-content:space-between; gap:8px 16px; flex-wrap:wrap; align-items:baseline; }
+.saved-overview-heading h2 { margin:0; font-size:18px; }
+.saved-overview-heading>span, .saved-overview-date { font-size:12px; color:var(--muted); }
+.saved-edit-panel { margin-top:10px; }
+.saved-edit-panel>summary { cursor:pointer; min-height:40px; padding:8px 0; color:var(--accent); }
+.saved-edit-panel>summary:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+@media(max-width:1150px){.overview-equipment{grid-template-columns:repeat(3,minmax(0,1fr))}.overview-gear-cell{border-bottom:1px solid var(--line)}.overview-gear-cell:nth-child(3n){border-right:0}.overview-gear-cell:nth-child(n+4){border-bottom:0}}
+@media(max-width:600px){.overview-equipment{grid-template-columns:repeat(2,minmax(0,1fr))}.overview-gear-cell:nth-child(3n){border-right:1px solid var(--line)}.overview-gear-cell:nth-child(2n){border-right:0}.overview-gear-cell:nth-child(n+4){border-bottom:1px solid var(--line)}.overview-gear-cell:nth-child(n+5){border-bottom:0}.overview-numbers{gap:12px}.overview-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}.overview-stat{justify-content:space-between}.overview-slot-kind{flex-wrap:nowrap}.overview-empty-slots{gap:8px}.overview-gear-cell{padding:8px}.overview-skills{gap:5px 10px}}
+.saved-card { background:var(--surface); }
+.saved-card .compare-choice { flex-direction:row; justify-content:flex-start; min-height:32px; gap:8px; }
+.saved-card>.saved-build-detail { margin-top:8px; }
+.saved-build-detail>summary { cursor:pointer; min-height:32px; padding:4px 0; }
+.saved-build-detail>summary:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.overview-status { margin-left:auto; font-size:12px; color:var(--muted); }

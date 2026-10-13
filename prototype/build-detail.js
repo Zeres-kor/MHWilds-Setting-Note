@@ -97,6 +97,6 @@ const BuildDetail = (() => {
     if(info.weaponBonuses?.length){const bonuses=el('div','game-weapon-bonuses');bonuses.append(el('h5','game-subtitle','무기 부여 스킬'));for(const b of info.weaponBonuses)bonuses.append(el('p','',`${b.name} · 1부위`));stats.append(bonuses);}right.append(stats);layout.append(right);card.append(layout);
     const footer=el('div','game-build-footer');footer.append(el('span','game-muted','장식주 아이콘 숫자 = 슬롯 레벨 · 빈 슬롯은 테두리로 표시'));card.append(footer);return card;
   }
-  return {model,savedModel,render,renderSaved};
+  return {model,savedModel,render,renderSaved,icon,gem};
 })();
 if(typeof module!=='undefined')module.exports=BuildDetail;
