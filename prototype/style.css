@@ -333,3 +333,14 @@ nav{background:#35392a}
 .manual-form select, .manual-form input { width:100%; min-width:0; }
 .manual-bonus-fields { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:16px; }
 .manual-equipment .hint { overflow-wrap:anywhere; }
+
+.build-result-guide { margin:16px 0; }
+.build-result-weapon, .build-result-charm, .build-result-empty, .build-result-charm-empty { display:block; margin-top:8px; font-size:14px; overflow-wrap:anywhere; }
+.build-result-weapon, .build-result-charm-empty { color:var(--muted); }
+.build-result-extras { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:10px; font-size:14px; }
+.build-result-label { font-weight:700; margin-right:4px; }
+.build-result-skill { display:inline-flex; align-items:baseline; flex-wrap:wrap; gap:6px; padding:3px 8px; border:1px solid var(--line); border-radius:3px; }
+.build-result-skill.is-different { color:var(--accent); border-color:var(--accent); }
+.build-result-skill small { font-size:12px; font-weight:700; }
+
+.build-result-armor-abbr { display:inline-block; white-space:nowrap; }
