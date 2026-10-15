@@ -136,3 +136,18 @@
 .game-charm-skill .game-skill-symbol{width:20px;height:22px;margin-right:4px}
 .skill-menu-item>.game-skill-symbol{flex:none;min-width:0;width:22px;height:24px;margin-right:0}
 .game-charm-skill>span:not(.game-skill-symbol){flex:1;min-width:0}
+
+/* Larger icons across detail panels and compact summaries. */
+.game-icon,.game-gear>.game-icon{width:42px;height:45px;flex:none}
+.game-icon svg{width:85%;height:85%}
+.game-skill-row .game-icon,.game-bonus-name .game-icon,.game-skill-symbol{width:36px;height:39px}
+.game-skill-row .game-icon svg,.game-bonus-name .game-icon svg{width:85%;height:85%}
+.game-contributors .game-icon{width:30px;height:32px}
+.game-contributors .game-icon svg{width:85%;height:85%}
+.game-stat-row .game-icon{width:30px;height:33px}
+.game-stat-row .game-icon svg{width:85%;height:85%}
+.game-charm-skill .game-skill-symbol{width:30px;height:33px}
+.skill-menu-item>.game-skill-symbol{width:33px;height:36px}
+.overview-gear-name .game-icon{width:28px;height:30px}
+.overview-stat .game-icon,.overview-charm-slot-kind .game-icon,.overview-slot-label .game-icon{width:28px;height:30px;flex:none}
+.overview-stat .game-icon svg,.overview-gear-name .game-icon svg,.overview-charm-slot-kind .game-icon svg,.overview-slot-label .game-icon svg{width:85%;height:85%}

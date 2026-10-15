@@ -53,7 +53,7 @@ const BuildDetail = (() => {
   function el(tag,cls,value){const node=document.createElement(tag);if(cls)node.className=cls;if(value!==undefined)node.textContent=value;return node;}
   function icon(name,tone='gold',rarity,useTexture=true){
     const wrap=el('span',`game-icon game-tone-${tone}`);wrap.setAttribute('aria-hidden','true');
-    const source=useTexture&&assets.equipment(name,rarity);if(source){wrap.classList.add('has-game-texture');const image=el('img');image.src=source;image.alt='';image.width=32;image.height=32;image.addEventListener('error',()=>{wrap.replaceWith(icon('shield',tone));},{once:true});wrap.append(image);return wrap;}
+    const source=useTexture&&(assets.equipment(name,rarity)||assets.stat(name));if(source){wrap.classList.add('has-game-texture');const image=el('img');image.src=source;image.alt='';image.width=32;image.height=32;image.addEventListener('error',()=>{wrap.replaceWith(icon(name,tone,rarity,false));},{once:true});wrap.append(image);return wrap;}
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 32 32');svg.setAttribute('focusable','false');
     const path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d',paths[name]||paths.shield);svg.append(path);wrap.append(svg);return wrap;
   }

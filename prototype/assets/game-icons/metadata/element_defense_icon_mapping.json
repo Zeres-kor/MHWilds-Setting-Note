@@ -1,0 +1,209 @@
+[
+  {
+    "name": "fire",
+    "name_ko": "불",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 0,
+    "file": "elements_status/fire.png"
+  },
+  {
+    "name": "water",
+    "name_ko": "물",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 1,
+    "file": "elements_status/water.png"
+  },
+  {
+    "name": "thunder",
+    "name_ko": "번개",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 2,
+    "file": "elements_status/thunder.png"
+  },
+  {
+    "name": "ice",
+    "name_ko": "얼음",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 3,
+    "file": "elements_status/ice.png"
+  },
+  {
+    "name": "dragon",
+    "name_ko": "용",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 4,
+    "file": "elements_status/dragon.png"
+  },
+  {
+    "name": "poison",
+    "name_ko": "독",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 5,
+    "file": "elements_status/poison.png"
+  },
+  {
+    "name": "frenzy",
+    "name_ko": "광룡증",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 6,
+    "file": "elements_status/frenzy.png"
+  },
+  {
+    "name": "paralysis",
+    "name_ko": "마비",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 7,
+    "file": "elements_status/paralysis.png"
+  },
+  {
+    "name": "stun",
+    "name_ko": "기절",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 8,
+    "file": "elements_status/stun.png"
+  },
+  {
+    "name": "sleep",
+    "name_ko": "수면",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 9,
+    "file": "elements_status/sleep.png"
+  },
+  {
+    "name": "blast",
+    "name_ko": "폭파",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 10,
+    "file": "elements_status/blast.png"
+  },
+  {
+    "name": "bleeding",
+    "name_ko": "열상",
+    "category": "element_or_status",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 0,
+    "col": 11,
+    "file": "elements_status/bleeding.png"
+  },
+  {
+    "name": "res_fire_1",
+    "name_ko": "불 내성 상승 1",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 8,
+    "file": "elements_status/res_fire_1.png"
+  },
+  {
+    "name": "res_fire_2",
+    "name_ko": "불 내성 상승 2",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 9,
+    "file": "elements_status/res_fire_2.png"
+  },
+  {
+    "name": "res_water_1",
+    "name_ko": "물 내성 상승 1",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 10,
+    "file": "elements_status/res_water_1.png"
+  },
+  {
+    "name": "res_water_2",
+    "name_ko": "물 내성 상승 2",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 11,
+    "file": "elements_status/res_water_2.png"
+  },
+  {
+    "name": "res_thunder_1",
+    "name_ko": "번개 내성 상승 1",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 12,
+    "file": "elements_status/res_thunder_1.png"
+  },
+  {
+    "name": "res_thunder_2",
+    "name_ko": "번개 내성 상승 2",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 13,
+    "file": "elements_status/res_thunder_2.png"
+  },
+  {
+    "name": "res_ice_1",
+    "name_ko": "얼음 내성 상승 1",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 14,
+    "file": "elements_status/res_ice_1.png"
+  },
+  {
+    "name": "res_ice_2",
+    "name_ko": "얼음 내성 상승 2",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 15,
+    "file": "elements_status/res_ice_2.png"
+  },
+  {
+    "name": "res_dragon_1",
+    "name_ko": "용 내성 상승 1",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 16,
+    "file": "elements_status/res_dragon_1.png"
+  },
+  {
+    "name": "res_dragon_2",
+    "name_ko": "용 내성 상승 2",
+    "category": "resistance",
+    "atlas": "tex000201_2_IMLM4.dds",
+    "row": 2,
+    "col": 17,
+    "file": "elements_status/res_dragon_2.png"
+  },
+  {
+    "name": "defense_skill",
+    "name_ko": "방어 스킬",
+    "category": "skill_symbol",
+    "atlas": "tex000201_1_IMLM4.dds",
+    "row": 7,
+    "col": 5,
+    "file": "defense/defense_skill.png"
+  }
+]
