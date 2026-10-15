@@ -6,7 +6,7 @@ const GameIcons = (() => {
   function equipment(name,rarity){
     const key=({chest:'body','sword-shield':'sword_shield'})[name]||name.replaceAll('-','_');
     if(!["legs", "light_bowgun", "head", "talisman", "great_sword", "bow", "waist", "charge_blade", "long_sword", "lance", "arms", "sword_shield", "hunting_horn", "heavy_bowgun", "dual_blades", "gunlance", "hammer", "insect_glaive", "body", "switch_axe"].includes(key))return null;
-    return base+(key!=='talisman'&&Number.isInteger(rarity)&&rarity>=1&&rarity<=12
+    return base+(key!=='talisman'&&Number.isInteger(rarity)&&rarity>=1&&rarity<=8
       ?`equipment_rarity/rare_${String(rarity).padStart(2,'0')}_${key}.png`
       :`equipment_framed/${key}.png`);
   }

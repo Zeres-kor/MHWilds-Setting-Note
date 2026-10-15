@@ -4,3 +4,5 @@ test('요약의 방어구 순서·방어력·음수 내성은 저장 스냅샷 �
 test('빈 슬롯은 같은 번호라도 호석/장비와 무기/방어구를 구분해 센다',()=>{const m=O.model(fixture());assert.deepEqual(m.empty.weapon,[1,0,1]);assert.deepEqual(m.empty.armor,[2,0,0]);});
 test('검색 추가 스킬은 목표 초과 레벨이고 저장 목록은 전체 스킬·효과를 보존한다',()=>{const m=O.model(fixture());assert.equal(m.additional.find(s=>s.name==='납도술').label,'납도술 +2 (총 Lv.3)');assert.equal(m.additional.find(s=>s.name==='정비').label,'정비 Lv.2');assert.equal(m.allSkills.find(s=>s.name==='납도술').label,'납도술 Lv.3');assert.equal(m.allSkills.find(s=>s.name==='납도술').target,true);assert.ok(m.allSkills.some(s=>s.label==='시리즈 · 발동'));});
 test('이전 저장의 내성·보유 여부 누락은 임의로 0이나 미보유로 만들지 않는다',()=>{const b=fixture();b.resistances=null;b.detail=null;b.charm=null;const m=O.model(b);assert.equal(m.resistances,null);assert.equal(m.ownership,null);assert.equal(m.charm,null);assert.deepEqual(m.empty.armor,[1,0,0]);});
+
+test('요약 아이콘은 실제 장비 레어도를 보존하고 미기록 레어도는 추정하지 않는다',()=>{const b=fixture();b.detail.equipment=[{part:'head',rarity:8},{part:'chest',rarity:7}];const m=O.model(b);assert.equal(m.armor[0].rarity,8);assert.equal(m.armor[1].rarity,7);assert.equal(m.armor[2].rarity,undefined);});
