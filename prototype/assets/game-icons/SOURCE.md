@@ -1,20 +1,36 @@
-# Monster Hunter Wilds 아이콘 재생성 묶음
+# Monster Hunter Wilds 아이콘 자료 v4
 
-클라우드 채팅의 생성 절차를 로컬에서 재실행한 결과입니다. 원본 DDS와 UV 좌표로부터 구성했습니다.
+사용자가 제공한 게임 추출 ZIP과 이 PC의 게임 PAK에서 읽은 원본을 사용했습니다.
 
-- `decorations_framed`: 장식주 361개 기본 조합
-- `slot_combinations_preview`: 장식주 레벨과 슬롯 크기의 유효 조합
-- `equipment_framed`: 무기 14종, 방어구 5종, 호석 1종
-- `equipment_rarity`: 무기 14종과 방어구 5종 × 레어도 1~8. 각 레어도는 팔레트 22~29에 대응합니다.
-- `rarity-comparison.png`: 레어도별 아이콘 비교
-- `equipment`, `skills`, `badges`, `components`, `frames`: 원본 텍스처 크롭
-- `index.html`: 오프라인 검색과 슬롯 크기 선택
-- `metadata`: 좌표, 색상표, 조합 목록, 검증 결과
-- `metadata/skill_color_summary.csv`: 스킬별 장식주 색상 요약. 한 스킬에 여러 색이 있을 수 있습니다.
-- `metadata/skill_decoration_colors.csv`: 장식주별 스킬과 색상 상세표
-- `metadata/skill_icon_mapping.csv`: 스킬 179개와 `symbol_00`~`symbol_13`의 대응표
-- `metadata/skill_symbol_summary.csv`: 심볼별 전체 스킬 목록
+- `talismans/rarity_01.png` ~ `rarity_08.png`: 호석 레어도 1~8 PNG. 원본 흑백 호석 심볼 1개와 게임 레어도 팔레트를 조합했습니다. 레어도별로 별도 채색된 원본 텍스처 8개가 있는 것으로 확인된 것은 아닙니다. `talismans/framed`에는 틀을 포함한 버전도 있습니다.
+- `empty_slots/weapon_slot_1.png` ~ `weapon_slot_3.png`, `armor_slot_1.png` ~ `armor_slot_3.png`: 원본 UV 부품과 전용 슬롯 틀을 조합한 빈 슬롯 6개. 장식주 본체를 그리지 않은 상태입니다. PNG 크기는 100×92이며 투명 여백이 있습니다.
+- `defense/defense_stat.png`: 방어 스테이터스의 방어력 아이콘 원본. `defense_skill.png`의 팔각형 스킬 배지와 다른 이미지입니다. GUI에서 UV 시퀀스 0, 패턴 4를 참조하는 것을 확인했습니다.
+- `metadata/app_asset_map.json`: 앱에서 사용할 위 세 항목의 경로 매핑.
+- `missing-assets-comparison.png`: 추가한 자료 비교.
+- `decorations_framed`: 장식주 361개. 슬롯 용량과 같은 크기의 기본 조합.
+- `slot_combinations_preview`: 장식주 레벨과 슬롯 용량의 유효 조합 583개. 이번 버전부터 실제 `tex_Deco01~03` 이미지와 전용 슬롯 틀을 사용합니다.
+- `slot_layers`: 원본 부품, 채널 마스크, 외곽선 9조각, GUI 정의로 조합한 틀.
+- `equipment`, `equipment_framed`, `equipment_rarity`: 장비 원본 심볼과 틀/레어도 조합. 레어도 1~8만 포함합니다.
+- `elements_status`: 속성과 상태이상 아이콘. 상승 아이콘은 제외했습니다.
+- `skills`, `metadata`: 스킬 심볼과 색상/스킬/UV 대응 자료.
+- `index.html`: 장식주 검색과 슬롯 크기별 미리보기.
 
-3슬롯의 삼각형은 사용자 인게임 관찰에 따라 1레벨: 가운데, 2레벨: 왼쪽과 오른쪽, 3레벨: 모두 채웁니다. 나머지 최종 배치와 명암은 게임 런타임의 픽셀 결과와 대조되지 않은 시안입니다. 레어도 1~8와 팔레트 22~29의 대응은 kvasszn/mhwilds-data의 wilds/colors.py에 기록된 게임 열거형 표를 사용했고, 색상값은 사용자가 제공한 게임 파일에서 읽었습니다. 호석에는 레어도 색상을 적용하지 않았습니다. 스킬명과 심볼 대응은 mhdb-wilds-data의 Skill.json에 있는 게임 원본 _SkillIconType 번호를 사용합니다. 아이콘 번호 1~14가 텍스처의 연속된 14칸과 대응한다고 해석했으며, 스킬 예시와 모양은 대조했지만 모든 게임 화면에서 픽셀 검증한 것은 아닙니다. 장식주 이름과 ID, 스킬 연결은 공개 mhdb-wilds-data의 Accessory.json과 Skill.json입니다.
+## 요청하신 누락 자료 반영표
 
-사이트 수록용: 사용자 요청으로 RARE 9~12 이미지 및 대응표 행을 제거했습니다.
+| 필요한 자료 | v4 반영 결과 | 확인 범위 |
+| --- | --- | --- |
+| 레어도별 호석 아이콘 | 레어도 1~8 PNG 8개 및 틀 포함 버전 | 원본 흑백 호석 심볼과 게임 팔레트로 조합. 레어도별 별도 채색 텍스처 8개는 확인되지 않음 |
+| 빈 슬롯 아이콘 | 무기·방어구 각각 1·2·3슬롯, 총 6 PNG | 전용 슬롯 테두리와 원본 UV 부품 조합. 런타임 삼각형 상태와 간격은 추가 확인 필요 |
+| 방어 스테이터스의 방어력 아이콘 | 실제 방어력 방패 PNG 추가 | GUI에서 원본 UV 대응 확인. 방어 스킬 배지와 다른 이미지 |
+
+## 원본에서 확인된 차이
+
+슬롯 외곽선은 `ui080001.gui.850041`의 `PNL_SlotBase -> PNL_SetSlot -> s9g_line`이 참조하는 `uvs080000` 시퀀스 2, 패턴 9~17의 9분할 테두리입니다. 이전 v3에서 사용한 `uvs009900`의 일반 아이콘 틀과 다릅니다.
+
+스킬 배지의 방어 심볼과 스테이터스 방어력 심볼은 별도 UV와 텍스처를 사용합니다.
+
+## 검증 범위
+
+방어력 심볼은 원본 픽셀과 GUI 대응을 확인했습니다. 호석 레어도 PNG는 게임 심볼과 게임 팔레트 조합이며, 게임 재질의 최종 명암 효과까지 같다고 검증된 것은 아닙니다. 슬롯은 원본 조각과 GUI 좌표를 기준으로 조합했습니다. GUI에 저장된 작은 삼각형 기본 패턴 25는 현재 텍스처에서 빈 영역이며, 이미지가 있는 패턴 26을 사용했습니다. 이 선택과 2슬롯 삼각형 간격은 런타임 상태 값의 확인이 남아 있습니다. 따라서 전체 슬롯 조합을 인게임과 픽셀 단위로 일치하는 결과로 표시하지 않습니다.
+
+3슬롯에 1레벨 장식주가 들어가면 가운데 삼각형, 2레벨이면 왼쪽과 오른쪽, 3레벨이면 모두 채우는 규칙을 반영했습니다.

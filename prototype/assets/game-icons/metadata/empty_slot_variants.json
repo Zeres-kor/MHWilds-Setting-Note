@@ -1,0 +1,68 @@
+[
+  {
+    "kind": "weapon",
+    "slot_capacity": 1,
+    "badge": "sword",
+    "file": "empty_slots/weapon_slot_1.png",
+    "width": 100,
+    "height": 92,
+    "source_frame": "ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line",
+    "runtime_pixel_verified": false,
+    "triangle_pattern_status": "26_visible_source_mask; saved_GUI_default_25_is_blank"
+  },
+  {
+    "kind": "weapon",
+    "slot_capacity": 2,
+    "badge": "sword",
+    "file": "empty_slots/weapon_slot_2.png",
+    "width": 100,
+    "height": 92,
+    "source_frame": "ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line",
+    "runtime_pixel_verified": false,
+    "triangle_pattern_status": "26_visible_source_mask; saved_GUI_default_25_is_blank"
+  },
+  {
+    "kind": "weapon",
+    "slot_capacity": 3,
+    "badge": "sword",
+    "file": "empty_slots/weapon_slot_3.png",
+    "width": 100,
+    "height": 92,
+    "source_frame": "ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line",
+    "runtime_pixel_verified": false,
+    "triangle_pattern_status": "26_visible_source_mask; saved_GUI_default_25_is_blank"
+  },
+  {
+    "kind": "armor",
+    "slot_capacity": 1,
+    "badge": "helmet",
+    "file": "empty_slots/armor_slot_1.png",
+    "width": 100,
+    "height": 92,
+    "source_frame": "ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line",
+    "runtime_pixel_verified": false,
+    "triangle_pattern_status": "26_visible_source_mask; saved_GUI_default_25_is_blank"
+  },
+  {
+    "kind": "armor",
+    "slot_capacity": 2,
+    "badge": "helmet",
+    "file": "empty_slots/armor_slot_2.png",
+    "width": 100,
+    "height": 92,
+    "source_frame": "ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line",
+    "runtime_pixel_verified": false,
+    "triangle_pattern_status": "26_visible_source_mask; saved_GUI_default_25_is_blank"
+  },
+  {
+    "kind": "armor",
+    "slot_capacity": 3,
+    "badge": "helmet",
+    "file": "empty_slots/armor_slot_3.png",
+    "width": 100,
+    "height": 92,
+    "source_frame": "ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line",
+    "runtime_pixel_verified": false,
+    "triangle_pattern_status": "26_visible_source_mask; saved_GUI_default_25_is_blank"
+  }
+]

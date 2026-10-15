@@ -53,15 +53,13 @@ const BuildDetail = (() => {
   function el(tag,cls,value){const node=document.createElement(tag);if(cls)node.className=cls;if(value!==undefined)node.textContent=value;return node;}
   function icon(name,tone='gold',rarity,useTexture=true){
     const wrap=el('span',`game-icon game-tone-${tone}`);wrap.setAttribute('aria-hidden','true');
-    const rarityColors={"1": "#969696", "2": "#DEDEDE", "3": "#A4C43B", "4": "#47A33F", "5": "#5CAEBB", "6": "#575FD9", "7": "#9272E3", "8": "#C76D46"};
-    if(useTexture&&name==='talisman'&&rarityColors[rarity]){wrap.classList.add('has-game-texture','game-colored-talisman');wrap.style.setProperty('--talisman-color',rarityColors[rarity]);wrap.append(el('span','game-talisman-symbol'));return wrap;}
     const source=useTexture&&(assets.equipment(name,rarity)||assets.stat(name));if(source){wrap.classList.add('has-game-texture');const image=el('img');image.src=source;image.alt='';image.width=32;image.height=32;image.addEventListener('error',()=>{wrap.replaceWith(icon(name,tone,rarity,false));},{once:true});wrap.append(image);return wrap;}
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 32 32');svg.setAttribute('focusable','false');
     const path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d',paths[name]||paths.shield);svg.append(path);wrap.append(svg);return wrap;
   }
-  function gem(slot){
+  function gem(slot,useTexture=true){
     const wrap=el('span',`game-gem ${slot.decoration?'is-filled':'is-empty'} is-${slot.kind}`);wrap.setAttribute('aria-hidden','true');if(slot.tint)wrap.style.setProperty('--gem-color',slot.tint);
-    const source=assets.decoration(slot);if(source){const image=el('img');image.src=source;image.alt='';image.width=32;image.height=32;image.addEventListener('error',()=>{wrap.replaceWith(gem({...slot,decoration:{...slot.decoration,name:''}}));},{once:true});wrap.classList.add('has-game-texture');wrap.append(image);return wrap;}
+    const source=useTexture&&assets.decoration(slot);if(source){const image=el('img');image.src=source;image.alt='';image.width=32;image.height=32;image.addEventListener('error',()=>{wrap.replaceWith(gem(slot,false));},{once:true});wrap.classList.add('has-game-texture');wrap.append(image);return wrap;}
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 32 32');svg.setAttribute('focusable','false');
     const shapes={1:'M10 7H22L26 16L22 24H10L6 16Z',2:'M9 4H23L27 14L23 27H9L5 14Z',3:'M8 3H24L28 12L25 27H7L4 12Z'};
     const outer=document.createElementNS(svg.namespaceURI,'path');outer.setAttribute('d',shapes[slot.size]);svg.append(outer);
@@ -86,7 +84,7 @@ const BuildDetail = (() => {
   function bonusPanel(info,kind){
     const section=el('section',`game-panel game-bonus-section is-${kind}`);section.append(title(kind==='set'?'시리즈 스킬':'그룹 스킬'));
     const bonuses=info.bonuses.filter(s=>s.kind===kind&&s.ranks.some(r=>r.active));if(!bonuses.length)section.append(el('p','game-muted',info.legacyBonuses.length?'이전 저장: 아래 발동 효과 참조':'발동 스킬 없음'));
-    for(const bonus of bonuses){const row=el('div','game-bonus');const heading=el('div','game-bonus-name');heading.append(icon(kind,kind==='set'?'red':'teal'),el('strong','',bonus.name),el('span','game-piece-count',`${bonus.pieces}부위`));row.append(heading);
+    for(const bonus of bonuses){const row=el('div','game-bonus');const heading=el('div','game-bonus-name');heading.append(skillSymbol(bonus),el('strong','',bonus.name),el('span','game-piece-count',`${bonus.pieces}부위`));row.append(heading);
       const pieces=el('div','game-contributors');pieces.setAttribute('aria-label','기여 장비: '+bonus.contributors.map(c=>c.label).join(', '));
       for(const item of info.equipment){const active=bonus.contributors.some(c=>c.part===item.part);const mark=icon(item.part==='weapon'?item.kind:item.part,active?gearTone(item.rarity):'muted',item.rarity);mark.classList.toggle('is-inactive',!active);mark.title=`${item.label}${active?' · 포함':''}`;pieces.append(mark);}row.append(pieces);
       const ranks=el('ul','game-bonus-ranks');for(const rank of bonus.ranks.filter(r=>r.active).sort((a,b)=>b.level-a.level).slice(0,1)){const li=el('li','is-active');li.append(el('span','game-rank-pieces',String(rank.pieces)),el('span','',rank.name),el('span','game-rank-state','발동'));ranks.append(li);}row.append(ranks);section.append(row);

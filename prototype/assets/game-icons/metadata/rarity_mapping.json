@@ -38,6 +38,13 @@
     "rarity": 1,
     "palette_index": 22,
     "color_hex": "#969696",
+    "equipment": "talisman",
+    "file": "equipment_rarity/rare_01_talisman.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
     "equipment": "sword_shield",
     "file": "equipment_rarity/rare_01_sword_shield.png"
   },
@@ -166,6 +173,13 @@
     "color_hex": "#DEDEDE",
     "equipment": "legs",
     "file": "equipment_rarity/rare_02_legs.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "talisman",
+    "file": "equipment_rarity/rare_02_talisman.png"
   },
   {
     "rarity": 2,
@@ -304,6 +318,13 @@
     "rarity": 3,
     "palette_index": 24,
     "color_hex": "#A4C43B",
+    "equipment": "talisman",
+    "file": "equipment_rarity/rare_03_talisman.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
     "equipment": "sword_shield",
     "file": "equipment_rarity/rare_03_sword_shield.png"
   },
@@ -432,6 +453,13 @@
     "color_hex": "#47A33F",
     "equipment": "legs",
     "file": "equipment_rarity/rare_04_legs.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "talisman",
+    "file": "equipment_rarity/rare_04_talisman.png"
   },
   {
     "rarity": 4,
@@ -570,6 +598,13 @@
     "rarity": 5,
     "palette_index": 26,
     "color_hex": "#5CAEBB",
+    "equipment": "talisman",
+    "file": "equipment_rarity/rare_05_talisman.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
     "equipment": "sword_shield",
     "file": "equipment_rarity/rare_05_sword_shield.png"
   },
@@ -698,6 +733,13 @@
     "color_hex": "#575FD9",
     "equipment": "legs",
     "file": "equipment_rarity/rare_06_legs.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "talisman",
+    "file": "equipment_rarity/rare_06_talisman.png"
   },
   {
     "rarity": 6,
@@ -836,6 +878,13 @@
     "rarity": 7,
     "palette_index": 28,
     "color_hex": "#9272E3",
+    "equipment": "talisman",
+    "file": "equipment_rarity/rare_07_talisman.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
     "equipment": "sword_shield",
     "file": "equipment_rarity/rare_07_sword_shield.png"
   },
@@ -964,6 +1013,13 @@
     "color_hex": "#C76D46",
     "equipment": "legs",
     "file": "equipment_rarity/rare_08_legs.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "talisman",
+    "file": "equipment_rarity/rare_08_talisman.png"
   },
   {
     "rarity": 8,

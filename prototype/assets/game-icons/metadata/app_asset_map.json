@@ -1,0 +1,33 @@
+{
+  "version": 4,
+  "talisman_rarity": {
+    "1": "talismans/rarity_01.png",
+    "2": "talismans/rarity_02.png",
+    "3": "talismans/rarity_03.png",
+    "4": "talismans/rarity_04.png",
+    "5": "talismans/rarity_05.png",
+    "6": "talismans/rarity_06.png",
+    "7": "talismans/rarity_07.png",
+    "8": "talismans/rarity_08.png"
+  },
+  "empty_slots": {
+    "weapon": {
+      "1": "empty_slots/weapon_slot_1.png",
+      "2": "empty_slots/weapon_slot_2.png",
+      "3": "empty_slots/weapon_slot_3.png"
+    },
+    "armor": {
+      "1": "empty_slots/armor_slot_1.png",
+      "2": "empty_slots/armor_slot_2.png",
+      "3": "empty_slots/armor_slot_3.png"
+    }
+  },
+  "defense_stat": "defense/defense_stat.png",
+  "defense_skill": "defense/defense_skill.png",
+  "slot_canvas": [
+    100,
+    92
+  ],
+  "source_frame": "uvs080000 sequence 2 patterns 9..17",
+  "runtime_pixel_match_verified": false
+}

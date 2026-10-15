@@ -150,5 +150,3 @@
 .overview-stat .game-icon,.overview-charm-slot-kind .game-icon,.overview-slot-label .game-icon{width:28px;height:30px;flex:none}
 .overview-stat .game-icon svg,.overview-gear-name .game-icon svg,.overview-charm-slot-kind .game-icon svg,.overview-slot-label .game-icon svg{width:85%;height:85%}
 
-.game-colored-talisman{position:relative;background:url('assets/game-icons/talisman-frame.png') center/contain no-repeat!important}
-.game-talisman-symbol{display:block;width:80%;height:80%;background:var(--talisman-color);mask:url('assets/game-icons/talisman-symbol.png') center/contain no-repeat;-webkit-mask:url('assets/game-icons/talisman-symbol.png') center/contain no-repeat}

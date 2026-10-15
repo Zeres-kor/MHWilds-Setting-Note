@@ -1,0 +1,170 @@
+[
+  {
+    "rarity": 1,
+    "file": "talismans/rarity_01.png",
+    "framed_file": "talismans/framed/rarity_01.png",
+    "color_hex": "#969696",
+    "palette_index": 22,
+    "atlas": "tex000201_1_IMLM4.dds",
+    "uvs": "uvs000201.uvs.8",
+    "sequence": 1,
+    "pattern": 5,
+    "region": 165,
+    "source_box": [
+      500,
+      1600,
+      600,
+      1700
+    ],
+    "production": "single_monochrome_game_sprite_tinted_with_game_rarity_palette",
+    "separate_baked_rarity_texture_found": false,
+    "runtime_shader_pixel_verified": false
+  },
+  {
+    "rarity": 2,
+    "file": "talismans/rarity_02.png",
+    "framed_file": "talismans/framed/rarity_02.png",
+    "color_hex": "#DEDEDE",
+    "palette_index": 23,
+    "atlas": "tex000201_1_IMLM4.dds",
+    "uvs": "uvs000201.uvs.8",
+    "sequence": 1,
+    "pattern": 5,
+    "region": 165,
+    "source_box": [
+      500,
+      1600,
+      600,
+      1700
+    ],
+    "production": "single_monochrome_game_sprite_tinted_with_game_rarity_palette",
+    "separate_baked_rarity_texture_found": false,
+    "runtime_shader_pixel_verified": false
+  },
+  {
+    "rarity": 3,
+    "file": "talismans/rarity_03.png",
+    "framed_file": "talismans/framed/rarity_03.png",
+    "color_hex": "#A4C43B",
+    "palette_index": 24,
+    "atlas": "tex000201_1_IMLM4.dds",
+    "uvs": "uvs000201.uvs.8",
+    "sequence": 1,
+    "pattern": 5,
+    "region": 165,
+    "source_box": [
+      500,
+      1600,
+      600,
+      1700
+    ],
+    "production": "single_monochrome_game_sprite_tinted_with_game_rarity_palette",
+    "separate_baked_rarity_texture_found": false,
+    "runtime_shader_pixel_verified": false
+  },
+  {
+    "rarity": 4,
+    "file": "talismans/rarity_04.png",
+    "framed_file": "talismans/framed/rarity_04.png",
+    "color_hex": "#47A33F",
+    "palette_index": 25,
+    "atlas": "tex000201_1_IMLM4.dds",
+    "uvs": "uvs000201.uvs.8",
+    "sequence": 1,
+    "pattern": 5,
+    "region": 165,
+    "source_box": [
+      500,
+      1600,
+      600,
+      1700
+    ],
+    "production": "single_monochrome_game_sprite_tinted_with_game_rarity_palette",
+    "separate_baked_rarity_texture_found": false,
+    "runtime_shader_pixel_verified": false
+  },
+  {
+    "rarity": 5,
+    "file": "talismans/rarity_05.png",
+    "framed_file": "talismans/framed/rarity_05.png",
+    "color_hex": "#5CAEBB",
+    "palette_index": 26,
+    "atlas": "tex000201_1_IMLM4.dds",
+    "uvs": "uvs000201.uvs.8",
+    "sequence": 1,
+    "pattern": 5,
+    "region": 165,
+    "source_box": [
+      500,
+      1600,
+      600,
+      1700
+    ],
+    "production": "single_monochrome_game_sprite_tinted_with_game_rarity_palette",
+    "separate_baked_rarity_texture_found": false,
+    "runtime_shader_pixel_verified": false
+  },
+  {
+    "rarity": 6,
+    "file": "talismans/rarity_06.png",
+    "framed_file": "talismans/framed/rarity_06.png",
+    "color_hex": "#575FD9",
+    "palette_index": 27,
+    "atlas": "tex000201_1_IMLM4.dds",
+    "uvs": "uvs000201.uvs.8",
+    "sequence": 1,
+    "pattern": 5,
+    "region": 165,
+    "source_box": [
+      500,
+      1600,
+      600,
+      1700
+    ],
+    "production": "single_monochrome_game_sprite_tinted_with_game_rarity_palette",
+    "separate_baked_rarity_texture_found": false,
+    "runtime_shader_pixel_verified": false
+  },
+  {
+    "rarity": 7,
+    "file": "talismans/rarity_07.png",
+    "framed_file": "talismans/framed/rarity_07.png",
+    "color_hex": "#9272E3",
+    "palette_index": 28,
+    "atlas": "tex000201_1_IMLM4.dds",
+    "uvs": "uvs000201.uvs.8",
+    "sequence": 1,
+    "pattern": 5,
+    "region": 165,
+    "source_box": [
+      500,
+      1600,
+      600,
+      1700
+    ],
+    "production": "single_monochrome_game_sprite_tinted_with_game_rarity_palette",
+    "separate_baked_rarity_texture_found": false,
+    "runtime_shader_pixel_verified": false
+  },
+  {
+    "rarity": 8,
+    "file": "talismans/rarity_08.png",
+    "framed_file": "talismans/framed/rarity_08.png",
+    "color_hex": "#C76D46",
+    "palette_index": 29,
+    "atlas": "tex000201_1_IMLM4.dds",
+    "uvs": "uvs000201.uvs.8",
+    "sequence": 1,
+    "pattern": 5,
+    "region": 165,
+    "source_box": [
+      500,
+      1600,
+      600,
+      1700
+    ],
+    "production": "single_monochrome_game_sprite_tinted_with_game_rarity_palette",
+    "separate_baked_rarity_texture_found": false,
+    "runtime_shader_pixel_verified": false
+  }
+]

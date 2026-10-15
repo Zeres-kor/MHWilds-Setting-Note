@@ -11,14 +11,9 @@ stun,기절,element_or_status,tex000201_2_IMLM4.dds,0,8,elements_status/stun.png
 sleep,수면,element_or_status,tex000201_2_IMLM4.dds,0,9,elements_status/sleep.png
 blast,폭파,element_or_status,tex000201_2_IMLM4.dds,0,10,elements_status/blast.png
 bleeding,열상,element_or_status,tex000201_2_IMLM4.dds,0,11,elements_status/bleeding.png
-res_fire_1,불 내성 상승 1,resistance,tex000201_2_IMLM4.dds,2,8,elements_status/res_fire_1.png
-res_fire_2,불 내성 상승 2,resistance,tex000201_2_IMLM4.dds,2,9,elements_status/res_fire_2.png
-res_water_1,물 내성 상승 1,resistance,tex000201_2_IMLM4.dds,2,10,elements_status/res_water_1.png
-res_water_2,물 내성 상승 2,resistance,tex000201_2_IMLM4.dds,2,11,elements_status/res_water_2.png
-res_thunder_1,번개 내성 상승 1,resistance,tex000201_2_IMLM4.dds,2,12,elements_status/res_thunder_1.png
-res_thunder_2,번개 내성 상승 2,resistance,tex000201_2_IMLM4.dds,2,13,elements_status/res_thunder_2.png
-res_ice_1,얼음 내성 상승 1,resistance,tex000201_2_IMLM4.dds,2,14,elements_status/res_ice_1.png
-res_ice_2,얼음 내성 상승 2,resistance,tex000201_2_IMLM4.dds,2,15,elements_status/res_ice_2.png
-res_dragon_1,용 내성 상승 1,resistance,tex000201_2_IMLM4.dds,2,16,elements_status/res_dragon_1.png
-res_dragon_2,용 내성 상승 2,resistance,tex000201_2_IMLM4.dds,2,17,elements_status/res_dragon_2.png
+slot_capacity_1,슬롯 용량 표시 1,slot_capacity_symbol,tex000201_0_IMLM4.dds,2,16,slot_capacity_symbols/slot_1.png
+slot_capacity_2,슬롯 용량 표시 2,slot_capacity_symbol,tex000201_0_IMLM4.dds,2,17,slot_capacity_symbols/slot_2.png
+slot_capacity_3,슬롯 용량 표시 3,slot_capacity_symbol,tex000201_0_IMLM4.dds,2,18,slot_capacity_symbols/slot_3.png
+slot_capacity_4,슬롯 용량 표시 4,slot_capacity_symbol,tex000201_0_IMLM4.dds,2,19,slot_capacity_symbols/slot_4.png
 defense_skill,방어 스킬,skill_symbol,tex000201_1_IMLM4.dds,7,5,defense/defense_skill.png
+defense_stat,防御力 / 방어력,defense_stat,tex000201_40_IMLM4.dds,0,4,defense/defense_stat.png

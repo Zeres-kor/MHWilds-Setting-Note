@@ -1,0 +1,25 @@
+{
+  "file": "defense/defense_stat.png",
+  "name_ko": "방어력",
+  "atlas": "tex000201_40_IMLM4.dds",
+  "uvs": "uvs000201_3.uvs.8",
+  "sequence": 0,
+  "pattern": 4,
+  "source_box": [
+    256,
+    0,
+    320,
+    64
+  ],
+  "gui": "ui080000.gui.850041",
+  "symbol": "PNL_status_D_defense",
+  "element": "tex_s_Icon",
+  "gui_property_offset": "0x58da8",
+  "gui_display_size": [
+    32,
+    32
+  ],
+  "same_as_defense_skill_badge": false,
+  "source_pixel_verified": true,
+  "rgba_sha256": "ba6165b9f62765467913e34c8dab9210789bc3dff8443b8779adfec3d0fac29f"
+}

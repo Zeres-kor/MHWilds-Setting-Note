@@ -1,0 +1,7 @@
+﻿kind,slot_capacity,badge,file,width,height,source_frame,runtime_pixel_verified,triangle_pattern_status
+weapon,1,sword,empty_slots/weapon_slot_1.png,100,92,ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line,False,26_visible_source_mask; saved_GUI_default_25_is_blank
+weapon,2,sword,empty_slots/weapon_slot_2.png,100,92,ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line,False,26_visible_source_mask; saved_GUI_default_25_is_blank
+weapon,3,sword,empty_slots/weapon_slot_3.png,100,92,ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line,False,26_visible_source_mask; saved_GUI_default_25_is_blank
+armor,1,helmet,empty_slots/armor_slot_1.png,100,92,ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line,False,26_visible_source_mask; saved_GUI_default_25_is_blank
+armor,2,helmet,empty_slots/armor_slot_2.png,100,92,ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line,False,26_visible_source_mask; saved_GUI_default_25_is_blank
+armor,3,helmet,empty_slots/armor_slot_3.png,100,92,ui080001/PNL_SlotBase/PNL_SetSlot/s9g_line,False,26_visible_source_mask; saved_GUI_default_25_is_blank

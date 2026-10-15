@@ -1,0 +1,349 @@
+{
+  "gui_path": "natives/STM/GUI/ui080000/ui080000/ui080001.gui.850041",
+  "symbol_path": "PNL_SlotBase/PNL_SetSlot",
+  "outline": {
+    "properties": {
+      "Size": [
+        50.0,
+        46.0
+      ],
+      "Name": "s9g_line",
+      "ColorPresetBlendRate": 0.0,
+      "SamplerType": "BilinearClamp",
+      "Priority": 0,
+      "Visible": 1,
+      "ColorPreset": 293206,
+      "MaskType": "NonTarget",
+      "UVSequence": "GUI/ui_texture/tex080000/uvs080000.uvs",
+      "LinearAlphaBlend": 0,
+      "Tag": "",
+      "HitVisible": 0,
+      "Color": {
+        "pointer": 296082,
+        "data": "ffffffff0000006600ff00ff00000033"
+      },
+      "TextureSampleGradScale": -1.0,
+      "AlphaChannelType": "None",
+      "Rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "BlendType": "Alpha",
+      "ColorPresetBlend": 293206,
+      "IgnoreAlpha": 0,
+      "Position": [
+        -9.0,
+        -8.0,
+        0.0
+      ],
+      "ControlPoint": "LeftTop"
+    },
+    "borders": [
+      16.0,
+      16.0,
+      16.0,
+      16.0
+    ],
+    "cells": [
+      {
+        "sequence": 2,
+        "pattern": 9,
+        "region": 98,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          400,
+          160,
+          432,
+          192
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 10,
+        "region": 99,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          432,
+          160,
+          444,
+          192
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 11,
+        "region": 100,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          444,
+          160,
+          476,
+          192
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 12,
+        "region": 101,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          400,
+          192,
+          432,
+          204
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 13,
+        "region": 102,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          432,
+          192,
+          444,
+          204
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 14,
+        "region": 103,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          444,
+          192,
+          476,
+          204
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 15,
+        "region": 104,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          400,
+          204,
+          432,
+          236
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 16,
+        "region": 105,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          432,
+          204,
+          444,
+          236
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 17,
+        "region": 106,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          444,
+          204,
+          476,
+          236
+        ]
+      }
+    ],
+    "special_offset": 312826
+  },
+  "mask": {
+    "properties": {
+      "Size": [
+        38.0,
+        34.0
+      ],
+      "Name": "s9g_mask",
+      "ColorPresetBlendRate": 0.0,
+      "SamplerType": "BilinearClamp",
+      "Priority": 0,
+      "Visible": 1,
+      "ColorPreset": 293206,
+      "MaskType": "Mask",
+      "UVSequence": "GUI/ui_texture/tex080000/uvs080000.uvs",
+      "LinearAlphaBlend": 0,
+      "Tag": "",
+      "HitVisible": 0,
+      "Color": {
+        "pointer": 296082,
+        "data": "ffffffff0000006600ff00ff00000033"
+      },
+      "TextureSampleGradScale": -1.0,
+      "AlphaChannelType": "None",
+      "Rotation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "BlendType": "Alpha",
+      "ColorPresetBlend": 293206,
+      "IgnoreAlpha": 0,
+      "Position": [
+        -3.0,
+        -2.0,
+        0.0
+      ],
+      "ControlPoint": "LeftTop"
+    },
+    "borders": [
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "cells": [
+      {
+        "sequence": 2,
+        "pattern": 0,
+        "region": 89,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          400,
+          236,
+          420,
+          256
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 1,
+        "region": 90,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          420,
+          236,
+          432,
+          256
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 2,
+        "region": 91,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          432,
+          236,
+          452,
+          256
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 3,
+        "region": 92,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          400,
+          256,
+          420,
+          268
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 4,
+        "region": 93,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          420,
+          256,
+          432,
+          268
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 5,
+        "region": 94,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          432,
+          256,
+          452,
+          268
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 6,
+        "region": 95,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          400,
+          268,
+          420,
+          288
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 7,
+        "region": 96,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          420,
+          268,
+          432,
+          288
+        ]
+      },
+      {
+        "sequence": 2,
+        "pattern": 8,
+        "region": 97,
+        "packed_rotation_flag": 0,
+        "texture_index": 0,
+        "box": [
+          432,
+          268,
+          452,
+          288
+        ]
+      }
+    ],
+    "special_offset": 313146
+  },
+  "background": {
+    "sequence": 2,
+    "pattern": 18,
+    "region": 107,
+    "packed_rotation_flag": 0,
+    "texture_index": 0,
+    "box": [
+      276,
+      446,
+      404,
+      508
+    ]
+  },
+  "preview_scale": 2,
+  "note": "Frame preview uses the GUI nine-slice cell definitions and geometry. Runtime animation/color blending is not claimed to be pixel verified."
+}

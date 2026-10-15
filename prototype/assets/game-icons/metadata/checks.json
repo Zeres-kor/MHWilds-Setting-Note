@@ -3,7 +3,8 @@
   "valid_slot_combinations": 583,
   "source_frame_count": 3,
   "equipment_framed_count": 20,
-  "rarity_equipment_count": 228,
+  "rarity_equipment_count": 160,
+  "skill_icon_mapping_count": 179,
   "slot_triangle_rule": {
     "1-1": [
       0
@@ -29,5 +30,14 @@
     ]
   },
   "runtime_pixel_match_verified": false,
-  "rarity_color_mapping_verified": true
+  "rarity_color_mapping_verified": true,
+  "talisman_rarity_count": 8,
+  "empty_slot_count": 6,
+  "defense_stat_source_verified": true,
+  "slot_outer_frame_source_verified": true,
+  "slot_canvas": [
+    100,
+    92
+  ],
+  "slot_runtime_triangle_state_verified": false
 }
