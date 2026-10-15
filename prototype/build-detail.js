@@ -59,12 +59,12 @@ const BuildDetail = (() => {
   }
   function gem(slot){
     const wrap=el('span',`game-gem ${slot.decoration?'is-filled':'is-empty'} is-${slot.kind}`);wrap.setAttribute('aria-hidden','true');if(slot.tint)wrap.style.setProperty('--gem-color',slot.tint);
-    const source=assets.decoration(slot);if(source){const image=el('img');image.src=source;image.alt='';image.width=32;image.height=32;image.addEventListener('error',()=>{wrap.replaceWith(gem({...slot,decoration:{...slot.decoration,name:''}}));},{once:true});wrap.classList.add('has-game-texture');wrap.append(image,el('span','game-gem-size',String(slot.size)));return wrap;}
+    const source=assets.decoration(slot);if(source){const image=el('img');image.src=source;image.alt='';image.width=32;image.height=32;image.addEventListener('error',()=>{wrap.replaceWith(gem({...slot,decoration:{...slot.decoration,name:''}}));},{once:true});wrap.classList.add('has-game-texture');wrap.append(image);return wrap;}
     const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 32 32');svg.setAttribute('focusable','false');
     const shapes={1:'M10 7H22L26 16L22 24H10L6 16Z',2:'M9 4H23L27 14L23 27H9L5 14Z',3:'M8 3H24L28 12L25 27H7L4 12Z'};
     const outer=document.createElementNS(svg.namespaceURI,'path');outer.setAttribute('d',shapes[slot.size]);svg.append(outer);
     const cut=document.createElementNS(svg.namespaceURI,'path');cut.setAttribute('d','M9 12L16 18L23 12M16 18V25');cut.setAttribute('class','game-gem-cut');svg.append(cut);
-    wrap.append(svg);wrap.append(el('span','game-gem-size',String(slot.size)));return wrap;
+    wrap.append(svg);return wrap;
   }
   function title(name,extra){const heading=el('h4','game-panel-title',name);if(extra)heading.append(el('span','game-heading-note',extra));return heading;}
   function slotList(slots,emptyText='슬롯 없음'){
@@ -105,7 +105,7 @@ const BuildDetail = (() => {
     for(const skill of info.skills){const row=el('li','game-skill-row');row.dataset.skillId=skill.id;row.append(skillSymbol(skill));const content=el('div','game-skill-content'),name=el('div','game-skill-name');name.append(el('span','',skill.name));if(skill.target)name.append(el('span','game-target-tag','목표'));content.append(name);const bars=el('span','game-level-bars');bars.setAttribute('aria-hidden','true');for(let n=1;n<=skill.maxLevel;n++)bars.append(el('i',n<=skill.level?'is-filled':''));content.append(bars);row.append(content,el('span','game-skill-level',`Lv.${skill.level}`));skills.append(row);}equipmentSkills.append(skills);skillPanel.append(equipmentSkills);right.append(bonusPanel(info,'set'),bonusPanel(info,'group'));if(info.legacyBonuses.length){const legacy=el('section','game-panel');legacy.append(title('발동 효과 · 분류 미기록'));for(const b of info.legacyBonuses)legacy.append(el('p','',`${b.name}: ${b.effect} (${b.pieces}부위)`));right.append(legacy);}layout.append(skillPanel);
     const stats=el('section','game-panel game-defense-panel');stats.append(title('방어 스테이터스'));const values=el('dl','game-defense-values');const defense=el('div','game-stat-row is-defense');const dt=el('dt');dt.append(icon('shield','gold'),el('span','','방어력'));defense.append(dt,el('dd','',String(info.defense)));values.append(defense);for(const[key,label]of elements){const row=el('div','game-stat-row');const dt=el('dt');dt.append(icon(key,key),el('span','',`${label} 내성`));const n=info.resistances?.[key];row.append(dt,el('dd',n<0?'is-negative':'',n===undefined?'미기록':`${n>0?'+':''}${n}`));values.append(row);}stats.append(values,el('p','game-stats-note',`${info.armorLimitBreakDefense?'한계돌파 후 ':''}최대 강화 방어력 · 기본 방어구 내성\n내성의 스킬·식사 효과 제외`));
     if(info.weaponBonuses?.length){const bonuses=el('div','game-weapon-bonuses');bonuses.append(el('h5','game-subtitle','무기 부여 스킬'));for(const b of info.weaponBonuses)bonuses.append(el('p','',`${b.name} · 1부위`));stats.append(bonuses);}right.append(stats);layout.append(right);card.append(layout);
-    const footer=el('div','game-build-footer');footer.append(el('span','game-muted','장식주 아이콘 숫자 = 슬롯 레벨 · 빈 슬롯은 테두리로 표시'));card.append(footer);return card;
+    const footer=el('div','game-build-footer');footer.append(el('span','game-muted','장식주 레벨은 아이콘 모양으로 표시 · 빈 슬롯은 테두리로 표시'));card.append(footer);return card;
   }
   return {model,savedModel,render,renderSaved,icon,gem,skillSymbol};
 })();

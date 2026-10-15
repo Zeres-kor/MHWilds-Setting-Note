@@ -22,8 +22,7 @@
 .game-gear-part{display:block;font-size:11px;line-height:1.5;color:var(--game-muted);margin-bottom:3px}
 .game-gear-name{display:block;font-size:13px;font-weight:500;line-height:1.5;overflow-wrap:anywhere}
 .game-gear-slots{display:flex;gap:2px;margin-top:5px;min-height:16px}
-.game-gear-slots .game-gem{width:19px;height:21px}
-.game-gear-slots .game-gem-size{font-size:8px;bottom:0}
+.game-gear-slots .game-gem{width:28px;height:30px}
 .game-icon{--icon-color:#d0b66f;display:inline-flex;align-items:center;justify-content:center;width:29px;height:31px;color:var(--icon-color);background:linear-gradient(135deg,#51493655,#0d0f0c);border:1px solid #a79b735e;border-radius:3px;box-shadow:inset 0 0 0 2px #0a0c0a;vertical-align:middle}
 .game-icon svg{display:block;width:24px;height:26px;filter:drop-shadow(0 1px 1px #000)}
 .game-icon path{fill:color-mix(in srgb,var(--icon-color) 28%,#0c100e);stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
@@ -34,13 +33,12 @@
 .game-slot-row.is-empty{border-color:#716e55;color:var(--game-muted);background:#171a1250}
 .game-slot-name{flex:1;min-width:0;font-size:12px;overflow-wrap:anywhere}
 .game-slot-number{font-size:11px;color:#d2c499;white-space:nowrap}
-.game-gem{--gem-color:#b08ace;position:relative;display:inline-block;flex:none;width:24px;height:25px;color:var(--gem-color)}
+.game-gem{--gem-color:#b08ace;position:relative;display:inline-block;flex:none;width:36px;height:38px;color:var(--gem-color)}
 .game-gem.is-armor{--gem-color:#c89078}
 .game-gem svg{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1px #000)}
 .game-gem path{fill:color-mix(in srgb,var(--gem-color) 70%,#323127);stroke:#ded4b2;stroke-width:1.2;stroke-linejoin:round}
 .game-gem .game-gem-cut{fill:none;stroke:#f2edc7;stroke-width:1;opacity:.55}
 .game-gem.is-empty path{fill:#282d23;stroke:#a3a18d}.game-gem.is-empty .game-gem-cut{opacity:.22}
-.game-gem-size{position:absolute;bottom:1px;left:0;right:0;text-align:center;color:#fff8df;font-size:10px;font-weight:700;line-height:1;text-shadow:0 1px 2px #000,1px 0 #000,-1px 0 #000}
 .game-build-card li.game-no-slots{margin:0;padding:6px;color:var(--game-muted);font-size:12px}
 .game-charm-panel{border-top:2px solid #a68a45}
 .game-charm-body{display:grid;grid-template-columns:minmax(0,1fr)}
