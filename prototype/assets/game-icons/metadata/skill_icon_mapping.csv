@@ -1,0 +1,180 @@
+﻿skill_id,skill_name_ko,skill_name_en,kind,icon_id,icon_type,symbol_file
+1,공격,Attack Boost,weapon,1,attack,skills/symbol_00.png
+-181127504,공격적인 방어,Offensive Guard,weapon,1,attack,skills/symbol_00.png
+1174975744,교격,Adrenaline Rush,armor,1,attack,skills/symbol_00.png
+576193792,백열의 격류,Whiteflame Torrent,weapon,1,attack,skills/symbol_00.png
+16931,불꽃 요리사,Grillmaster,weapon,1,attack,skills/symbol_00.png
+2083363072,속성 변환,Convert Element,armor,1,attack,skills/symbol_00.png
+3813,암흑,Darkside,weapon,1,attack,skills/symbol_00.png
+1359821952,앙심,Resentment,armor,1,attack,skills/symbol_00.png
+-397570464,약점 특효,Weakness Exploit,armor,1,attack,skills/symbol_00.png
+280489184,역습,Counterstrike,armor,1,attack,skills/symbol_00.png
+2106877312,완전 충전,Peak Performance,armor,1,attack,skills/symbol_00.png
+28385,파워스톤,Power Stone,weapon,1,attack,skills/symbol_00.png
+12877,해방된 거울날의 파편,Shattering Reflection,weapon,1,attack,skills/symbol_00.png
+632127488,혼신,Maximum Might,armor,1,attack,skills/symbol_00.png
+-2096489472,간파,Critical Eye,weapon,2,affinity,skills/symbol_01.png
+-847539392,물에 젖은 명검,Slicked Blade,weapon,2,affinity,skills/symbol_01.png
+686533440,발도술【기】,Critical Draw,weapon,2,affinity,skills/symbol_01.png
+-1607763456,슈퍼회심,Critical Boost,weapon,2,affinity,skills/symbol_01.png
+31998,연계 프로그램,Synergy,weapon,2,affinity,skills/symbol_01.png
+11481,내성 변환【물】,Convert Water Resistance,weapon,3,element,skills/symbol_02.png
+30201,내성 변환【번개】,Convert Thunder Resistance,weapon,3,element,skills/symbol_02.png
+-1716324608,독속성 강화,Poison Attack,weapon,3,element,skills/symbol_02.png
+-1863702144,마비속성 강화,Paralysis Attack,weapon,3,element,skills/symbol_02.png
+508916704,물속성 공격 강화,Water Attack,weapon,3,element,skills/symbol_02.png
+1452140672,번개속성 공격 강화,Thunder Attack,weapon,3,element,skills/symbol_02.png
+-562534336,불속성 공격 강화,Fire Attack,weapon,3,element,skills/symbol_02.png
+166057120,수면속성 강화,Sleep Attack,weapon,3,element,skills/symbol_02.png
+1268070400,얼음속성 공격 강화,Ice Attack,weapon,3,element,skills/symbol_02.png
+-776946176,용속성 공격 강화,Dragon Attack,weapon,3,element,skills/symbol_02.png
+-1475134080,차지 마스터,Charge Master,weapon,3,element,skills/symbol_02.png
+-844978880,폭파속성 강화,Blast Attack,weapon,3,element,skills/symbol_02.png
+313598432,회심격【속성】,Critical Element,weapon,3,element,skills/symbol_02.png
+-168922880,회심격【특수】,Critical Status,weapon,3,element,skills/symbol_02.png
+1389859584,달인의 재주,Master's Touch,weapon,4,handicraft,skills/symbol_03.png
+397306144,둔기 사용,Bludgeoner,weapon,4,handicraft,skills/symbol_03.png
+1050520384,명검,Razor Sharp,weapon,4,handicraft,skills/symbol_03.png
+1594792704,심안,Mind's Eye,weapon,4,handicraft,skills/symbol_03.png
+1160639488,장인,Handicraft,weapon,4,handicraft,skills/symbol_03.png
+1500129152,칼날 연마,Protective Polish,weapon,4,handicraft,skills/symbol_03.png
+25070,칼날비늘 연마,Bladescale Honing,weapon,4,handicraft,skills/symbol_03.png
+552982656,관통탄/용화살 강화,Piercing Shots,weapon,5,ranged,skills/symbol_04.png
+919683456,독병 추가,Poison Functionality,weapon,5,ranged,skills/symbol_04.png
+-676967744,마비병 추가,Para Functionality,weapon,5,ranged,skills/symbol_04.png
+-181774400,멸기병 추가,Exhaust Functionality,weapon,5,ranged,skills/symbol_04.png
+-2123993856,산탄/강사 강화,Spread/Power Shots,weapon,5,ranged,skills/symbol_04.png
+-1507579776,속사 강화,Rapid Fire Up,weapon,5,ranged,skills/symbol_04.png
+169998480,수면병 추가,Sleep Functionality,weapon,5,ranged,skills/symbol_04.png
+3504,칼날비늘 장전,Bladescale Loading,weapon,5,ranged,skills/symbol_04.png
+-420608864,탄도 강화,Ballistics,weapon,5,ranged,skills/symbol_04.png
+-1961297152,통상탄/통상화살 강화,Normal Shots,weapon,5,ranged,skills/symbol_04.png
+-160562336,특수 사격 강화,Special Ammo Boost,weapon,5,ranged,skills/symbol_04.png
+1711950720,퍼스트샷,Opening Shot,weapon,5,ranged,skills/symbol_04.png
+1613139840,포스샷,Tetrad Shot,weapon,5,ranged,skills/symbol_04.png
+-2022542848,폭파병 추가,Blast Functionality,weapon,5,ranged,skills/symbol_04.png
+30828,회피 장전,Evading Reload,weapon,5,ranged,skills/symbol_04.png
+705317568,기절 내성,Stun Resistance,armor,6,defense,skills/symbol_05.png
+1459579264,독 내성,Poison Resistance,armor,6,defense,skills/symbol_05.png
+522288832,마비 내성,Paralysis Resistance,armor,6,defense,skills/symbol_05.png
+383104832,물 내성,Water Resistance,armor,6,defense,skills/symbol_05.png
+1077686656,방어,Defense Boost,armor,6,defense,skills/symbol_05.png
+1522518528,방어력 DOWN 내성,Iron Skin,armor,6,defense,skills/symbol_05.png
+7506,방패 장착,Synthetic Shield,weapon,6,defense,skills/symbol_05.png
+2143068800,번개 내성,Thunder Resistance,armor,6,defense,skills/symbol_05.png
+1425756032,불 내성,Fire Resistance,armor,6,defense,skills/symbol_05.png
+1966172160,속박 내성,Bind Resistance,armor,6,defense,skills/symbol_05.png
+-568838336,속성 피해 내성,Blight Resistance,armor,6,defense,skills/symbol_05.png
+-193031552,수면 내성,Sleep Resistance,armor,6,defense,skills/symbol_05.png
+652161472,얼음 내성,Ice Resistance,armor,6,defense,skills/symbol_05.png
+1940820864,열상 내성,Bleeding Resistance,armor,6,defense,skills/symbol_05.png
+-2125233152,용 내성,Dragon Resistance,armor,6,defense,skills/symbol_05.png
+1346775424,정령의 가호,Divine Blessing,armor,6,defense,skills/symbol_05.png
+820385792,폭파 피해 내성,Blast Resistance,armor,6,defense,skills/symbol_05.png
+424768352,환경 적응,Adaptability,armor,6,defense,skills/symbol_05.png
+-1235658624,체력 회복량 UP,Recovery Up,armor,7,health,skills/symbol_06.png
+-593005376,환경 이용 지식,Survival Expert,armor,7,health,skills/symbol_06.png
+-1121468544,회복 속도,Recovery Speed,armor,7,health,skills/symbol_06.png
+-682586176,런너,Marathon Runner,armor,8,stamina,skills/symbol_07.png
+2045149568,배고픔 내성,Hunger Resistance,armor,8,stamina,skills/symbol_07.png
+-315492576,스태미나 급속 회복,Stamina Surge,armor,8,stamina,skills/symbol_07.png
+-1689391744,체술,Constitution,armor,8,stamina,skills/symbol_07.png
+-893407296,KO술,Slugger,weapon,9,offense,skills/symbol_08.png
+691199232,강화 지속,Power Prolonger,weapon,9,offense,skills/symbol_08.png
+-1961116288,고속 변형,Rapid Morph,weapon,9,offense,skills/symbol_08.png
+27684744,공세,Foray,armor,9,offense,skills/symbol_08.png
+1826,구운 포수수,Crackling Cornpopper,weapon,9,offense,skills/symbol_08.png
+-171796848,급습,Ambush,armor,9,offense,skills/symbol_08.png
+1865909632,도전자,Agitator,armor,9,offense,skills/symbol_08.png
+-1629629184,독 대미지 강화,Poison Duration Up,weapon,9,offense,skills/symbol_08.png
+1934955136,동반자 지휘,Palico Rally,armor,9,offense,skills/symbol_08.png
+353114912,모으기 타격 강화,Charge Up,weapon,9,offense,skills/symbol_08.png
+-1662120192,무아지경,Antivirus,armor,9,offense,skills/symbol_08.png
+-1946345856,발도술【힘】,Punishing Draw,weapon,9,offense,skills/symbol_08.png
+402237312,비연,Airborne,weapon,9,offense,skills/symbol_08.png
+1489568384,속성 흡수,Elemental Absorption,armor,9,offense,skills/symbol_08.png
+-856322816,쇄인자격,Flayer,armor,9,offense,skills/symbol_08.png
+1758661504,스태미나 탈취,Stamina Thief,weapon,9,offense,skills/symbol_08.png
+565867136,연격,Burst,armor,9,offense,skills/symbol_08.png
+1639440000,연찬,Self-Improvement,armor,9,offense,skills/symbol_08.png
+422666624,재난대처능력,Heroics,armor,9,offense,skills/symbol_08.png
+-1700743296,전화위복,Coalescence,armor,9,offense,skills/symbol_08.png
+10503,주먹밥,Rice Ball,armor,9,offense,skills/symbol_08.png
+-283334048,집중,Focus,weapon,9,offense,skills/symbol_08.png
+1470960256,파괴왕,Partbreaker,armor,9,offense,skills/symbol_08.png
+-596764096,포술,Artillery,weapon,9,offense,skills/symbol_08.png
+-1237438336,피리 명인,Horn Maestro,weapon,9,offense,skills/symbol_08.png
+1763191040,힘의 해방,Latent Power,armor,9,offense,skills/symbol_08.png
+-1674114176,가드 강화,Guard Up,weapon,10,utility,skills/symbol_09.png
+-307644128,가드 성능,Guard,weapon,10,utility,skills/symbol_09.png
+192746944,귀마개,Earplugs,armor,10,utility,skills/symbol_09.png
+-1073401280,납도술,Quick Sheathe,armor,10,utility,skills/symbol_09.png
+-609509888,내진,Tremor Resistance,armor,10,utility,skills/symbol_09.png
+-1304512512,뛰어들기,Leap of Faith,armor,10,utility,skills/symbol_09.png
+-201445760,물가/기름 진흙 적응,Aquatic/Oilsilt Mobility,armor,10,utility,skills/symbol_09.png
+634068352,빨리 먹기,Speed Eating,armor,10,utility,skills/symbol_09.png
+-632440576,완충,Shock Absorber,armor,10,utility,skills/symbol_09.png
+742695104,움찔 감소,Flinch Free,armor,10,utility,skills/symbol_09.png
+1472632704,위협,Intimidator,armor,10,utility,skills/symbol_09.png
+78208296,점프 철인,Jump Master,armor,10,utility,skills/symbol_09.png
+-692636288,클라이머,Cliffhanger,armor,10,utility,skills/symbol_09.png
+802725120,포탄 장전,Load Shells,weapon,10,utility,skills/symbol_09.png
+-895828480,풍압 내성,Windproof,armor,10,utility,skills/symbol_09.png
+673822976,회피 거리 UP,Evade Extender,armor,10,utility,skills/symbol_09.png
+144660544,회피 성능,Evade Window,armor,10,utility,skills/symbol_09.png
+894530496,광역화,Wide-Range,armor,11,item,skills/symbol_10.png
+850626240,만족감,Free Meal,armor,11,item,skills/symbol_10.png
+-481419552,버섯 애호가,Mushroomancer,armor,11,item,skills/symbol_10.png
+-857543744,보머,Bombardier,armor,11,item,skills/symbol_10.png
+-257693696,섬광 강화,Blindsider,armor,11,item,skills/symbol_10.png
+1444935552,숫돌 사용 고속화,Speed Sharpening,weapon,11,item,skills/symbol_10.png
+-1684613760,아이템 사용 강화,Item Prolonger,armor,11,item,skills/symbol_10.png
+-411441344,악취 내성,Stench Resistance,armor,11,item,skills/symbol_10.png
+469540352,정비,Tool Specialist,armor,11,item,skills/symbol_10.png
+898284480,곤충박사,Entomologist,armor,12,gathering,skills/symbol_11.png
+30554,냥냥봉,Catburglar,weapon,12,gathering,skills/symbol_11.png
+860517760,식생학,Botanist,armor,12,gathering,skills/symbol_11.png
+595870656,지질학,Geologist,armor,12,gathering,skills/symbol_11.png
+1845834112,헌터 생활,Outdoorsman,armor,12,gathering,skills/symbol_11.png
+451472896,가죽세공의 광택성,Buttery Leathercraft,group,13,group,skills/symbol_12.png
+-1648695680,가죽세공의 유연성,Flexible Leathercraft,group,13,group,skills/symbol_12.png
+1968728576,갑충의 알림,Neopteron Alert,group,13,group,skills/symbol_12.png
+1685697920,갑충의 의태,Neopteron Camouflage,group,13,group,skills/symbol_12.png
+4554,권의 극에 달한 자,Master of the Fist,group,13,group,skills/symbol_12.png
+1998066176,모피의 고양,Fortifying Pelt,group,13,group,skills/symbol_12.png
+583598144,모피의 유혹,Alluring Pelt,group,13,group,skills/symbol_12.png
+-1664678272,비늘 겹치기 연구,Scale Layering,group,13,group,skills/symbol_12.png
+1487598336,비늘 붙이기 기법,Scaling Prowess,group,13,group,skills/symbol_12.png
+-1642078720,선도자의 안내,Imparted Wisdom,group,13,group,skills/symbol_12.png
+-1305836672,수호룡의 맥동,Guardian's Pulse,group,13,group,skills/symbol_12.png
+-2041451904,수호룡의 방어,Guardian's Protection,group,13,group,skills/symbol_12.png
+2237,영광의 명예,Glory's Favor,group,13,group,skills/symbol_12.png
+-1769550080,주인의 긍지,Lord's Favor,group,13,group,skills/symbol_12.png
+2107855744,주인의 분노,Lord's Fury,group,13,group,skills/symbol_12.png
+1484575872,주인의 혼,Lord's Soul,group,13,group,skills/symbol_12.png
+13941,축제 순례,Festival Spirit,group,13,group,skills/symbol_12.png
+-418246240,개룡의 수호,Gravios's Protection,set,14,set,skills/symbol_13.png
+5590,거극룡의 묵시록,Gogmapocalypse,set,14,set,skills/symbol_13.png
+-1768553344,뇌악룡의 투지,Fulgur Anjanath's Will,set,14,set,skills/symbol_13.png
+741102208,눈사자의 투지,Blangonga's Spirit,set,14,set,skills/symbol_13.png
+-215826112,동봉룡의 반역,Jin Dahaad's Revolt,set,14,set,skills/symbol_13.png
+11709,몽화의 기도,Dreamspell Prayer,set,14,set,skills/symbol_13.png
+-555494336,백열룡의 맥동,Zoh Shia's Pulse,set,14,set,skills/symbol_13.png
+-62248528,벽수의 힘,Doshaguma's Might,set,14,set,skills/symbol_13.png
+-964369920,쇄인룡의 굶주림,Arkveld's Hunger,set,14,set,skills/symbol_13.png
+-1468066176,암기소의 힘,Xu Wu's Vigor,set,14,set,skills/symbol_13.png
+24531,암흑기사의 증표,Soul of the Dark Knight,set,14,set,skills/symbol_13.png
+1980404096,염옥소의 반역,Nu Udra's Mutiny,set,14,set,skills/symbol_13.png
+31540,오메가 공명,Omega Resonance,set,14,set,skills/symbol_13.png
+8694,용화의 기도,Flamefete Prayer,set,14,set,skills/symbol_13.png
+30992,천인룡의 투지,Seregios's Tenacity,set,14,set,skills/symbol_13.png
+30815,축요의 기도,Lumenhymn Prayer,set,14,set,skills/symbol_13.png
+2104075392,파의룡의 수호,Uth Duna's Cover,set,14,set,skills/symbol_13.png
+-403054144,포호룡의 힘,Mizutsune's Prowess,set,14,set,skills/symbol_13.png
+16835,해룡의 와뢰,Leviathan's Fury,set,14,set,skills/symbol_13.png
+-1432692352,호쇄인룡의 명맥,Guardian Arkveld's Vitality,set,14,set,skills/symbol_13.png
+-3666104,화룡의 힘,Rathalos's Flare,set,14,set,skills/symbol_13.png
+-911441792,화무의 기도,Blossomdance Prayer,set,14,set,skills/symbol_13.png
+539707072,황뢰룡의 힘,Rey Dau's Voltage,set,14,set,skills/symbol_13.png
+918165056,흉조룡의 힘,Ebony Odogaron's Power,set,14,set,skills/symbol_13.png
+722735744,흑식룡의 힘,Gore Magala's Tyranny,set,14,set,skills/symbol_13.png
