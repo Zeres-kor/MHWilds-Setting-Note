@@ -136,4 +136,5 @@
 
 .game-skill-symbol{flex:none;width:25px;height:27px}
 .game-charm-skill .game-skill-symbol{width:20px;height:22px;margin-right:4px}
-.skill-menu-item>.game-skill-symbol{width:22px;height:24px;margin-right:5px}
+.skill-menu-item>.game-skill-symbol{flex:none;min-width:0;width:22px;height:24px;margin-right:0}
+.game-charm-skill>span:not(.game-skill-symbol){flex:1;min-width:0}
