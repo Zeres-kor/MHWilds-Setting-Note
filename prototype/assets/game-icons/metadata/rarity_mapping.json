@@ -1,0 +1,1598 @@
+[
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_01_head.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_01_body.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_01_arms.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_01_waist.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_01_legs.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_01_sword_shield.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_01_great_sword.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_01_long_sword.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_01_dual_blades.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_01_lance.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_01_gunlance.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_01_hammer.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_01_hunting_horn.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_01_switch_axe.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_01_charge_blade.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_01_insect_glaive.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_01_heavy_bowgun.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_01_light_bowgun.png"
+  },
+  {
+    "rarity": 1,
+    "palette_index": 22,
+    "color_hex": "#969696",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_01_bow.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_02_head.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_02_body.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_02_arms.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_02_waist.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_02_legs.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_02_sword_shield.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_02_great_sword.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_02_long_sword.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_02_dual_blades.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_02_lance.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_02_gunlance.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_02_hammer.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_02_hunting_horn.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_02_switch_axe.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_02_charge_blade.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_02_insect_glaive.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_02_heavy_bowgun.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_02_light_bowgun.png"
+  },
+  {
+    "rarity": 2,
+    "palette_index": 23,
+    "color_hex": "#DEDEDE",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_02_bow.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_03_head.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_03_body.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_03_arms.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_03_waist.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_03_legs.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_03_sword_shield.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_03_great_sword.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_03_long_sword.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_03_dual_blades.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_03_lance.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_03_gunlance.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_03_hammer.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_03_hunting_horn.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_03_switch_axe.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_03_charge_blade.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_03_insect_glaive.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_03_heavy_bowgun.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_03_light_bowgun.png"
+  },
+  {
+    "rarity": 3,
+    "palette_index": 24,
+    "color_hex": "#A4C43B",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_03_bow.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_04_head.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_04_body.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_04_arms.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_04_waist.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_04_legs.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_04_sword_shield.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_04_great_sword.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_04_long_sword.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_04_dual_blades.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_04_lance.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_04_gunlance.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_04_hammer.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_04_hunting_horn.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_04_switch_axe.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_04_charge_blade.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_04_insect_glaive.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_04_heavy_bowgun.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_04_light_bowgun.png"
+  },
+  {
+    "rarity": 4,
+    "palette_index": 25,
+    "color_hex": "#47A33F",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_04_bow.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_05_head.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_05_body.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_05_arms.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_05_waist.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_05_legs.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_05_sword_shield.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_05_great_sword.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_05_long_sword.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_05_dual_blades.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_05_lance.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_05_gunlance.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_05_hammer.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_05_hunting_horn.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_05_switch_axe.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_05_charge_blade.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_05_insect_glaive.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_05_heavy_bowgun.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_05_light_bowgun.png"
+  },
+  {
+    "rarity": 5,
+    "palette_index": 26,
+    "color_hex": "#5CAEBB",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_05_bow.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_06_head.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_06_body.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_06_arms.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_06_waist.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_06_legs.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_06_sword_shield.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_06_great_sword.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_06_long_sword.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_06_dual_blades.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_06_lance.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_06_gunlance.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_06_hammer.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_06_hunting_horn.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_06_switch_axe.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_06_charge_blade.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_06_insect_glaive.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_06_heavy_bowgun.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_06_light_bowgun.png"
+  },
+  {
+    "rarity": 6,
+    "palette_index": 27,
+    "color_hex": "#575FD9",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_06_bow.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_07_head.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_07_body.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_07_arms.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_07_waist.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_07_legs.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_07_sword_shield.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_07_great_sword.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_07_long_sword.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_07_dual_blades.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_07_lance.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_07_gunlance.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_07_hammer.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_07_hunting_horn.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_07_switch_axe.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_07_charge_blade.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_07_insect_glaive.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_07_heavy_bowgun.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_07_light_bowgun.png"
+  },
+  {
+    "rarity": 7,
+    "palette_index": 28,
+    "color_hex": "#9272E3",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_07_bow.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_08_head.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_08_body.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_08_arms.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_08_waist.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_08_legs.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_08_sword_shield.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_08_great_sword.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_08_long_sword.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_08_dual_blades.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_08_lance.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_08_gunlance.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_08_hammer.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_08_hunting_horn.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_08_switch_axe.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_08_charge_blade.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_08_insect_glaive.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_08_heavy_bowgun.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_08_light_bowgun.png"
+  },
+  {
+    "rarity": 8,
+    "palette_index": 29,
+    "color_hex": "#C76D46",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_08_bow.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_09_head.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_09_body.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_09_arms.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_09_waist.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_09_legs.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_09_sword_shield.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_09_great_sword.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_09_long_sword.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_09_dual_blades.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_09_lance.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_09_gunlance.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_09_hammer.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_09_hunting_horn.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_09_switch_axe.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_09_charge_blade.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_09_insect_glaive.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_09_heavy_bowgun.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_09_light_bowgun.png"
+  },
+  {
+    "rarity": 9,
+    "palette_index": 30,
+    "color_hex": "#B3436A",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_09_bow.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_10_head.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_10_body.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_10_arms.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_10_waist.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_10_legs.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_10_sword_shield.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_10_great_sword.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_10_long_sword.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_10_dual_blades.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_10_lance.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_10_gunlance.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_10_hammer.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_10_hunting_horn.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_10_switch_axe.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_10_charge_blade.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_10_insect_glaive.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_10_heavy_bowgun.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_10_light_bowgun.png"
+  },
+  {
+    "rarity": 10,
+    "palette_index": 31,
+    "color_hex": "#2EC9E6",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_10_bow.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_11_head.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_11_body.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_11_arms.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_11_waist.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_11_legs.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_11_sword_shield.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_11_great_sword.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_11_long_sword.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_11_dual_blades.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_11_lance.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_11_gunlance.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_11_hammer.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_11_hunting_horn.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_11_switch_axe.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_11_charge_blade.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_11_insect_glaive.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_11_heavy_bowgun.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_11_light_bowgun.png"
+  },
+  {
+    "rarity": 11,
+    "palette_index": 32,
+    "color_hex": "#F2C21D",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_11_bow.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "head",
+    "file": "equipment_rarity/rare_12_head.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "body",
+    "file": "equipment_rarity/rare_12_body.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "arms",
+    "file": "equipment_rarity/rare_12_arms.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "waist",
+    "file": "equipment_rarity/rare_12_waist.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "legs",
+    "file": "equipment_rarity/rare_12_legs.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "sword_shield",
+    "file": "equipment_rarity/rare_12_sword_shield.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "great_sword",
+    "file": "equipment_rarity/rare_12_great_sword.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "long_sword",
+    "file": "equipment_rarity/rare_12_long_sword.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "dual_blades",
+    "file": "equipment_rarity/rare_12_dual_blades.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "lance",
+    "file": "equipment_rarity/rare_12_lance.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "gunlance",
+    "file": "equipment_rarity/rare_12_gunlance.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "hammer",
+    "file": "equipment_rarity/rare_12_hammer.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "hunting_horn",
+    "file": "equipment_rarity/rare_12_hunting_horn.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "switch_axe",
+    "file": "equipment_rarity/rare_12_switch_axe.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "charge_blade",
+    "file": "equipment_rarity/rare_12_charge_blade.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "insect_glaive",
+    "file": "equipment_rarity/rare_12_insect_glaive.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "heavy_bowgun",
+    "file": "equipment_rarity/rare_12_heavy_bowgun.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "light_bowgun",
+    "file": "equipment_rarity/rare_12_light_bowgun.png"
+  },
+  {
+    "rarity": 12,
+    "palette_index": 33,
+    "color_hex": "#B4F5FF",
+    "equipment": "bow",
+    "file": "equipment_rarity/rare_12_bow.png"
+  }
+]

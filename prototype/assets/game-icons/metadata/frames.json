@@ -1,0 +1,38 @@
+[
+  {
+    "sequence": 8,
+    "pattern": 0,
+    "region": 62,
+    "ui_size": 64,
+    "box": [
+      384,
+      0,
+      512,
+      128
+    ]
+  },
+  {
+    "sequence": 8,
+    "pattern": 1,
+    "region": 63,
+    "ui_size": 44,
+    "box": [
+      216,
+      256,
+      304,
+      344
+    ]
+  },
+  {
+    "sequence": 8,
+    "pattern": 2,
+    "region": 64,
+    "ui_size": 88,
+    "box": [
+      336,
+      160,
+      512,
+      336
+    ]
+  }
+]
