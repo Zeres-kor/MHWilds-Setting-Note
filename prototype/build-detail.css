@@ -150,3 +150,8 @@
 .overview-stat .game-icon,.overview-charm-slot-kind .game-icon,.overview-slot-label .game-icon{width:28px;height:30px;flex:none}
 .overview-stat .game-icon svg,.overview-gear-name .game-icon svg,.overview-charm-slot-kind .game-icon svg,.overview-slot-label .game-icon svg{width:85%;height:85%}
 
+
+/* Use one larger icon size throughout the search result summary. */
+#buildResults .build-overview .game-icon,
+#buildResults .build-overview .game-gem{width:42px;height:42px;min-width:42px;flex:0 0 42px}
+#buildResults .build-overview .game-icon svg{width:85%;height:85%}
