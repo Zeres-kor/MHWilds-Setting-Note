@@ -111,8 +111,7 @@ const TagRules = (() => {
     return result.rules;
   }
 
-  function matchRule(record, rule) {
-    const actual = new Map(record.skills.map(skill => [cleanSkill(skill.name), skill.level]));
+  function matchRule(record, rule, actual = new Map(record.skills.map(skill => [cleanSkill(skill.name), skill.level]))) {
     if (rule.skills.length && rule.skillMode === '정확' && actual.size !== rule.skills.length) return false;
     if (!rule.skills.every(skill => actual.has(cleanSkill(skill.name)) && (rule.skillMode === '정확' ? actual.get(cleanSkill(skill.name)) === skill.level : actual.get(cleanSkill(skill.name)) >= skill.level))) return false;
     if (rule.slotMode === '무시') return true;
@@ -125,10 +124,22 @@ const TagRules = (() => {
     return true;
   }
 
+  const ruleIndexes = new WeakMap();
+  function indexRules(rules){
+    if(ruleIndexes.has(rules))return ruleIndexes.get(rules);
+    const scopes=new Map();
+    for(const rule of rules){if(!rule.active)continue;if(!scopes.has(rule.scope))scopes.set(rule.scope,new Map());
+      const buckets=scopes.get(rule.scope),anchor=rule.skills.length?cleanSkill(rule.skills[0].name):'';
+      if(!buckets.has(anchor))buckets.set(anchor,[]);buckets.get(anchor).push(rule);
+    }
+    ruleIndexes.set(rules,scopes);return scopes;
+  }
   function evaluate(record, weapon, rules) {
-    const result = {};
+    const result = {},actual=new Map(record.skills.map(s=>[cleanSkill(s.name),s.level])),indexed=indexRules(rules);
     for (const [key, scope] of [['common','공통'],['weapon',weapon]]) {
-      const matches = rules.filter(rule => rule.active && rule.scope === scope && matchRule(record, rule))
+      const buckets=indexed.get(scope);
+      const candidates=buckets?[...(buckets.get('')||[]),...[...actual.keys()].flatMap(name=>buckets.get(name)||[])]:[];
+      const matches = candidates.filter(rule => matchRule(record, rule,actual))
         .sort((a, b) => a.priority - b.priority || GRADES.indexOf(a.grade) - GRADES.indexOf(b.grade) || a.id.localeCompare(b.id));
       const first = matches[0];
       result[key] = first ? {grade:first.grade, priority:first.priority, ruleIds:matches.filter(rule => rule.grade === first.grade && rule.priority === first.priority).map(rule => rule.id), matches} : {grade:'미분류', priority:Infinity, ruleIds:[], matches:[]};

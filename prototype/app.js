@@ -9,6 +9,8 @@ let savedBuilds = [];
 let savedFolders = [];
 let charmWishlist = [];
 let uploadedRuleIds = [];
+let inventoryRarityData=null;
+const inventoryRarityLabels=new WeakMap();
 let records = [], rules = [], revision = 0, inventoryVersion = 0, rulesVersion = 0, stateRaw = null, storageReady = true;
 let selected = new Set(), tagMode = 'add', uploadedRules = null, pendingImport = null;
 let pendingInventory = null, importTrigger = null;
@@ -101,7 +103,7 @@ function validateRecord(record) {
     if (!Array.isArray(record[key]) || record[key].length > 3 || record[key].some(size => !Number.isInteger(size) || size < 1 || size > 3)) throw Error('슬롯은 종류별 최대 3개, 크기 1~3으로 입력하세요.');
   }
   if (!Array.isArray(record.tags) || record.tags.some(tag => typeof tag !== 'string' || tag.length > 40) || typeof record.memo !== 'string' || !Number.isFinite(record.created)) throw Error('태그·메모·등록일 형식을 확인하세요.');
-  return {id: record.id, skills, weaponSlots: [...record.weaponSlots].sort((a, b) => b - a),
+  return {...(Number.isInteger(record.rarity)&&record.rarity>=1&&record.rarity<=8?{rarity:record.rarity}:{}),id: record.id, skills, weaponSlots: [...record.weaponSlots].sort((a, b) => b - a),
     armorSlots: [...record.armorSlots].sort((a, b) => b - a), tags: [...new Set(record.tags)], memo: record.memo, created: record.created};
 }
 function validateList(list) {
@@ -235,8 +237,10 @@ function render() {
     check.setAttribute('aria-label', record.skills.map(skill => skill.name).join(', ') + ' 선택');
     check.onchange = () => { check.checked ? selected.add(record.id) : selected.delete(record.id); render(); };
     cell(row, '').append(check);
-    cell(row, record.skills.map(skill => skill.name + ' Lv.' + skill.level).join(' / '), 'skills-text');
-    cell(row, '무기 ' + (record.weaponSlots.join('·') || '—') + ' / 방어구 ' + (record.armorSlots.join('·') || '—'));
+    const skillCell=cell(row, record.skills.map(skill => skill.name + ' Lv.' + skill.level).join(' - '), 'skills-text');
+    if(!inventoryRarityLabels.has(record))inventoryRarityLabels.set(record,InventoryDisplay.rarity(record,inventoryRarityData));
+    const rarity=document.createElement('small');rarity.className='inventory-rarity';rarity.textContent=inventoryRarityLabels.get(record);skillCell.prepend(rarity);
+    cell(row, InventoryDisplay.slots(record));
     gradeCell(row, evaluation.common);
     gradeCell(row, evaluation.weapon);
     const tags = cell(row, '');
@@ -304,7 +308,7 @@ $('form').onsubmit = event => {
       skills.push({name, level: Number(level)});
     }
     const id = $('editId').value, existing = records.find(record => record.id === id);
-    const record = validateRecord({id: id || crypto.randomUUID(), skills, weaponSlots: slots($('weaponSlots').value),
+    const record = validateRecord({...existing,id: id || crypto.randomUUID(), skills, weaponSlots: slots($('weaponSlots').value),
       armorSlots: slots($('armorSlots').value), tags: $('tags').value.split(',').map(tag => tag.trim()).filter(Boolean),
       memo: $('memo').value, created: existing?.created || Date.now()});
     const next = id ? records.map(item => item.id === id ? record : item) : [...records, record];
@@ -666,3 +670,5 @@ window.CharmWishlistStore = {get:()=>charmWishlist,set:next=>commit(records,rule
 window.RuleStore={get:()=>rules,impact:impactCount,set:(next,expected)=>{if(JSON.stringify(rules)!==expected)throw Error('다른 작업에서 기준이 변경됐습니다. 다시 불러와 미리보기를 확인하세요.');clearPreview();uploadedRules=null;return commit(records,next);}};
 
 window.RuleImportSources={get:()=>uploadedRuleIds.slice()};
+
+fetch('data/talisman-recipes.json').then(response=>{if(!response.ok)throw Error('호석 규칙 요청 실패');return response.json();}).then(data=>{inventoryRarityData=data;for(const record of records)inventoryRarityLabels.delete(record);render();}).catch(()=>{});

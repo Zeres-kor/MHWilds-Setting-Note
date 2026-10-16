@@ -489,3 +489,5 @@ header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 24px
 .manual-jewel-name{display:block;color:var(--accent);font-size:15px;line-height:1.4}
 .manual-jewel-skills{display:block;color:var(--muted);font-size:13px;font-weight:400;line-height:1.5;overflow-wrap:anywhere}
 .manual-jewel-option{padding:10px 12px;gap:12px}
+
+.inventory-rarity{display:block;color:var(--accent);font-size:12px;font-weight:400;margin-bottom:4px}
