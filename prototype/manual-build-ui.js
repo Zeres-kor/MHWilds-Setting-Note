@@ -28,7 +28,7 @@
   const close=text(picker,'button','닫기');close.type='button';close.addEventListener('click',()=>picker.close());
   const query=field(picker,'장식주 이름·스킬 검색','manualPickerQuery','input');query.type='search';
   const list=text(picker,'div','');list.className='manual-jewel-options';
-  const fitting=data.decorations.filter(d=>d.kind===slot.kind&&d.slot<=slot.size).sort((a,b)=>a.name.localeCompare(b.name,'ko'));
+  const fitting=data.decorations.filter(d=>d.kind===slot.kind&&d.slot<=slot.size).sort((a,b)=>Math.max(0,...Object.values(b.skills))-Math.max(0,...Object.values(a.skills))||a.name.localeCompare(b.name,'ko'));
   function draw(){list.replaceChildren();const q=query.value.replace(/\s/g,'').toLocaleLowerCase('ko');for(const d of [null,...fitting].filter(d=>!d||`${d.name} ${skills(d)}`.replace(/\s/g,'').toLocaleLowerCase('ko').includes(q))){const button=text(list,'button','');button.type='button';button.className='manual-jewel-option';button.setAttribute('aria-pressed',String(d?jewels.get(slot.key)===d.id:!jewels.has(slot.key)));button.append(BuildDetail.gem({...slot,decoration:d}),document.createTextNode(d?`${d.name} · ${skills(d)}`:'빈 슬롯 · 장식주 해제'));button.addEventListener('click',()=>{if(d)jewels.set(slot.key,d.id);else jewels.delete(slot.key);picker.close();renderJewels();preview();persist();document.getElementById('manualJewel-'+slot.key)?.focus();});}}
   query.addEventListener('input',draw);draw();picker.showModal();query.focus();
  }
