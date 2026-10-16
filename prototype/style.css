@@ -437,3 +437,35 @@ header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 24px
 .overview-set-name{white-space:nowrap;overflow-wrap:normal;font-size:11px;padding-left:4px;padding-right:4px}.setting-column-header{grid-template-columns:180px repeat(5,minmax(0,1fr)) minmax(380px,3fr)}@media(min-width:901px){#buildResults .overview-equipment,#savedList .overview-equipment{grid-template-columns:180px repeat(5,minmax(0,1fr)) minmax(380px,3fr)}}
 #ruleEditor{padding:14px;border:1px solid var(--line);margin:16px 0}#ruleEditor .actions h2{margin:0 auto 0 0;font-size:18px}.rule-edit-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0}.rule-skill-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.rule-skill-fields>div{display:grid;grid-template-columns:minmax(0,1fr) 76px;gap:8px}#ruleEditForm label{display:grid;gap:5px}#ruleEditForm[hidden]{display:none}.rules-list>li{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}.rules-list>li>span{flex:1;min-width:180px;overflow-wrap:anywhere}.rules-list button{min-height:32px;padding:4px 10px}#ruleEditor{scroll-margin-top:calc(var(--app-header-height,110px) + 12px)}@media(max-width:900px){.rule-edit-fields,.rule-skill-fields{grid-template-columns:minmax(0,1fr)}}
 .setting-column-header{grid-template-columns:var(--setting-abbr-width,180px) repeat(5,minmax(0,1fr)) minmax(380px,3fr)}@media(min-width:901px){#buildResults .overview-equipment,#savedList .overview-equipment{grid-template-columns:var(--setting-abbr-width,180px) repeat(5,minmax(0,1fr)) minmax(380px,3fr)}}
+
+/* Manual equipment uses the shared game symbols and clickable jewel slots. */
+.manual-equipment .hint{display:flex;align-items:center;gap:12px;min-height:44px}
+.manual-equipment .hint .game-icon{flex-shrink:0}
+.manual-slot-button,.manual-jewel-option{display:flex;align-items:center;gap:10px;min-height:44px;width:100%;text-align:left;white-space:normal;overflow-wrap:anywhere;margin:8px 0}
+.manual-slot-button .game-gem,.manual-jewel-option .game-gem{flex-shrink:0}
+.manual-jewel-picker{width:min(720px,calc(100% - 24px));max-height:85vh;overflow:auto}
+.manual-jewel-picker label{display:grid;gap:8px;margin:16px 0}
+.manual-jewel-picker input{width:100%;min-width:0}
+.manual-jewel-options{display:grid;gap:8px}
+.manual-jewel-option{margin:0}
+.manual-jewel-option[aria-pressed=true]{border-color:var(--accent,#ffda5b);background:rgba(132,107,57,.3)}
+#manualPreview .game-slot-row{display:block}
+
+/* The manual editor is the loadout itself, matching search/saved equipment detail. */
+#manualPreview .manual-loadout-card{margin:16px 0;padding:10px;border-radius:0}
+#manualPreview .manual-gear-button{display:grid;grid-template-columns:42px minmax(0,1fr);gap:3px 9px;width:100%;padding:5px;text-align:left;background:transparent;border:1px solid transparent;min-height:56px;color:inherit}
+#manualPreview .manual-gear-button:hover{border-color:var(--game-gold);background:var(--game-row)}
+#manualPreview .manual-gear-button>.game-icon{grid-row:1 / 3;align-self:center}
+#manualPreview .manual-gear-button .game-gear-caption{margin:0}
+#manualPreview .game-gear{display:block}
+#manualPreview .game-native-skills{margin-left:56px}
+#manualPreview .manual-slot-button{margin:0;padding:3px 5px;min-height:36px;border:0;background:transparent;font-size:13px}
+#manualPreview .game-slot-row{padding:0}
+#manualPreview .manual-charm-button{margin:8px;width:calc(100% - 16px);min-height:44px;text-align:left}
+.manual-equipment-picker{width:min(680px,calc(100% - 24px));max-height:85vh;overflow:auto}
+.manual-equipment-picker .manual-equipment{display:block;margin-top:16px}
+.manual-equipment-picker fieldset[hidden]{display:none}
+.manual-equipment-picker label{display:grid;gap:8px;margin:12px 0}
+.manual-equipment-picker input,.manual-equipment-picker select{width:100%;min-width:0}
+#manualForm{margin:16px 0;gap:12px}
+#manualForm>section[hidden]{display:none}
