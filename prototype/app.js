@@ -196,9 +196,10 @@ function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = s
 
 function visible() {
   const query = $('query').value.trim().toLowerCase(), manual = $('manualFilter').value.trim();
+  const matchesSearch=InventoryDisplay.search(query,SKILL_NAMES);
   const type = $('slotType').value, minimum = Number($('slotMin').value), weapon = $('weapon').value;
   const list = records.map(record => ({record, evaluation: TagRules.evaluate(record, weapon, rules)})).filter(({record, evaluation}) =>
-    (!query || [...record.skills.map(skill => skill.name), record.memo].join(' ').toLowerCase().includes(query)) &&
+    matchesSearch(record) &&
     (!manual || record.tags.some(tag => tag.includes(manual))) &&
     (!(minimum || type) || (type ? record[type + 'Slots'] : [...record.weaponSlots, ...record.armorSlots]).some(size => size >= Math.max(1, minimum))) &&
     (!$('commonFilter').value || $('commonFilter').value === evaluation.common.grade) &&
