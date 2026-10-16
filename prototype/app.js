@@ -117,7 +117,7 @@ function readState() {
       const saved = JSON.parse(stateRaw);
       if (saved.format !== STATE_KEY || !Number.isSafeInteger(saved.revision) || saved.revision < 0) throw Error('저장 버전 형식이 잘못됐습니다.');
       records = validateList(saved.records);
-      rules = TagRules.validateRules(saved.rules, SKILL_NAMES);
+      rules = TagRules.validateRules(RuleStorage.unpack(saved.rules), SKILL_NAMES);
       const collection = SavedBuilds.validateCollection(saved.savedBuilds || [], saved.savedFolders || []);
       savedBuilds = collection.entries;
       savedFolders = collection.folders;
@@ -169,7 +169,7 @@ function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = s
     const nextInventoryVersion = inventoryVersion + Number(JSON.stringify(cleanRecords) !== JSON.stringify(records));
     const nextRulesVersion = rulesVersion + Number(JSON.stringify(cleanRules) !== JSON.stringify(rules));
     const raw = JSON.stringify({format: STATE_KEY, revision: nextRevision, inventoryVersion: nextInventoryVersion,
-      rulesVersion: nextRulesVersion, records: cleanRecords, rules: cleanRules, savedBuilds: cleanBuilds, savedFolders: cleanFolders, charmWishlist: cleanWishlist});
+      rulesVersion: nextRulesVersion, records: cleanRecords, rules: RuleStorage.pack(cleanRules), savedBuilds: cleanBuilds, savedFolders: cleanFolders, charmWishlist: cleanWishlist});
     localStorage.setItem(STATE_KEY, raw);
     stateRaw = raw;
     records = cleanRecords;
