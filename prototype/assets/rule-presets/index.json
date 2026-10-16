@@ -1,0 +1,42 @@
+[
+  {
+    "file": "lbg-normal.xlsx",
+    "label": "통상탄",
+    "count": 4013
+  },
+  {
+    "file": "lbg-pierce.xlsx",
+    "label": "관통탄",
+    "count": 4013
+  },
+  {
+    "file": "lbg-spread.xlsx",
+    "label": "산탄",
+    "count": 4013
+  },
+  {
+    "file": "lbg-fire.xlsx",
+    "label": "불속성탄",
+    "count": 6383
+  },
+  {
+    "file": "lbg-water.xlsx",
+    "label": "물속성탄",
+    "count": 6383
+  },
+  {
+    "file": "lbg-thunder.xlsx",
+    "label": "번개속성탄",
+    "count": 6383
+  },
+  {
+    "file": "lbg-ice.xlsx",
+    "label": "얼음속성탄",
+    "count": 6383
+  },
+  {
+    "file": "lbg-dragon.xlsx",
+    "label": "용속성탄",
+    "count": 6383
+  }
+]
