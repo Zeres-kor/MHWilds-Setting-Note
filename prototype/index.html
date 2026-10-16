@@ -10,17 +10,17 @@
 <p class="notice">태그 기준 엑셀을 올리면 보유 호석을 자동 분류합니다. 엑셀 기준 호석 후보는 메뉴에서 검색할 수 있습니다. 세팅 검색에서 목표 스킬에 맞는 장비와 장식주 조합을 찾을 수 있습니다.</p>
 <section class="filters" aria-label="호석 필터"><div class="section-heading"><h2>호석 찾기</h2><span>스킬과 평가 조건으로 목록 좁히기</span></div>
 <label>평가할 무기<select id="weapon"></select></label>
-<label>스킬·메모 검색<input id="query" type="search" placeholder="예: 혼신, 납도술"></label>
+<label>스킬·메모 검색<input id="query" title="정확한 스킬명을 입력하면 해당 스킬만 검색합니다. 그 외에는 스킬·메모를 부분 검색합니다." type="search" placeholder="예: 혼신, 납도술"></label>
 <label>범용 평가<select id="commonFilter"></select></label>
 <label>무기별 평가<select id="weaponFilter"></select></label>
 <label>수동 태그<input id="manualFilter" placeholder="예: 보관, 비교"></label>
 <label>슬롯 종류<select id="slotType"><option value="">전체</option><option value="weapon">무기</option><option value="armor">방어구</option></select></label>
 <label>최소 슬롯 크기<select id="slotMin"><option value="0">제한 없음</option><option>1</option><option>2</option><option>3</option></select></label>
-<label>정렬<select id="sort"><option value="new">최근 등록순</option><option value="old">오래된 등록순</option><option value="common">범용 평가순</option><option value="weapon">무기 평가순</option><option value="slot">슬롯 크기순</option></select></label>
+<label>정렬<select id="sort"><option value="new">최근 등록순</option><option value="old">오래된 등록순</option><option value="common">범용 평가순</option><option value="weapon">무기 평가순</option><option value="slot">슬롯 크기순</option><option value="rarity-high">레어도 높은순</option><option value="rarity-low">레어도 낮은순</option></select></label>
 <button id="reset">필터 초기화</button>
 </section>
 <section class="collection" aria-label="호석 목록">
-<div class="toolbar"><span id="count" role="status"></span><div class="bulk"><span id="selected">0개 선택</span><button id="tag" disabled>수동 태그 일괄 추가</button><button id="untag" disabled>수동 태그 일괄 제거</button><button id="delete" class="danger" disabled>선택 삭제</button></div></div>
+<div class="toolbar"><span id="count" role="status"></span><div class="bulk"><span id="selected">0개 선택</span><button id="tag" disabled>수동 태그 일괄 추가</button><button id="untag" disabled>수동 태그 일괄 제거</button><button id="delete" class="danger" disabled>선택 삭제</button><button id="deleteAllRecords" type="button" class="danger" disabled>보유 호석 전체 삭제</button></div></div>
 <p class="table-scroll-hint">표 안에서 위아래로 스크롤해도 제목 행은 고정됩니다. 나머지 열은 좌우로 스크롤해 확인하세요.</p>
 <div class="table-wrap inventory-table-scroll" tabindex="0" role="region" aria-label="보유 호석 표 · 위아래와 좌우로 스크롤"><table><thead><tr><th scope="col"><input id="all" type="checkbox" aria-label="표시된 호석 모두 선택"></th><th scope="col">호석 / 스킬</th><th scope="col">슬롯</th><th scope="col">범용 평가</th><th scope="col" id="weaponHeading">무기별 평가</th><th scope="col">수동 태그</th><th scope="col">메모</th><th scope="col">상세</th></tr></thead><tbody id="rows"></tbody></table></div>
 <div id="empty" class="empty"><div class="gem">◇</div><h2>첫 호석을 등록해보세요</h2><p class="muted">직접 입력하거나 표·기존 TXT를 가져올 수 있습니다.</p><button id="emptyAdd" class="primary">호석 입력</button> <button id="emptyImport">일괄 가져오기</button></div>
