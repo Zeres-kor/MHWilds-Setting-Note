@@ -491,3 +491,23 @@ header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 24px
 .manual-jewel-option{padding:10px 12px;gap:12px}
 
 .inventory-rarity{display:block;color:var(--accent);font-size:12px;font-weight:400;margin-bottom:4px}
+
+.manual-equipment-picker{width:min(1000px,calc(100% - 24px))}
+.manual-equipment-picker [hidden]{display:none!important}
+.manual-weapon-types{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px;margin:12px 0 20px}
+.manual-weapon-types button{display:flex;align-items:center;gap:8px;min-height:48px;padding:8px;font-size:13px}
+.manual-weapon-types .game-icon{width:28px;height:30px;flex:none}
+.manual-weapon-types button[aria-pressed=true],.manual-equipment-option[aria-pressed=true]{border-color:var(--accent);background:var(--raised);box-shadow:inset 3px 0 var(--accent)}
+.manual-equipment-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:10px}
+.manual-equipment-clear{grid-column:1/-1;justify-self:start;min-height:44px}
+.manual-equipment-option{display:flex;align-items:flex-start;gap:12px;padding:14px;text-align:left;background:var(--field);border:1px solid var(--line);min-width:0;white-space:normal}
+.manual-equipment-option>.game-icon{flex:none;margin-top:4px}
+.manual-equipment-info{display:grid;gap:7px;min-width:0;overflow-wrap:anywhere;line-height:1.5}
+.manual-equipment-info>strong{color:var(--accent);font-size:16px}
+.manual-equipment-meta{font-size:12px;font-weight:400;color:var(--muted)}
+.manual-equipment-slots{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:12px;font-weight:400}
+.manual-equipment-slots>span{display:inline-flex;align-items:center;gap:3px}
+.manual-equipment-slots .game-gem{width:26px;height:28px;flex:none}
+.manual-equipment-skills{font-size:13px;font-weight:400;color:var(--text)}
+.manual-equipment-option:hover{border-color:var(--accent)}
+@media(max-width:600px){.manual-equipment-picker{padding:14px}.manual-equipment-picker fieldset{padding:10px}.manual-weapon-types{grid-template-columns:repeat(2,minmax(0,1fr))}}
