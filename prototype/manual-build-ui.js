@@ -14,6 +14,14 @@
  function persist(){if(restoring)return;try{localStorage.setItem(key,JSON.stringify({version:1,limitBreak:$('manualLimitBreak').value,type:$('manualType').value,equipment:Object.fromEntries(Object.entries(fields).map(([part,f])=>[part,f.select.value])),series:$('manualSeries').value,group:$('manualGroup').value,jewels:[...jewels]}));$('manualStatus').textContent='선택한 장비와 장식주는 이 브라우저에 자동 저장됩니다.';}catch{$('manualStatus').textContent='선택을 자동 저장하지 못했습니다. 브라우저 저장 공간·설정을 확인하세요.';}}
  function slots(){const out=[];for(const part of Object.keys(parts)){const item=selected(part);if(!item)continue;const kinds=part==='talisman'?['weapon','armor']:[part==='weapon'?'weapon':'armor'];for(const kind of kinds){const sizes=part==='talisman'?item[kind+'Slots']:item.slots;sizes.forEach((size,index)=>out.push({owner:part,kind,size,index,key:`${part}:${kind}:${index}`}));}}return out;}
  function syncBonuses(){const gog=WeaponBonuses.gogIds.has(selected('weapon')?.id);for(const id of ['manualSeries','manualGroup']){if(!gog)$(id).value='0';$(id).disabled=!gog;}}
+ // Close only when the gesture starts and ends on the backdrop, never on dialog padding or a drag from its contents.
+ function dismissOnBackdrop(dialog){
+  const outside=event=>{const r=dialog.getBoundingClientRect();return event.target===dialog&&(event.clientX<r.left||event.clientX>=r.right||event.clientY<r.top||event.clientY>=r.bottom);};
+  let beganOutside=false;
+  dialog.addEventListener('pointerdown',event=>{beganOutside=outside(event);});
+  dialog.addEventListener('click',event=>{if(beganOutside&&outside(event))dialog.close();beganOutside=false;});
+  dialog.addEventListener('close',()=>{beganOutside=false;});
+ }
  const picker=document.createElement('dialog');picker.className='manual-jewel-picker';picker.setAttribute('aria-labelledby','manualPickerTitle');page.append(picker);
  function chooseJewel(slot){
   picker.replaceChildren();const heading=text(picker,'h2',`${parts[slot.owner]} · ${slot.kind==='weapon'?'무기':'방어구'} ${slot.index+1}번 슬롯 [${slot.size}]`);heading.id='manualPickerTitle';
@@ -31,6 +39,7 @@
  const equipmentTitle=text(equipmentPicker,'h2','장비 선택');equipmentTitle.id='manualEquipmentPickerTitle';
  const equipmentClose=text(equipmentPicker,'button','닫기');equipmentClose.type='button';equipmentClose.addEventListener('click',()=>equipmentPicker.close());
  equipmentPicker.append($('manualEquipment'));page.append(equipmentPicker);
+ dismissOnBackdrop(picker);dismissOnBackdrop(equipmentPicker);
  let editingPart=null;
  equipmentPicker.addEventListener('close',()=>{document.getElementById('manualGear-'+editingPart)?.focus();});
  function chooseEquipment(part){editingPart=part;equipmentTitle.textContent=parts[part]+' 선택';for(const [p,f]of Object.entries(fields))f.select.closest('fieldset').hidden=p!==part;equipmentPicker.showModal();fields[part].query.focus();}
