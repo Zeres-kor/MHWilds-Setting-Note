@@ -2,10 +2,9 @@
 (()=>{
  const $=id=>document.getElementById(id);let pending=null,sequence=0;
  function clear(){sequence++;pending=null;$('lbgPresetApply').hidden=true;$('lbgPresetImpact').hidden=true;}
- $('lbgPresetProfile').addEventListener('change',()=>{clear();$('lbgPresetStatus').textContent='선택한 운용의 미리보기를 확인하세요.';});
  $('rulesDialog').addEventListener('page-leave',()=>{clear();$('lbgPresetStatus').textContent='';});
  $('lbgPresetPreview').addEventListener('click',async()=>{
-  clear();const request=sequence,expected=JSON.stringify(RuleStore.get()),file=$('lbgPresetProfile').value;
+  clear();const request=sequence,expected=JSON.stringify(RuleStore.get()),file='lbg-all.json';
   $('lbgPresetStatus').textContent='기준을 불러오는 중…';
   try{
    const response=await fetch('assets/rule-presets/'+file);if(!response.ok)throw Error('라보 기준을 불러오지 못했습니다. 다시 시도하세요.');
