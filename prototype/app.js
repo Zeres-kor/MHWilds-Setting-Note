@@ -239,9 +239,14 @@ function render() {
     check.setAttribute('aria-label', record.skills.map(skill => skill.name).join(', ') + ' 선택');
     check.onchange = () => { check.checked ? selected.add(record.id) : selected.delete(record.id); render(); };
     cell(row, '').append(check);
-    const skillCell=cell(row, record.skills.map(skill => skill.name + ' Lv.' + skill.level).join(' - '), 'skills-text');
+    const skillCell=cell(row, '', 'skills-text');
+    const charm=document.createElement('div');charm.className='inventory-charm';
+    const rarityIcon=document.createElement('img');rarityIcon.className='inventory-rarity-icon';rarityIcon.src=InventoryDisplay.rarityIcon(record,inventoryRarityData);rarityIcon.alt='';rarityIcon.width=42;rarityIcon.height=42;
+    const content=document.createElement('span');content.className='inventory-charm-content';
     if(!inventoryRarityLabels.has(record))inventoryRarityLabels.set(record,InventoryDisplay.rarity(record,inventoryRarityData));
-    const rarity=document.createElement('small');rarity.className='inventory-rarity';rarity.textContent=inventoryRarityLabels.get(record);skillCell.prepend(rarity);
+    const rarity=document.createElement('small');rarity.className='inventory-rarity';rarity.textContent=inventoryRarityLabels.get(record);
+    const skillNames=document.createElement('span');skillNames.textContent=record.skills.map(skill => skill.name + ' Lv.' + skill.level).join(' - ');
+    content.append(rarity,skillNames);charm.append(rarityIcon,content);skillCell.append(charm);
     cell(row, InventoryDisplay.slots(record));
     gradeCell(row, evaluation.common);
     gradeCell(row, evaluation.weapon);

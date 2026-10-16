@@ -511,3 +511,7 @@ header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 24px
 .manual-equipment-skills{font-size:13px;font-weight:400;color:var(--text)}
 .manual-equipment-option:hover{border-color:var(--accent)}
 @media(max-width:600px){.manual-equipment-picker{padding:14px}.manual-equipment-picker fieldset{padding:10px}.manual-weapon-types{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.inventory-charm{display:flex;align-items:center;gap:10px}
+.inventory-rarity-icon{display:block;flex:0 0 42px;width:42px;height:42px;object-fit:contain}
+.inventory-charm-content{min-width:0}

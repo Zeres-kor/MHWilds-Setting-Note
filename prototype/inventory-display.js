@@ -20,6 +20,10 @@ const InventoryDisplay=(()=>{
   const values=rarityValues(record,data);
   return values.length?(Number.isInteger(record.rarity)?'RARE ':'규칙 RARE ')+values.join('-'):'RARE 미확인';
  }
+ function rarityIcon(record,data){
+  const values=rarityValues(record,data);
+  return values.length===1?'assets/game-icons/talismans/framed/rarity_'+String(values[0]).padStart(2,'0')+'.png':'assets/game-icons/equipment_framed/talisman.png';
+ }
  function compareRarity(a,b,data,ascending=false){
   const av=rarityValues(a,data),bv=rarityValues(b,data);
   if(!av.length||!bv.length)return Number(!av.length)-Number(!bv.length);
@@ -29,6 +33,6 @@ const InventoryDisplay=(()=>{
   const aa=a.evaluation[scope],bb=b.evaluation[scope];
   return (aa.grade===bb.grade?0:aa.priority-bb.priority)||compareRarity(a.record,b.record,data)||aa.priority-bb.priority||b.record.created-a.record.created;
  }
- return {slots,rarity,search,rarityValues,compareRarity,compareEvaluation};
+ return {slots,rarity,search,rarityValues,rarityIcon,compareRarity,compareEvaluation};
 })();
 if(typeof module!=='undefined')module.exports=InventoryDisplay;
