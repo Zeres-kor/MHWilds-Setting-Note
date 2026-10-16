@@ -264,6 +264,7 @@ function render() {
   $('empty').querySelector('p').textContent = records.length ? '필터 조건을 줄이거나 초기화해보세요.' : '직접 입력하거나 표·기존 TXT를 가져올 수 있습니다.';
   $('selected').textContent = selected.size + '개 선택';
   for (const id of ['tag', 'untag', 'delete']) $(id).disabled = !selected.size;
+  $('deleteAllRecords').disabled = !records.length;
   $('all').checked = list.length > 0 && list.every(({record}) => selected.has(record.id));
   $('all').indeterminate = list.some(({record}) => selected.has(record.id)) && !$('all').checked;
   document.dispatchEvent(new Event('inventory-state-changed'));
@@ -360,6 +361,15 @@ $('delete').onclick = () => {
       render();
       announce('선택한 호석을 삭제했습니다.');
     }
+  }
+};
+$('deleteAllRecords').onclick = () => {
+  if (!records.length) return;
+  if (!confirm('필터·선택과 관계없이 저장된 보유 호석 전체 ' + records.length + '개를 삭제할까요?\n호석에 기록한 수동 태그·메모도 삭제됩니다. 평가 기준·저장 세팅·찜목록은 유지됩니다.\n삭제 후 복원하려면 기존 백업이 필요합니다.')) return;
+  if (commit([])) {
+    selected.clear();
+    render();
+    announce('저장된 보유 호석을 모두 삭제했습니다. 평가 기준과 저장 세팅은 유지됩니다.');
   }
 };
 $('export').onclick = () => {

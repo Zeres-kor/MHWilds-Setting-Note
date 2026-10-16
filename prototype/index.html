@@ -20,7 +20,7 @@
 <button id="reset">필터 초기화</button>
 </section>
 <section class="collection" aria-label="호석 목록">
-<div class="toolbar"><span id="count" role="status"></span><div class="bulk"><span id="selected">0개 선택</span><button id="tag" disabled>수동 태그 일괄 추가</button><button id="untag" disabled>수동 태그 일괄 제거</button><button id="delete" class="danger" disabled>선택 삭제</button></div></div>
+<div class="toolbar"><span id="count" role="status"></span><div class="bulk"><span id="selected">0개 선택</span><button id="tag" disabled>수동 태그 일괄 추가</button><button id="untag" disabled>수동 태그 일괄 제거</button><button id="delete" class="danger" disabled>선택 삭제</button><button id="deleteAllRecords" type="button" class="danger" disabled>보유 호석 전체 삭제</button></div></div>
 <p class="table-scroll-hint">표 안에서 위아래로 스크롤해도 제목 행은 고정됩니다. 나머지 열은 좌우로 스크롤해 확인하세요.</p>
 <div class="table-wrap inventory-table-scroll" tabindex="0" role="region" aria-label="보유 호석 표 · 위아래와 좌우로 스크롤"><table><thead><tr><th scope="col"><input id="all" type="checkbox" aria-label="표시된 호석 모두 선택"></th><th scope="col">호석 / 스킬</th><th scope="col">슬롯</th><th scope="col">범용 평가</th><th scope="col" id="weaponHeading">무기별 평가</th><th scope="col">수동 태그</th><th scope="col">메모</th><th scope="col">상세</th></tr></thead><tbody id="rows"></tbody></table></div>
 <div id="empty" class="empty"><div class="gem">◇</div><h2>첫 호석을 등록해보세요</h2><p class="muted">직접 입력하거나 표·기존 TXT를 가져올 수 있습니다.</p><button id="emptyAdd" class="primary">호석 입력</button> <button id="emptyImport">일괄 가져오기</button></div>
