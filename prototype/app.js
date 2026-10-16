@@ -8,6 +8,7 @@ const BACKUP_FORMAT = 'mhwilds-backup-v2';
 let savedBuilds = [];
 let savedFolders = [];
 let charmWishlist = [];
+let uploadedRuleIds = [];
 let records = [], rules = [], revision = 0, inventoryVersion = 0, rulesVersion = 0, stateRaw = null, storageReady = true;
 let selected = new Set(), tagMode = 'add', uploadedRules = null, pendingImport = null;
 let pendingInventory = null, importTrigger = null;
@@ -116,6 +117,7 @@ function readState() {
     if (stateRaw) {
       const saved = JSON.parse(stateRaw);
       if (saved.format !== STATE_KEY || !Number.isSafeInteger(saved.revision) || saved.revision < 0) throw Error('저장 버전 형식이 잘못됐습니다.');
+      uploadedRuleIds = Array.isArray(saved.uploadedRuleIds) ? saved.uploadedRuleIds.filter(x=>typeof x==='string') : [];
       records = validateList(saved.records);
       rules = TagRules.validateRules(RuleStorage.unpack(saved.rules), SKILL_NAMES);
       const collection = SavedBuilds.validateCollection(saved.savedBuilds || [], saved.savedFolders || []);
@@ -128,7 +130,7 @@ function readState() {
       if (![inventoryVersion, rulesVersion].every(value => Number.isSafeInteger(value) && value >= 0)) throw Error('저장 데이터 버전이 잘못됐습니다.');
     } else {
       records = validateList(JSON.parse(localStorage.getItem(LEGACY_KEY) || '[]'));
-      rules = [];
+      rules = []; uploadedRuleIds = [];
       savedBuilds = [];
       savedFolders = [];
       charmWishlist = [];
@@ -140,7 +142,7 @@ function readState() {
   } catch (error) {
     storageReady = false;
     records = [];
-    rules = [];
+    rules = []; uploadedRuleIds = [];
     savedBuilds = [];
     savedFolders = [];
     charmWishlist = [];
@@ -149,7 +151,7 @@ function readState() {
 }
 readState();
 
-function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = savedBuilds, nextFolders = savedFolders, nextWishlist = charmWishlist) {
+function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = savedBuilds, nextFolders = savedFolders, nextWishlist = charmWishlist, nextUploadedRuleIds = uploadedRuleIds) {
   if (!storageReady && !recovery) {
     announce('저장 데이터 오류가 있어 변경하지 않았습니다. 정상 백업을 복원하세요.');
     return false;
@@ -169,11 +171,12 @@ function commit(nextRecords, nextRules = rules, recovery = false, nextBuilds = s
     const nextInventoryVersion = inventoryVersion + Number(JSON.stringify(cleanRecords) !== JSON.stringify(records));
     const nextRulesVersion = rulesVersion + Number(JSON.stringify(cleanRules) !== JSON.stringify(rules));
     const raw = JSON.stringify({format: STATE_KEY, revision: nextRevision, inventoryVersion: nextInventoryVersion,
-      rulesVersion: nextRulesVersion, records: cleanRecords, rules: RuleStorage.pack(cleanRules), savedBuilds: cleanBuilds, savedFolders: cleanFolders, charmWishlist: cleanWishlist});
+      rulesVersion: nextRulesVersion, records: cleanRecords, rules: RuleStorage.pack(cleanRules), uploadedRuleIds: nextUploadedRuleIds.filter(id=>cleanRules.some(r=>r.id===id)), savedBuilds: cleanBuilds, savedFolders: cleanFolders, charmWishlist: cleanWishlist});
     localStorage.setItem(STATE_KEY, raw);
     stateRaw = raw;
     records = cleanRecords;
     rules = cleanRules;
+    uploadedRuleIds = nextUploadedRuleIds.filter(id=>cleanRules.some(r=>r.id===id));
     savedBuilds = cleanBuilds;
     savedFolders = cleanFolders;
     charmWishlist = cleanWishlist;
@@ -620,7 +623,7 @@ $('rulesApply').onclick = () => {
     $('rulesErrors').textContent = '다른 탭에서 데이터가 변경됐습니다. 기준 파일을 다시 선택해 미리보기를 갱신하세요.';
     return;
   }
-  if (commit(records, pendingImport.rules)) {
+  if (commit(records, pendingImport.rules, false, savedBuilds, savedFolders, charmWishlist, [...new Set([...uploadedRuleIds,...(uploadedRules||[]).map(r=>r.id)])])) {
     renderRuleList();
     clearPreview();
     $('rulesFileStatus').textContent = '태그 기준을 적용했습니다.';
@@ -661,3 +664,5 @@ window.SavedBuildStore = {get:()=>savedBuilds, folders:()=>savedFolders, set:(ne
 window.CharmWishlistStore = {get:()=>charmWishlist,set:next=>commit(records,rules,false,savedBuilds,savedFolders,next)};
 
 window.RuleStore={get:()=>rules,impact:impactCount,set:(next,expected)=>{if(JSON.stringify(rules)!==expected)throw Error('다른 작업에서 기준이 변경됐습니다. 다시 불러와 미리보기를 확인하세요.');clearPreview();uploadedRules=null;return commit(records,next);}};
+
+window.RuleImportSources={get:()=>uploadedRuleIds.slice()};
