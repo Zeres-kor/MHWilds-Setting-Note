@@ -515,3 +515,8 @@ header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 24px
 .inventory-charm{display:flex;align-items:center;gap:10px}
 .inventory-rarity-icon{display:block;flex:0 0 42px;width:42px;height:42px;object-fit:contain}
 .inventory-charm-content{min-width:0}
+
+.inventory-slot-groups{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px}
+.inventory-slot-group{display:inline-flex;align-items:center;gap:3px}
+.inventory-slot-kind{font-size:12px;font-weight:400;color:var(--muted);margin-right:3px}
+.inventory-slot-icon{display:block;width:42px;height:42px;flex:0 0 42px;object-fit:contain}

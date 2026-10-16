@@ -5,6 +5,9 @@ const InventoryDisplay=(()=>{
   const term=normalize(query),exact=knownNames.some(name=>normalize(name)===term);
   return record=>!term||(exact?record.skills.some(s=>normalize(s.name)===term):[...record.skills.map(s=>s.name),record.memo].some(value=>normalize(value).includes(term)));
  }
+ function slotGroups(record){
+  return [['weapon','무기'],['armor','방어구']].filter(([kind])=>record[kind+'Slots'].length).map(([kind,label])=>({kind,label,slots:record[kind+'Slots'].map(size=>({size,source:`assets/game-icons/empty_slots/${kind}_slot_${size}.png`,label:`${label} ${size}슬롯`}))}));
+ }
  function slots(record){return [record.weaponSlots.length?'무기 '+record.weaponSlots.join('-'):'',record.armorSlots.length?'방어구 '+record.armorSlots.join('-'):''].filter(Boolean).join(' - ');}
  let rarityData,rarityCache=new WeakMap();
  function rarityValues(record,data){
@@ -33,6 +36,6 @@ const InventoryDisplay=(()=>{
   const aa=a.evaluation[scope],bb=b.evaluation[scope];
   return (aa.grade===bb.grade?0:aa.priority-bb.priority)||compareRarity(a.record,b.record,data)||aa.priority-bb.priority||b.record.created-a.record.created;
  }
- return {slots,rarity,search,rarityValues,rarityIcon,compareRarity,compareEvaluation};
+ return {slots,slotGroups,rarity,search,rarityValues,rarityIcon,compareRarity,compareEvaluation};
 })();
 if(typeof module!=='undefined')module.exports=InventoryDisplay;

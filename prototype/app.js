@@ -247,7 +247,14 @@ function render() {
     const rarity=document.createElement('small');rarity.className='inventory-rarity';rarity.textContent=inventoryRarityLabels.get(record);
     const skillNames=document.createElement('span');skillNames.textContent=record.skills.map(skill => skill.name + ' Lv.' + skill.level).join(' - ');
     content.append(rarity,skillNames);charm.append(rarityIcon,content);skillCell.append(charm);
-    cell(row, InventoryDisplay.slots(record));
+    const slotCell=cell(row, '', 'inventory-slot-cell'),slotGroups=document.createElement('div');slotGroups.className='inventory-slot-groups';
+    for(const group of InventoryDisplay.slotGroups(record)){
+      const item=document.createElement('span');item.className='inventory-slot-group';
+      const label=document.createElement('small');label.className='inventory-slot-kind';label.textContent=group.label;item.append(label);
+      for(const slot of group.slots){const image=document.createElement('img');image.className='inventory-slot-icon';image.src=slot.source;image.alt=slot.label;image.title=slot.label;image.width=42;image.height=42;item.append(image);}
+      slotGroups.append(item);
+    }
+    slotCell.append(slotGroups);
     gradeCell(row, evaluation.common);
     gradeCell(row, evaluation.weapon);
     const tags = cell(row, '');

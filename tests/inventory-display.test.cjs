@@ -3,3 +3,5 @@ test('없는 슬롯 종류를 숨기고 남은 슬롯은 하이픈으로 표시�
 test('원본 레어도와 규칙 기준 레어도를 구분하고 미확인을 임의로 채우지 않는다',()=>{const data=require('../prototype/data/talisman-recipes.json'),r={skills:[{name:'공격',level:3},{name:'도전자',level:1}],weaponSlots:[1],armorSlots:[1,1]};assert.equal(D.rarity(r,data),'규칙 RARE 8');assert.equal(D.rarity({...r,rarity:7},data),'RARE 7');assert.equal(D.rarity(r,null),'RARE 미확인');});
 
 test('레어도가 확인되면 해당 호석 색상 이미지를 쓰고 미확인은 기본 이미지를 쓴다',()=>{assert.equal(D.rarityIcon({rarity:7},null),'assets/game-icons/talismans/framed/rarity_07.png');assert.equal(D.rarityIcon({skills:[],weaponSlots:[],armorSlots:[]},null),'assets/game-icons/equipment_framed/talisman.png');});
+
+test('슬롯 아이콘은 종류·크기를 보존하고 없는 슬롯 그룹을 만들지 않는다',()=>{const groups=D.slotGroups({weaponSlots:[],armorSlots:[2,1]});assert.equal(groups.length,1);assert.equal(groups[0].kind,'armor');assert.deepEqual(groups[0].slots.map(s=>s.source),['assets/game-icons/empty_slots/armor_slot_2.png','assets/game-icons/empty_slots/armor_slot_1.png']);assert.equal(D.slotGroups({weaponSlots:[],armorSlots:[]}).length,0);assert.equal(D.slotGroups({weaponSlots:[1],armorSlots:[]})[0].slots[0].label,'무기 1슬롯');});
