@@ -206,9 +206,10 @@ function visible() {
     (!$('weaponFilter').value || $('weaponFilter').value === evaluation.weapon.grade));
   const mode = $('sort').value;
   return list.sort((a, b) => {
+    if (mode === 'rarity-high' || mode === 'rarity-low') return InventoryDisplay.compareRarity(a.record,b.record,inventoryRarityData,mode==='rarity-low') || b.record.created-a.record.created;
     if (mode === 'old') return a.record.created - b.record.created;
     if (mode === 'slot') return Math.max(0, ...b.record.weaponSlots, ...b.record.armorSlots) - Math.max(0, ...a.record.weaponSlots, ...a.record.armorSlots) || b.record.created - a.record.created;
-    if (mode === 'common' || mode === 'weapon') return a.evaluation[mode].priority - b.evaluation[mode].priority || b.record.created - a.record.created;
+    if (mode === 'common' || mode === 'weapon') return InventoryDisplay.compareEvaluation(a,b,mode,inventoryRarityData);
     return b.record.created - a.record.created;
   });
 }
